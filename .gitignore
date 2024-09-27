@@ -1,0 +1,48 @@
+node_modules/
+
+# Logs
+logs/                    # Carpeta de logs generados por la aplicación
+*.log                    # Archivos de logs
+npm-debug.log*           # Logs de depuración de npm
+yarn-debug.log*          # Logs de depuración de Yarn
+yarn-error.log*          # Logs de errores de Yarn
+pnpm-debug.log*          # Logs de depuración de pnpm
+
+# Directorios de construcción y caché
+dist/                    # Carpeta de salida de la construcción de Vite
+build/                   # Otra posible carpeta de construcción
+.cache/                  # Caché generado por herramientas de construcción
+.vite/                   # Caché específico de Vite
+temp/                    # Archivos temporales
+*.tmp                    # Archivos temporales
+
+# Variables de entorno
+.env                     # Variables de entorno base
+.env.local               # Variables de entorno específicas del entorno local
+.env.development.local   # Variables de entorno de desarrollo local
+.env.test.local          # Variables de entorno de pruebas locales
+.env.production.local    # Variables de entorno de producción locales
+
+# Configuración de Editor de código
+.vscode/                 # Configuración específica de Visual Studio Code
+
+# Sistema operativo
+.DS_Store                # Metadatos de las carpetas en macOS
+Thumbs.db                # Miniaturas generadas por el Explorador de Windows
+*.swp                    # Archivos swap de Vim
+*.swo                    # Archivos temporales de Vim
+*.bak                    # Archivos de respaldo
+
+# Archivos de configuración y compilación de TypeScript
+*.tsbuildinfo            # Información de construcción de TypeScript
+
+# Configuraciones de Linting y Formateo
+.eslintcache             # Caché de ESLint
+stylelintcache           # Caché de Stylelint
+.prettierignore          # Archivos ignorados por Prettier
+.prettierrc              # Configuración de Prettier
+
+# Archivos de pruebas
+coverage/                # Informes de cobertura de pruebas
+*.test.ts                # Archivos de pruebas en TypeScript
+*.test.tsx               # Archivos de pruebas en TypeScript con JSX
