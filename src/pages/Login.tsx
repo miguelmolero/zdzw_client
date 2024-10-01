@@ -8,7 +8,7 @@ import {
   Logo,
   FormContainer,
 } from './styles/LoginStyles';
-import logo from '../assets/Logo_ZDZW.png'; // Cambia la ruta según tu estructura de proyecto
+import logo from '../assets/Logo_ZDZW.png';
 
 const Login: React.FC = () => {
   const { login } = useAuth();
