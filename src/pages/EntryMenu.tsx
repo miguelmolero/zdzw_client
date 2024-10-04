@@ -1,11 +1,13 @@
 import React from 'react';
 import { Box, Paper, Avatar, Typography, IconButton } from '@mui/material';
 import { entryMenuStyles } from './styles/EntryMenuStyles'; // Importar los estilos
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import SettingsIcon from '@mui/icons-material/Settings';
-import PersonIcon from '@mui/icons-material/Person';
-import logo from '../assets/Logo_ZDZW.png';
+import Header from '../components/Header'; // Importar el Header reutilizable
+import Toolbar from '../components/Toolbar'; // Importar la Toolbar reutilizable
+// import MenuIcon from '@mui/icons-material/Menu';
+// import HomeIcon from '@mui/icons-material/Home';
+// import SettingsIcon from '@mui/icons-material/Settings';
+// import PersonIcon from '@mui/icons-material/Person';
+// import logo from '../assets/Logo_ZDZW.png';
 
 
 const EntryMenu = () => {
@@ -13,25 +15,13 @@ const EntryMenu = () => {
 
   return (
     <Box sx={styles.root}>
-      {/* Barra lateral */}
-      <Box sx={styles.sidebar}>
-        <IconButton><MenuIcon /></IconButton>
-        <IconButton><HomeIcon /></IconButton>
-        <IconButton><SettingsIcon /></IconButton>
-      </Box>
+      {/*Toolbar */}
+      <Toolbar />
 
       {/* Contenido principal */}
       <Box sx={styles.mainContent}>
         {/* Header */}
-        <Box sx={styles.header}>
-          <Box sx={styles.logoContainer}>
-            <img src={logo} alt="Logo" style={styles.logo} />
-          </Box>
-          <Typography variant="h6">ZDZW Weld Inspection App</Typography>
-          <Avatar>
-            <PersonIcon />
-          </Avatar>
-        </Box>
+        <Header />
 
         {/* Cuerpo principal */}
         <Box sx={styles.body}>

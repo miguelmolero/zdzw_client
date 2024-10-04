@@ -4,33 +4,9 @@ export const entryMenuStyles = () => ({
     height: '100vh',
     overflow: 'hidden', // Evitar scrollbar
   },
-  sidebar: {
-    width: 80,
-    bgcolor: '#fff', // Barra de herramientas en blanco
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    paddingTop: 2,
-  },
   mainContent: {
     flexGrow: 1,
     bgcolor: '#e0f7e9', // Fondo verde suave detrás de las cajas
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: 2,
-    bgcolor: '#fff', // Header en blanco
-    borderBottom: '1px solid #ccc',
-  },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center', // Alinear logo y texto verticalmente
-    marginRight: '8px', // Margen para separar el logo del texto
-  },
-  logo: {
-    height: '40px', // Ajustar el tamaño del logo
-    width: 'auto',
   },
   body: {
     display: 'flex',
