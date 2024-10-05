@@ -1,13 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
-import Dashboard from './pages/EntryMenu';
-
-const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? children : <Navigate to="/login" />;
-};
+import EntryMenu from './pages/EntryMenu';
+import InspectionVisualizator from './pages/InspectionVisualizator';
 
 const App: React.FC = () => {
   return (
@@ -15,7 +12,8 @@ const App: React.FC = () => {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/entry-menu" element={<PrivateRoute><EntryMenu /></PrivateRoute>} />
+          <Route path="/inspection-visualizator" element={<PrivateRoute><InspectionVisualizator/></PrivateRoute>} />
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </Router>

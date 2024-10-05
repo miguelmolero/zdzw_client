@@ -16,7 +16,7 @@ const Login: React.FC = () => {
 
   const handleLogin = () => {
     login();
-    navigate('/dashboard'); // Redirige a la página de Dashboard después del login
+    navigate('/entry-menu'); // Redirige a la página de Dashboard después del login
   };
 
   return (
