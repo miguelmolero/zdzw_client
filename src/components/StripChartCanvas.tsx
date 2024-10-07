@@ -1,15 +1,12 @@
-// src/components/ChartCanvas.tsx
 import React, { useEffect, useRef } from 'react';
 import { Chart, ChartData, ChartOptions } from 'chart.js';
 // src/components/StripChartCanvas.tsx
 import {
   Chart as ChartJS,
   CategoryScale,
-  BarController,
   LineController,
   LineElement,
   LinearScale,
-  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -17,7 +14,7 @@ import {
 } from 'chart.js';
 
 // Registrar los componentes
-ChartJS.register(BarController, LineController, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(LineController, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface StripChartCanvasProps {
   type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar'; // Tipos de gráfico admitidos
