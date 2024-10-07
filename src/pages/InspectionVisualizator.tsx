@@ -11,7 +11,7 @@ const InspectionVisualizator : React.FC = () => {
   const styles = inspectionStyles();
 
     // Tipar los datos y opciones correctamente
-    const chartData: ChartData<'bar'> = {
+    const chartData: ChartData<'line'> = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
           {
@@ -24,7 +24,7 @@ const InspectionVisualizator : React.FC = () => {
         ],
       };
     
-      const chartOptions: ChartOptions<'bar'> = {
+      const chartOptions: ChartOptions<'line'> = {
         responsive: true,
         maintainAspectRatio: false,
       };
@@ -53,7 +53,7 @@ const InspectionVisualizator : React.FC = () => {
 
         {/* Canvas para gráficos */}
         <Box sx={styles.canvasContainer}>
-            <StripChartCanvas type="bar" data={chartData} options={chartOptions} />
+            <StripChartCanvas type="line" data={chartData} options={chartOptions} />
         </Box>
       </Box>
     </Box>

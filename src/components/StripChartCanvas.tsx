@@ -6,15 +6,18 @@ import {
   Chart as ChartJS,
   CategoryScale,
   BarController,
+  LineController,
+  LineElement,
   LinearScale,
   BarElement,
   Title,
   Tooltip,
   Legend,
+  PointElement
 } from 'chart.js';
 
 // Registrar los componentes
-ChartJS.register(BarController, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(BarController, LineController, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface StripChartCanvasProps {
   type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar'; // Tipos de gráfico admitidos
