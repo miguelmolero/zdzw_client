@@ -1,6 +1,6 @@
-import { JsonData, RecordData, StripDataRaw } from "../types/types";
+import { RecordDataRaw, RecordData, StripDataRaw } from "../types/types";
 
-export function parseRecordData(jsonData: JsonData): RecordData {
+export function parseRecordData(jsonData: RecordDataRaw): RecordData {
   const recordData: RecordData = {
     record_id: jsonData.payload.record_id,
     setup_id: jsonData.payload.setup_id,

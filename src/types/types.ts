@@ -1,4 +1,4 @@
-interface StripData {
+export interface StripData {
   channel_id: number;
   gate_id: number;
   sample: number[];
@@ -25,21 +25,24 @@ export interface StripDataRaw {
   tof: number[];
 }
 
-interface JsonDataPayload {
+export interface PayloadData {
   record_id: number;
+  timestamp: number;
   setup_id: number;
   job_id: number;
+  setup_updated_timestamp: number;
   name: string;
   disposition: number;
+  is_rotational: boolean;
   strip_data: StripDataRaw[];
 }
 
-export interface JsonData {
+export interface RecordDataRaw {
   success: boolean;
   error: {
     code: number;
     msg: string;
     errors: null | string;
   };
-  payload: JsonDataPayload;
+  payload: PayloadData;
 }

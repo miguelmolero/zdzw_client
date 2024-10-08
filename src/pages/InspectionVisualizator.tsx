@@ -1,33 +1,68 @@
 // src/pages/InspectionVisualizator.tsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import Header from '../components/Header'; // Reutilizar el Header
 import Toolbar from '../components/Toolbar'; // Reutilizar la Toolbar
 import StripChartCanvas from '../components/StripChartCanvas';
 import { inspectionStyles } from './styles/InspectionVisualizatorStyles'; // Estilos de la página
 import { ChartData, ChartOptions } from 'chart.js'; // Importar tipos
+import { RecordData, RecordDataRaw, StripData } from '../types/types';
+import { parseRecordData } from '../utils/parseRecordData';
 
 const InspectionVisualizator : React.FC = () => {
   const styles = inspectionStyles();
+  const [recordData, setRecordData] = useState<RecordData | null>(null);
+  const [xAxis, setXAxis] = useState<string>('sample');
+  const [yAxis, setYAxis] = useState<string>('amplitude');
+  const [chartData, setChartData] = useState<ChartData<'line'>>({
+    labels: [],
+    datasets: [],
+  });
 
-    // Tipar los datos y opciones correctamente
-    const chartData: ChartData<'line'> = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-          {
-            label: 'Weld Data',
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
-            borderWidth: 1,
-            data: [65, 59, 80, 81, 56, 55, 40],
-          },
-        ],
-      };
-    
-      const chartOptions: ChartOptions<'line'> = {
-        responsive: true,
-        maintainAspectRatio: false,
-      };
+  const chartOptions: ChartOptions<'line'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+  };
+
+  const loadRecordData = async () => {
+    try {
+      const response = await fetch('/StripData.json');
+      const textResponse = await response.text();  // Lee la respuesta como texto
+      console.log('Raw response:', textResponse);
+      const jsonData: RecordDataRaw = JSON.parse(textResponse);  // Parsea el texto a JSON
+      //const jsonData: RecordDataRaw = await response.json();
+      //console.log(jsonData);
+      const parsedData = parseRecordData(jsonData);
+      setRecordData(parsedData);
+    } catch (error) {
+      console.error('Error al cargar los datos del registro:', error);
+    }
+  };
+
+  useEffect(() => {
+    loadRecordData();
+  }, []);
+
+  useEffect(() => {
+    if (recordData) {
+      const labels = recordData.strip_data[0][xAxis as keyof StripData] as number[];
+
+      // Construir los datasets de todas las gates y channels
+      const datasets = recordData.strip_data.map((strip) => ({
+        label: `Channel ${strip.channel_id} - Gate ${strip.gate_id}`,
+        data: strip[yAxis as keyof StripData],
+        borderColor: 'rgba(75,192,192,1)',
+        backgroundColor: 'rgba(75,192,192,0.4)',
+        borderWidth: 1,
+        fill: false,
+      })) as ChartData<'line'>['datasets'];
+
+      setChartData({
+        labels,
+        datasets,
+      });
+    }
+  }, [xAxis, yAxis, recordData]);
 
   return (
     <Box sx={styles.root}>
@@ -42,11 +77,16 @@ const InspectionVisualizator : React.FC = () => {
         {/* Selector debajo del Header */}
         <Box sx={styles.selectorContainer}>
           <FormControl sx={styles.formControl}>
-            <InputLabel>Select filter</InputLabel>
-            <Select defaultValue="">
-              <MenuItem value={10}>Option 1</MenuItem>
-              <MenuItem value={20}>Option 2</MenuItem>
-              <MenuItem value={30}>Option 3</MenuItem>
+            <InputLabel>X-Axis</InputLabel>
+            <Select value={xAxis} onChange={(e) => setXAxis(e.target.value)}>
+              <MenuItem value="sample">Sample</MenuItem>
+              <MenuItem value="distance">Distance</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={styles.formControl}>
+            <Select value={yAxis} onChange={(e) => setYAxis(e.target.value)}>
+              <MenuItem value="amplitude">Amplitude</MenuItem>
+              <MenuItem value="tof">TOF</MenuItem>
             </Select>
           </FormControl>
         </Box>
