@@ -12,7 +12,7 @@ const Header : React.FC = () => {
     <Box sx={styles.header}>
       <Box sx={styles.logoContainer}>
         <img src={logo} alt="Logo" style={styles.logo} />
-        <Typography variant="h6" sx={styles.title}>ZDZW Weld Inspection App</Typography>
+        <Typography variant="h6" sx={styles.title}>EMAT Ultrasonic Inspection</Typography>
       </Box>
       <Avatar>
         <PersonIcon />
