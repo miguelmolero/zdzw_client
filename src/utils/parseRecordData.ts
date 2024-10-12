@@ -6,6 +6,7 @@ export function parseRecordData(jsonData: RecordDataRaw): RecordData {
     setup_id: jsonData.payload.setup_id,
     job_id: jsonData.payload.job_id,
     name: jsonData.payload.name,
+    timestamp: jsonData.payload.timestamp,
     disposition: jsonData.payload.disposition,
     strip_data: jsonData.payload.strip_data.map((strip: StripDataRaw) => ({
       channel_id: strip.channel_id,
