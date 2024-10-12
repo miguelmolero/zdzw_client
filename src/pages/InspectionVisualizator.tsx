@@ -26,9 +26,9 @@ const InspectionVisualizator : React.FC = () => {
 
   const loadRecordData = async () => {
     try {
-      const response = await fetch('/StripData.json');
+      const basePath = process.env.NODE_ENV === 'production' ? '/static' : '';
+      const response = await fetch(`${basePath}/StripData.json`);
       const textResponse = await response.text();  // Lee la respuesta como texto
-      console.log('Raw response:', textResponse);
       const jsonData: RecordDataRaw = JSON.parse(textResponse);  // Parsea el texto a JSON
       //const jsonData: RecordDataRaw = await response.json();
       //console.log(jsonData);

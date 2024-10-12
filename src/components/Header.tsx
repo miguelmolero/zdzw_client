@@ -5,7 +5,7 @@ import { headerStyles } from './styles/HeaderStyles'; // Importar estilos del he
 import PersonIcon from '@mui/icons-material/Person';
 import logo from '../assets/Logo_ZDZW.png'; // Ruta del logo
 
-const Header = () => {
+const Header : React.FC = () => {
   const styles = headerStyles();
 
   return (

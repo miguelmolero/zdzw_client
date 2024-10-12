@@ -9,12 +9,12 @@ yarn-error.log*          # Logs de errores de Yarn
 pnpm-debug.log*          # Logs de depuración de pnpm
 
 # Directorios de construcción y caché
-dist/                    # Carpeta de salida de la construcción de Vite
-build/                   # Otra posible carpeta de construcción
-.cache/                  # Caché generado por herramientas de construcción
-.vite/                   # Caché específico de Vite
-temp/                    # Archivos temporales
-*.tmp                    # Archivos temporales
+dist/                 
+build/                   
+.cache/                  
+.vite/                  
+temp/                    
+*.tmp                    
 
 # Variables de entorno
 .env                     # Variables de entorno base
@@ -34,7 +34,7 @@ Thumbs.db                # Miniaturas generadas por el Explorador de Windows
 *.bak                    # Archivos de respaldo
 
 # Archivos de configuración y compilación de TypeScript
-*.tsbuildinfo            # Información de construcción de TypeScript
+*.tsbuildinfo            
 
 # Configuraciones de Linting y Formateo
 .eslintcache             # Caché de ESLint
