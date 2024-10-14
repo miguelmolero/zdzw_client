@@ -104,8 +104,8 @@ const InspectionVisualizator: React.FC = () => {
         <LabelContainer>
           <Typography>
             {recordData
-              ? `Date: ${timestampToDateTimeYMD(recordData.timestamp)} - Record ID: ${recordData.record_id} - Job: ${recordData.job_id}`
-              : "Cargando datos..."}
+              ? `Disposition: FAIL - Date: ${timestampToDateTimeYMD(recordData.timestamp)} - Record ID: ${recordData.record_id} - Job: ${recordData.job_id}`
+              : "Loading data..."}
           </Typography>
         </LabelContainer>
 
