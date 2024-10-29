@@ -11,6 +11,6 @@ export default defineConfig({
   plugins: [react()],
   base: isProduction ? '/static/' : '/',
   server: {
-    port: parseInt(process.env.VITE_PORT || '3000'),
+    port: parseInt(process.env.VITE_CLIENT_PORT || '3000'),
   },
 })

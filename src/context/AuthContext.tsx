@@ -1,11 +1,12 @@
 // src/context/AuthContext.tsx
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { login as api_login } from '../api/authService';
 
 interface AuthContextType {
   token: string | null,
   role : string | null,
   isAuthenticated: boolean;
-  login: () => void;
+  login: (username: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -17,12 +18,17 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
   const [role, setRole] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  const login = (token: string, role: string) => {
-    setToken(token);
-    setRole(role);
-    setIsAuthenticated(true);
-    localStorage.setItem('token', token);
-    localStorage.setItem('role', role);
+  const login = async (username: string, password: string) => {
+    try {
+      const data = await api_login(username, password);
+      setToken(data.access_token);
+      setRole(data.role);
+      setIsAuthenticated(true);
+      localStorage.setItem('token', data.access_token);
+      localStorage.setItem('role', data.role);
+    } catch (error) {
+      throw new Error('Authentication error');
+    }
   };
 
   const logout = () => {

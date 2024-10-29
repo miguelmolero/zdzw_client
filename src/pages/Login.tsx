@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Typography} from '@mui/material';
 import { useAuth } from '../context/AuthContext';
@@ -13,10 +13,18 @@ import logo from '../assets/Logo_ZDZW.png';
 const Login: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLogin = () => {
-    login();
-    navigate('/entry-menu'); // Redirige a la página de Dashboard después del login
+
+  const handleLogin = async () => {
+    try {
+      await login(username, password);
+      navigate('/entry-menu'); // Redirige a la página de Dashboard después del login
+    } catch (error) {
+      setError('Error al iniciar sesión. Verifique sus credenciales.');
+    }
   };
 
   return (
@@ -28,11 +36,18 @@ const Login: React.FC = () => {
         <Typography variant="h5" gutterBottom>
           Login
         </Typography>
+        {error && (
+          <Typography color="error" gutterBottom>
+            {error}
+          </Typography>
+        )}
         <TextField
           label="Username"
           variant="outlined"
           fullWidth
           sx={{ marginBottom: 2 }}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
           label="Password"
@@ -40,6 +55,8 @@ const Login: React.FC = () => {
           type="password"
           fullWidth
           sx={{ marginBottom: 2 }}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
           Login
