@@ -27,7 +27,7 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
       localStorage.setItem('token', data.access_token);
       localStorage.setItem('role', data.role);
     } catch (error) {
-      throw new Error('Authentication error');
+      throw new Error('Authentication error: ' + error);
     }
   };
 
