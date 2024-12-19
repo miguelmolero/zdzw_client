@@ -1,56 +1,52 @@
-import React from 'react';
-import { Box, Paper, Typography } from '@mui/material';
-import { Link } from 'react-router-dom'; // Importar Link para la navegación
-import { entryMenuStyles } from './styles/EntryMenuStyles'; // Importar los estilos
-import Header from '../components/Header'; // Importar el Header reutilizable
-import Toolbar from '../components/Toolbar'; // Importar la Toolbar reutilizable
+import React from "react";
+import { Link } from "react-router-dom"; // Importar Link para la navegación
+import {
+    RootEntryContainer,
+    EntryMainContentContainer,
+    EntryBodyContainer,
+    EntryGridContainer,
+    RowGridContainer,
+    CardButton,
+    CardButtonText,
+} from "./styles/EntryMenuStyles"; // Importar los estilos
+import Header from "../components/Header"; // Importar el Header reutilizable
+import Toolbar from "../components/GeneralMenuToolbar"; // Importar la Toolbar reutilizable
 
-
-const EntryMenu : React.FC = () => {
-  const styles = entryMenuStyles();
-
-  return (
-    <Box sx={styles.root}>
-      {/*Toolbar */}
-      <Toolbar />
-
-      {/* Contenido principal */}
-      <Box sx={styles.mainContent}>
-        {/* Header */}
-        <Header />
-
-        {/* Cuerpo principal */}
-        <Box sx={styles.body}>
-          <Box sx={styles.gridContainer}>
-            <Box sx={styles.row}>
-              <Paper elevation={3} sx={styles.card}>
-                <Typography sx={styles.cardText}>Factory Metrics</Typography>
-              </Paper>
-              <Link to="/inspection-visualizator" style={{ textDecoration: 'none' }}>
-                <Paper elevation={3} sx={styles.card}>
-                  <Typography sx={styles.cardText}>Inspection Visualizator</Typography>
-                </Paper>
-              </Link>
-            </Box>
-            <Box sx={styles.row}>
-              <Paper elevation={3} sx={styles.card}>
-                <Typography sx={styles.cardText}>Inspection Analysis</Typography>
-              </Paper>
-              <Paper elevation={3} sx={styles.card}>
-                <Typography sx={styles.cardText}>Welding Process Quality</Typography>
-              </Paper>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
-  );
+const EntryMenu: React.FC = () => {
+    return (
+        <RootEntryContainer>
+            <Toolbar />
+            <EntryMainContentContainer>
+                <Header />
+                <EntryBodyContainer>
+                    <EntryGridContainer>
+                        <RowGridContainer>
+                            <Link to="/factory-metrics" style={{ textDecoration: "none" }}>
+                                <CardButton elevation={3}>
+                                    <CardButtonText>Factory Metrics</CardButtonText>
+                                </CardButton>
+                            </Link>
+                            <Link to="/inspection-visualizator" style={{ textDecoration: "none" }}>
+                                <CardButton elevation={3}>
+                                    <CardButtonText>Inspection Visualizator</CardButtonText>
+                                </CardButton>
+                            </Link>
+                        </RowGridContainer>
+                        <RowGridContainer>
+                            <CardButton elevation={3}>
+                                <CardButtonText>Inspection Analysis</CardButtonText>
+                            </CardButton>
+                            <Link to="/welding-process-quality" style={{ textDecoration: "none" }}>
+                                <CardButton elevation={3}>
+                                    <CardButtonText>Welding Process Quality</CardButtonText>
+                                </CardButton>
+                            </Link>
+                        </RowGridContainer>
+                    </EntryGridContainer>
+                </EntryBodyContainer>
+            </EntryMainContentContainer>
+        </RootEntryContainer>
+    );
 };
 
 export default EntryMenu;
-
-
-
-
-
-

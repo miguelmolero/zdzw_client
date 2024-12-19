@@ -1,49 +1,63 @@
-export const entryMenuStyles = () => ({
-  root: {
+import { styled, Box, Paper, Typography } from "@mui/material";
+
+export const RootEntryContainer = styled(Box)({
     display: 'flex',
     height: '100vh',
     overflow: 'hidden', // Evitar scrollbar
-  },
-  mainContent: {
+});
+export const EntryMainContentContainer = styled(Box)({
     flexGrow: 1,
-    bgcolor: '#e0f7e9', // Fondo verde suave detrás de las cajas
-  },
-  body: {
+    backgroundColor: '#e0f7e9', // Fondo verde suave detrás de las cajas
+});
+export const EntryBodyContainer = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
     padding: 3,
-  },
-  gridContainer: {
+});
+export const EntryGridContainer = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
-    gap: 6, // Mayor separación vertical entre filas
-  },
-  row: {
+    gap: 100, // Mayor separación vertical entre filas
+});
+export const RowGridContainer = styled(Box)({
     display: 'flex',
-    gap: 6, // Mayor separación horizontal entre cajas
+    gap: 100, // Mayor separación horizontal entre cajas
     justifyContent: 'center',
     '@media (max-width: 600px)': {
-      flexDirection: 'column',
-      alignItems: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
-  },
-  card: {
-    width: { xs: '100%', sm: '450px', md: '500px' }, // Cajas más grandes
-    height: { xs: '200px', sm: '250px', md: '300px' }, // Ajuste de altura para mayor tamaño
+});
+export const CardButton = styled(Paper)(({ theme }) => ({
+    width: '100%',
+    height: '200px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     cursor: 'pointer',
-    bgcolor: '#fff', // Fondo blanco para las cajas
-    transition: 'background-color 0.3s ease', // Transición suave al hover
+    backgroundColor: '#fff',
+    transition: 'background-color 0.3s ease',
     '&:hover': {
-      bgcolor: '#78c67a', // Color verde más oscuro al pasar el ratón
+        backgroundColor: '#78c67a',
     },
-  },
-  cardText: {
-    fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }, // Tamaño de letra mayor
+    [theme.breakpoints.up('sm')]: {
+        width: '450px',
+        height: '250px',
+    },
+    [theme.breakpoints.up('md')]: {
+        width: '500px',
+        height: '300px',
+    },
+}));
+export const CardButtonText = styled(Typography)(({ theme }) => ({
+    fontSize: '1.5rem',
     fontWeight: 'bold',
-  },
-});
+    [theme.breakpoints.up('sm')]: {
+        fontSize: '2rem',
+    },
+    [theme.breakpoints.up('md')]: {
+        fontSize: '2.5rem',
+    },
+}));
