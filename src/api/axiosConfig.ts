@@ -11,6 +11,9 @@ api.interceptors.request.use(
     if (token && config.url !== '/login') {  // Excluye el login de incluir el token
       config.headers['Authorization'] = `Bearer ${token}`;
     }
+    config.headers['Cache-Control'] = 'no-cache';  // Evita el almacenamiento en caché
+    config.headers['Pragma'] = 'no-cache';  // Evita el almacenamiento en caché
+    config.headers['Expires'] = '0';  // Evita el almacenamiento en caché
     return config;
   },
   (error) => {
