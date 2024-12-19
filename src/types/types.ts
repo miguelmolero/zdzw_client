@@ -7,13 +7,16 @@ export interface StripData {
   tof: number[];
 }
 
-export interface RecordData {
+export interface RecordMetaData {
   record_id: number;
   setup_id: number;
   job_id: number;
   name: string;
   timestamp: number;
   disposition: number;
+}
+export interface RecordData {
+  meta_data: RecordMetaData;
   strip_data: StripData[];
 }
 
