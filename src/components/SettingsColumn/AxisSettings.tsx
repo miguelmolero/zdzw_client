@@ -22,10 +22,10 @@ const AxisSettings: React.FC = () => {
             <StyledContainer>
                 <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>X-Axis</Typography>
+                        <Typography variant="body2">X-Axis</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <FormControl>
+                        <FormControl fullWidth size="small">
                             <Select value={xAxis} onChange={(e) => setXAxis(e.target.value)}>
                                 <MenuItem value="sample">Sample</MenuItem>
                                 <MenuItem value="distance">Distance</MenuItem>
@@ -37,12 +37,12 @@ const AxisSettings: React.FC = () => {
             <StyledContainer>
                 <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>Y-Axis</Typography>
+                        <Typography variant="body2">Y-Axis</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <FormControl>
+                        <FormControl fullWidth size="small">
                             <Select value={yAxis} onChange={(e) => setYAxis(e.target.value)}>
-                                <MenuItem value="amplitude">Amplitu</MenuItem>
+                                <MenuItem value="amplitude">Amplitude</MenuItem>
                                 <MenuItem value="tof">TOF</MenuItem>
                             </Select>
                         </FormControl>

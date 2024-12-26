@@ -38,7 +38,7 @@ const FiltersBox: React.FC = () => {
             <StyledContainer>
                 <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>Filters</Typography>
+                        <Typography variant="body2">Filters</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <DatePickersWrapper>
@@ -46,13 +46,13 @@ const FiltersBox: React.FC = () => {
                                 label="From"
                                 value={fromDate}
                                 onChange={(newValue) => setFromDate(newValue)}
-                                slotProps={{ textField: { fullWidth: true } }}
+                                slotProps={{ textField: { fullWidth: true, size: 'small' } }}
                             />
                             <DatePicker
                                 label="To"
                                 value={toDate}
                                 onChange={(newValue) => setToDate(newValue)}
-                                slotProps={{ textField: { fullWidth: true } }}
+                                slotProps={{ textField: { fullWidth: true, size: 'small' } }}
                             />
                         </DatePickersWrapper>
                         <FiltersButton onClick={applyFilters}>
