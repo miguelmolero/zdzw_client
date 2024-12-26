@@ -13,6 +13,7 @@ import {
 } from "./styles/InspectionVisualizatorStyles";
 import api from "../api/axiosConfig";
 import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
+import { DataHandlerProvider } from "../context/DataHandlerContext";
 
 const InspectionVisualizator: React.FC = () => {
     const [recordData, setRecordData] = useState<RecordData | null>(null);
@@ -32,7 +33,6 @@ const InspectionVisualizator: React.FC = () => {
         try {
             const response = await api.get<RecordDataRaw>('/api/stripchart/257');
             const jsonData: RecordDataRaw = response.data;
-            console.log(jsonData);
             const parsedData = parseRecordData(jsonData);
             setRecordData(parsedData);
         } catch (error) {
@@ -68,23 +68,25 @@ const InspectionVisualizator: React.FC = () => {
     }, [xAxis, yAxis, recordData]);
 
     return (
-        <RootContainer>
-            <Toolbar />
-            <MainContent>
-                <Header />
-                <InspectionContainer>
-                    <InspectionSettingsColumn />
-                    <CanvasContainerSC>
-                        <StripChartView
-                            type="line"
-                            data={chartData}
-                            options={chartOptions}
-                            header_meta_data={recordData?.meta_data}
-                        />
-                    </CanvasContainerSC>
-                </InspectionContainer>
-            </MainContent>
-        </RootContainer>
+        <DataHandlerProvider>
+            <RootContainer>
+                <Toolbar />
+                <MainContent>
+                    <Header />
+                    <InspectionContainer>
+                        <InspectionSettingsColumn />
+                        <CanvasContainerSC>
+                            <StripChartView
+                                type="line"
+                                data={chartData}
+                                options={chartOptions}
+                                header_meta_data={recordData?.meta_data}
+                            />
+                        </CanvasContainerSC>
+                    </InspectionContainer>
+                </MainContent>
+            </RootContainer>
+        </DataHandlerProvider>
     );
 };
 

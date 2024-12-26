@@ -1,7 +1,7 @@
 import React, {createContext, useContext, useState} from "react";
-import { ChartData, ChartType } from "chart.js";
+//import { ChartData, ChartType } from "chart.js";
 import api from "../api/axiosConfig";
-import {InspectionFilters, RecordDataRaw, RecordData} from "../types/types";
+import {InspectionFilters, RecordDataRaw, RecordData, ResponseData} from "../types/types";
 import {parseRecordData} from "../utils/parseRecordData";
 
 
@@ -40,17 +40,15 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
 
     const getInspectionData = async (navigation: string, filters: InspectionFilters) => {
         try {
-            const response = await api.post<RecordDataRaw>(
+            const response = await api.post<ResponseData>(
                 `/api/stripchart/${navigation}`,
-                {},
-                {params: filters}
+                filters,
+                {}
             );
-            const jsonData : RecordDataRaw = response.data;
-            const parsedData = parseRecordData(jsonData);
+            const jsonData : ResponseData = response.data;
+            const payload: RecordDataRaw = jsonData.data;
+            const parsedData = parseRecordData(payload);
             setInspectionData(parsedData);
-            console.log(jsonData);
-            // const parsedData = parseRecordData(jsonData);
-            // setRecordData(parsedData);
         } catch (error) {
             console.error("Error al cargar los datos del registro:", error);
         }   
