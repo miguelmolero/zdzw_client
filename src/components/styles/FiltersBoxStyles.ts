@@ -36,7 +36,7 @@ export const StyledAccordion = styled(Accordion)({
 // Contenedor de los DatePickers
 export const DatePickersWrapper = styled(Box)({
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     gap: "16px", // Espaciado entre los inputs
     marginBottom: "16px", // Espaciado inferior
 });

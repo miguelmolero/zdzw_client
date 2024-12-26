@@ -1,4 +1,3 @@
-// src/pages/InspectionVisualizator.tsx
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header"; // Reutilizar el Header
 import Toolbar from "../components/GeneralMenuToolbar"; // Reutilizar la Toolbar
@@ -13,13 +12,10 @@ import {
     CanvasContainerSC
 } from "./styles/InspectionVisualizatorStyles";
 import api from "../api/axiosConfig";
-import FiltersBox from "../components/FiltersBox";
 import InspectionSettingsColumn from "../components/InspectionSettingsColumn";
 
 const InspectionVisualizator: React.FC = () => {
     const [recordData, setRecordData] = useState<RecordData | null>(null);
-    //const [xAxis, setXAxis] = useState<string>("sample");
-    //const [yAxis, setYAxis] = useState<string>("amplitude");
     const xAxis = "sample";
     const yAxis = "amplitude";
     const [chartData, setChartData] = useState<ChartData<"line">>({

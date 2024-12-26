@@ -4,19 +4,12 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { 
     LeftButtonsContainer, 
-    RightButtonsContainer, 
     StyledTopToolbar 
 } from "./styles/TopToolbarStyles";
-import { useStripChartContext } from "../context/StripChartContext";
-
-
 
 const TopToolbar : React.FC = () => {
-    const {toggleSideMenu} = useStripChartContext();
-
     return (
         <StyledTopToolbar>
             <LeftButtonsContainer>
@@ -33,11 +26,6 @@ const TopToolbar : React.FC = () => {
                     <LastPageIcon />
                 </IconButton>
             </LeftButtonsContainer>
-            <RightButtonsContainer>
-                <IconButton aria-label="settings" onClick={toggleSideMenu}>
-                    <SettingsIcon />
-                </IconButton>
-            </RightButtonsContainer>
         </StyledTopToolbar>
     );
 }

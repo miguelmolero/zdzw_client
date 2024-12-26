@@ -2,12 +2,9 @@ import React from "react";
 import { ChartData, ChartOptions } from "chart.js";
 import { Typography } from "@mui/material";
 import {timestampToDateTimeYMD } from "../utils/typesConverter";
-import SideMenuView from "./SideMenuView";
 import StripChartCanvas from "./StripChartCanvas";
-import TopToolbar from "./TopToolbar";
 import { 
     SCcontainer,
-    RightToolbarContainer,
     RowContainer,
     ColumnContainer,
     ChartCanvasContainer,
@@ -36,16 +33,12 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, options, he
                             : "Loading data..."}
                         </Typography>
                     </LabelContainer>
-                    <TopToolbar />
                     <RowContainer>
                         <ChartCanvasContainer>
                             <StripChartCanvas type={type} data={data} options={options} />
                         </ChartCanvasContainer>
-                        <RightToolbarContainer>
-                        </RightToolbarContainer>
                     </RowContainer>
                 </ColumnContainer>
-                <SideMenuView/>
             </SCcontainer>
         </StripChartContextProvider>
     )
