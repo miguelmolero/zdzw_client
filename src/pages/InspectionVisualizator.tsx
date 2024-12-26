@@ -54,6 +54,11 @@ const InspectionVisualizator: React.FC = () => {
                     boxWidth: 20,  // Width of the legend box
                     padding: 15     // Padding between legend items
                 }
+            },
+            tooltip: {
+                enabled: true,
+                intersect: false,
+                position: 'nearest',
             }
         }
     };
