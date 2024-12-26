@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header"; // Reutilizar el Header
 import Toolbar from "../components/GeneralMenuToolbar"; // Reutilizar la Toolbar
-import StripChartView from "../components/StripChartView";
+import StripChartView from "../components/StripChartView/StripChartView";
 import { ChartData, ChartOptions } from "chart.js"; // Importar tipos
 import { RecordData, RecordDataRaw, StripData } from "../types/types";
 import { parseRecordData } from "../utils/parseRecordData";
@@ -12,7 +12,7 @@ import {
     CanvasContainerSC
 } from "./styles/InspectionVisualizatorStyles";
 import api from "../api/axiosConfig";
-import InspectionSettingsColumn from "../components/InspectionSettingsColumn";
+import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
 
 const InspectionVisualizator: React.FC = () => {
     const [recordData, setRecordData] = useState<RecordData | null>(null);

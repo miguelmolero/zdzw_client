@@ -12,7 +12,7 @@ import {
     DatePickersWrapper,
     FiltersButton,
     FiltersTitle 
-} from "./styles/FiltersBoxStyles";
+} from "../styles/FiltersBoxStyles";
 
 const FiltersBox: React.FC = () => {
     const [fromDate, setFromDate] = useState<Date | null>(null);

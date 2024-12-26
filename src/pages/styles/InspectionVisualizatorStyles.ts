@@ -27,10 +27,12 @@ export const InspectionContainer = styled(Box)({
 });
 
 export const CanvasContainerSC = styled(Box)({
+  flex: 1,
   display: 'flex',
-  alignSelf: 'center',
-  width: '60%', // Tamaño del área
-  height: '70%', // Tamaño del área
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignSelf: 'flex-start',
+  height: '100%', // Tamaño del área
 });
 
 // export const RowContainer = styled(Box)({

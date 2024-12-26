@@ -7,7 +7,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import { 
     LeftButtonsContainer, 
     StyledTopToolbar 
-} from "./styles/TopToolbarStyles";
+} from "../styles/TopToolbarStyles";
 
 const TopToolbar : React.FC = () => {
     return (

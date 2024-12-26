@@ -1,7 +1,7 @@
 import React from "react";
 import { ChartData, ChartOptions } from "chart.js";
 import { Typography } from "@mui/material";
-import {timestampToDateTimeYMD } from "../utils/typesConverter";
+import {timestampToDateTimeYMD } from "../../utils/typesConverter";
 import StripChartCanvas from "./StripChartCanvas";
 import { 
     SCcontainer,
@@ -9,9 +9,10 @@ import {
     ColumnContainer,
     ChartCanvasContainer,
     LabelContainer
-} from "./styles/StripChartViewStyles";
-import { StripChartContextProvider} from "../context/StripChartContext";
-import { RecordMetaData } from "../types/types";
+} from "../styles/StripChartViewStyles";
+import { StripChartContextProvider} from "../../context/StripChartContext";
+import { RecordMetaData } from "../../types/types";
+import TopToolbar from "./TopToolbar";
 
 interface StripChartViewProps {
     type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar'; // Tipos de gráfico admitidos
@@ -25,6 +26,7 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, options, he
     return (
         <StripChartContextProvider>
             <SCcontainer>
+                <TopToolbar />
                 <ColumnContainer>
                     <LabelContainer>
                         <Typography>

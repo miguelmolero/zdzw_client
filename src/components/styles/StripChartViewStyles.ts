@@ -7,8 +7,11 @@ export const SCcontainer = styled(Box)({
     position: "relative",
     width: "100%",
     height: "100%",
-    border: "2px solid #a5d6a7", // Marco general del recuadro
     backgroundColor: "#fff", // Fondo blanco
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    boxSizing: 'border-box',
+    borderLeft: '1px solid #ccc',
 });
 
 export const LabelContainer = styled(Box)({

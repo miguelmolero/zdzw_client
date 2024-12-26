@@ -2,27 +2,21 @@ import { styled, Box, Accordion, Button, Typography } from "@mui/material";
 
 // Contenedor principal del overlay
 export const StyledContainer = styled(Box)({
-    "--padding": "16px", // Variable CSS para el espaciado interno
     display: "flex", // Contenedor flexible
     flexDirection: "column", // Apila los elementos verticalmente
-    width: "calc(95% - var(--padding) * 2)", // Ancho del contenedor
     backgroundColor: "rgba(255, 255, 255, 0.9)", // Fondo semitransparente
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)", // Sombra para dar profundidad
-    borderRadius: "8px", // Bordes redondeados
-    padding: "var(--padding)", // Espaciado interno
     alignSelf: "center", // Centra el contenedor horizontalmente
-    marginBottom: "50px", // Espaciado inferior
-    //zIndex: 1000, // Asegura que esté encima de otros elementos
+    width: "100%", // Ancho completo
 });
 
 export const FiltersTitle = styled(Typography)({
-    textAlign: "center",
+    textAlign: "left",
     flexGrow: 1,
 });
 
 // Estilo personalizado para los Accordions
 export const StyledAccordion = styled(Accordion)({
-    marginBottom: "8px", // Espaciado entre secciones
     "&:last-child": {
         marginBottom: 0, // El último acordeón no tiene margen inferior
     },

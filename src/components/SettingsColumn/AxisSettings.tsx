@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, Box, FormControl, MenuItem, Select, Typography } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { inspectionSettingsColumnStyles } from './styles/InspectionSettingsColumStyles';
-import FiltersBox from './FiltersBox';
-import TopToolbar from './TopToolbar';
-import { StripChartContextProvider } from '../context/StripChartContext';
+import React, { useState } from "react";
+import {
+    AccordionSummary,
+    AccordionDetails,
+    FormControl,
+    Select,
+    MenuItem,
+    Typography,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { 
+    StyledContainer, 
+    StyledAccordion, 
+} from "../styles/FiltersBoxStyles";
 
-const InspectionSettingsColumn : React.FC = () => {
-    const styles = inspectionSettingsColumnStyles();
+const AxisSettings: React.FC = () => {
     const [xAxis, setXAxis] = useState<string>("sample");
     const [yAxis, setYAxis] = useState<string>("amplitude");
 
     return (
-        <StripChartContextProvider>
-            <Box sx={styles.container}>
-                <FiltersBox />
-                <TopToolbar />
-                <Accordion>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <StyledContainer>
+                <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography>X-Axis</Typography>
                     </AccordionSummary>
@@ -28,23 +34,23 @@ const InspectionSettingsColumn : React.FC = () => {
                             </Select>
                         </FormControl>
                     </AccordionDetails>
-                </Accordion>
-                <Accordion>
+                </StyledAccordion>
+                <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography>Y-Axis</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControl>
                             <Select value={yAxis} onChange={(e) => setYAxis(e.target.value)}>
-                                <MenuItem value="amplitude">Amplitude</MenuItem>
+                                <MenuItem value="amplitude">Amplitu</MenuItem>
                                 <MenuItem value="tof">TOF</MenuItem>
                             </Select>
                         </FormControl>
                     </AccordionDetails>
-                </Accordion>
-            </Box>
-        </StripChartContextProvider>
+                </StyledAccordion>
+            </StyledContainer>
+        </LocalizationProvider>
     );
 };
 
-export default InspectionSettingsColumn;
+export default AxisSettings;
