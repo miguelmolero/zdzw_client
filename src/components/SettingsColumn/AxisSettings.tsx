@@ -8,8 +8,6 @@ import {
     Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { 
     StyledContainer, 
     StyledAccordion, 
@@ -20,7 +18,7 @@ const AxisSettings: React.FC = () => {
     const [yAxis, setYAxis] = useState<string>("amplitude");
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <>
             <StyledContainer>
                 <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -35,6 +33,8 @@ const AxisSettings: React.FC = () => {
                         </FormControl>
                     </AccordionDetails>
                 </StyledAccordion>
+            </StyledContainer>
+            <StyledContainer>
                 <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography>Y-Axis</Typography>
@@ -49,7 +49,7 @@ const AxisSettings: React.FC = () => {
                     </AccordionDetails>
                 </StyledAccordion>
             </StyledContainer>
-        </LocalizationProvider>
+        </>
     );
 };
 

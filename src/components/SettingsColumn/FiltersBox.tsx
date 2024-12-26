@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
     AccordionSummary,
     AccordionDetails,
+    Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -11,7 +12,6 @@ import {
     StyledAccordion, 
     DatePickersWrapper,
     FiltersButton,
-    FiltersTitle 
 } from "../styles/FiltersBoxStyles";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
 
@@ -38,7 +38,7 @@ const FiltersBox: React.FC = () => {
             <StyledContainer>
                 <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <FiltersTitle>Filters</FiltersTitle>
+                        <Typography>Filters</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <DatePickersWrapper>
