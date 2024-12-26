@@ -1,4 +1,4 @@
-import { styled, Box, Accordion } from "@mui/material";
+import { styled, Box, Accordion, Button, Typography } from "@mui/material";
 
 // Contenedor principal del overlay
 export const StyledContainer = styled(Box)({
@@ -11,7 +11,13 @@ export const StyledContainer = styled(Box)({
     borderRadius: "8px", // Bordes redondeados
     padding: "var(--padding)", // Espaciado interno
     alignSelf: "center", // Centra el contenedor horizontalmente
+    marginBottom: "50px", // Espaciado inferior
     //zIndex: 1000, // Asegura que esté encima de otros elementos
+});
+
+export const FiltersTitle = styled(Typography)({
+    textAlign: "center",
+    flexGrow: 1,
 });
 
 // Estilo personalizado para los Accordions
@@ -33,4 +39,14 @@ export const DatePickersWrapper = styled(Box)({
     flexDirection: "row",
     gap: "16px", // Espaciado entre los inputs
     marginBottom: "16px", // Espaciado inferior
+});
+
+export const FiltersButton = styled(Button)({
+    variant: "contained",
+    color: "black",
+    textTransform: "none",
+    backgroundColor: "#a5d6a7",
+    "&:hover": {
+        backgroundColor: "#8bcf8a", // Verde más oscuro
+    },
 });

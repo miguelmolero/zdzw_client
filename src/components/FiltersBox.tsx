@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import {
     AccordionSummary,
     AccordionDetails,
-    Typography,
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { StyledContainer, StyledAccordion, DatePickersWrapper } from "./styles/FiltersBoxStyles";
+import { 
+    StyledContainer, 
+    StyledAccordion, 
+    DatePickersWrapper,
+    FiltersButton,
+    FiltersTitle 
+} from "./styles/FiltersBoxStyles";
 
 const FiltersBox: React.FC = () => {
     const [fromDate, setFromDate] = useState<Date | null>(null);
@@ -22,7 +23,7 @@ const FiltersBox: React.FC = () => {
             <StyledContainer>
                 <StyledAccordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>Filters</Typography>
+                        <FiltersTitle>Filters</FiltersTitle>
                     </AccordionSummary>
                     <AccordionDetails>
                         <DatePickersWrapper>
@@ -39,20 +40,9 @@ const FiltersBox: React.FC = () => {
                                 slotProps={{ textField: { fullWidth: true } }}
                             />
                         </DatePickersWrapper>
-                        {/* <FormControl fullWidth sx={{ marginBottom: "8px" }}>
-                            <InputLabel>Selector 1</InputLabel>
-                            <Select defaultValue="">
-                                <MenuItem value="op1">Opción 1</MenuItem>
-                                <MenuItem value="op2">Opción 2</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <FormControl fullWidth>
-                            <InputLabel>Selector 2</InputLabel>
-                            <Select defaultValue="">
-                                <MenuItem value="op3">Opción 3</MenuItem>
-                                <MenuItem value="op4">Opción 4</MenuItem>
-                            </Select>
-                        </FormControl> */}
+                        <FiltersButton>
+                            Apply Filters
+                        </FiltersButton>
                     </AccordionDetails>
                 </StyledAccordion>
             </StyledContainer>
