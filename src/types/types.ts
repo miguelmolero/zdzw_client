@@ -50,3 +50,11 @@ export interface RecordDataRaw {
   };
   payload: PayloadData;
 }
+
+export interface InspectionFilters {
+  current_record_id: number;
+  requested_record_id: number;
+  start_date: number;
+  end_date: number;
+  disposition: number;
+}
