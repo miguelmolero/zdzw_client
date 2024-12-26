@@ -3,15 +3,39 @@ import { Chart, ChartData, ChartOptions } from 'chart.js';
 // src/components/StripChartCanvas.tsx
 import {
   Chart as ChartJS,
+  ChartType,
+  ChartComponentLike,
   CategoryScale,
-  LineController,
-  LineElement,
   LinearScale,
+  BarElement,
+  LineElement,
+  PointElement,
+  ArcElement,
+  RadialLinearScale,
   Title,
   Tooltip,
   Legend,
-  PointElement
+  BarController,
+  LineController,
+  PieController,
+  DoughnutController,
+  PolarAreaController,
+  BubbleController,
+  ScatterController,
 } from 'chart.js';
+
+ChartJS.register(Title, Tooltip, Legend);
+
+const chartComponentsMap: Record<ChartType, ChartComponentLike[]> = {
+  bar: [BarController, CategoryScale, LinearScale, BarElement],
+  line: [LineController, CategoryScale, LinearScale, LineElement, PointElement],
+  pie: [PieController, ArcElement],
+  doughnut: [DoughnutController, ArcElement],
+  radar: [RadialLinearScale, LineElement, PointElement],
+  polarArea: [PolarAreaController, RadialLinearScale, ArcElement],
+  bubble: [BubbleController, CategoryScale, LinearScale, PointElement],
+  scatter: [ScatterController, CategoryScale, LinearScale, PointElement],
+};
 
 // Registrar los componentes
 ChartJS.register(LineController, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
