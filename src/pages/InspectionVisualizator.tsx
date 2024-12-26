@@ -7,12 +7,14 @@ import { ChartData, ChartOptions } from "chart.js"; // Importar tipos
 import { RecordData, RecordDataRaw, StripData } from "../types/types";
 import { parseRecordData } from "../utils/parseRecordData";
 import {
-    CanvasContainerSC,
     MainContent,
     RootContainer,
+    InspectionContainer,
+    CanvasContainerSC
 } from "./styles/InspectionVisualizatorStyles";
 import api from "../api/axiosConfig";
 import FiltersBox from "../components/FiltersBox";
+import InspectionSettingsColumn from "../components/InspectionSettingsColumn";
 
 const InspectionVisualizator: React.FC = () => {
     const [recordData, setRecordData] = useState<RecordData | null>(null);
@@ -72,9 +74,10 @@ const InspectionVisualizator: React.FC = () => {
     return (
         <RootContainer>
             <Toolbar />
-                <MainContent>
-                    <Header />
-                    <FiltersBox />
+            <MainContent>
+                <Header />
+                <InspectionContainer>
+                    <InspectionSettingsColumn />
                     <CanvasContainerSC>
                         <StripChartView
                             type="line"
@@ -83,6 +86,7 @@ const InspectionVisualizator: React.FC = () => {
                             header_meta_data={recordData?.meta_data}
                         />
                     </CanvasContainerSC>
+                </InspectionContainer>
             </MainContent>
         </RootContainer>
     );

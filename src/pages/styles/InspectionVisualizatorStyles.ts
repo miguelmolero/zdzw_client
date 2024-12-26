@@ -17,13 +17,21 @@ export const MainContent = styled(Box)({
   height: '100%', // Tamaño del área
 });
 
+export const InspectionContainer = styled(Box)({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  height: '100%',
+  justifyContent: 'flex-start',
+  alignItems: 'center',
+});
+
 export const CanvasContainerSC = styled(Box)({
   display: 'flex',
   alignSelf: 'center',
   width: '60%', // Tamaño del área
   height: '70%', // Tamaño del área
 });
-
 
 // export const RowContainer = styled(Box)({
 //   display: 'flex',
