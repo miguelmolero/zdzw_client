@@ -1,20 +1,19 @@
-// src/styles/InspectionVisualizatorStyles.ts
 import { styled } from '@mui/material';
 import { Box} from '@mui/material';
 
 export const RootContainer = styled(Box)({
-  display: 'flex',
   height: '100vh',
   width: '100vw',
-  //overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 export const MainContent = styled(Box)({
   display: 'flex',
-  flexDirection: 'column',
-  backgroundColor: '#f4f4f4', // Fondo claro para la página
-  width: '100%', // Tamaño del área
-  height: '100%', // Tamaño del área
+  flexDirection: 'row',
+  backgroundColor: '#f4f4f4',
+  width: '100%',
+  height: '100%',
 });
 
 export const InspectionContainer = styled(Box)({
@@ -32,14 +31,5 @@ export const CanvasContainerSC = styled(Box)({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignSelf: 'flex-start',
-  height: '100%', // Tamaño del área
+  height: '100%',
 });
-
-// export const RowContainer = styled(Box)({
-//   display: 'flex',
-//   flexDirection: 'row',
-//   width: '80vw',
-//   height: '40vh',
-//   alignSelf: 'center',
-//   justifyContent: 'space-between',
-// });

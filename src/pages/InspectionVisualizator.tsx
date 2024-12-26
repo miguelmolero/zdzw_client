@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header"; // Reutilizar el Header
-import Toolbar from "../components/GeneralMenuToolbar"; // Reutilizar la Toolbar
+import Header from "../components/Header";
+import Toolbar from "../components/GeneralMenuToolbar";
 import StripChartView from "../components/StripChartView/StripChartView";
-import { ChartData, ChartOptions } from "chart.js"; // Importar tipos
+import { ChartData, ChartOptions } from "chart.js";
 import { RecordData, RecordDataRaw, StripData } from "../types/types";
 import { parseRecordData } from "../utils/parseRecordData";
 import {
@@ -38,21 +38,21 @@ const InspectionVisualizator: React.FC = () => {
         scales: {
             x: {
                 grid: {
-                    display: false, // Remove grid lines on the x-axis
+                    display: false,
                 }
             },
             y: {
                 grid: {
-                    display: true, // Remove grid lines on the y-axis
+                    display: true,
                 }
             }
         },
         plugins: {
             legend: {
-                position: 'bottom', // Display legend at the bottom
+                position: 'bottom',
                 labels: {
-                    boxWidth: 20,  // Width of the legend box
-                    padding: 15     // Padding between legend items
+                    boxWidth: 20,
+                    padding: 15
                 }
             },
             tooltip: {
@@ -84,7 +84,6 @@ const InspectionVisualizator: React.FC = () => {
             xAxis as keyof StripData
             ] as number[];
 
-            // Construir los datasets de todas las gates y channels
             const datasets = recordData.strip_data.map((strip) => ({
                 label: `Channel ${strip.channel_id} - Gate ${strip.gate_id}`,
                 data: strip[yAxis as keyof StripData],
@@ -105,9 +104,9 @@ const InspectionVisualizator: React.FC = () => {
     return (
         <DataHandlerProvider>
             <RootContainer>
-                <Toolbar />
+                <Header />
                 <MainContent>
-                    <Header />
+                    <Toolbar />
                     <InspectionContainer>
                         <InspectionSettingsColumn />
                         <CanvasContainerSC>
