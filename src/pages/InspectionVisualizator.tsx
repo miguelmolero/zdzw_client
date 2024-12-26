@@ -32,7 +32,7 @@ const InspectionVisualizator: React.FC = () => {
 
     const loadRecordData = async () => {
         try {
-            const response = await api.get<RecordDataRaw>('/api/strip_data');
+            const response = await api.get<RecordDataRaw>('/api/stripchart/257');
             const jsonData: RecordDataRaw = response.data;
             console.log(jsonData);
             const parsedData = parseRecordData(jsonData);

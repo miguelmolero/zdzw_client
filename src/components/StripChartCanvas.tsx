@@ -26,6 +26,12 @@ import {
 
 ChartJS.register(Title, Tooltip, Legend);
 
+interface StripChartCanvasProps {
+  type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar'; // Tipos de gráfico admitidos
+  data: ChartData; // Datos que se pasarán al gráfico
+  options?: ChartOptions; // Opciones de configuración adicionales para Chart.js
+}
+
 const chartComponentsMap: Record<ChartType, ChartComponentLike[]> = {
   bar: [BarController, CategoryScale, LinearScale, BarElement],
   line: [LineController, CategoryScale, LinearScale, LineElement, PointElement],
@@ -37,21 +43,31 @@ const chartComponentsMap: Record<ChartType, ChartComponentLike[]> = {
   scatter: [ScatterController, CategoryScale, LinearScale, PointElement],
 };
 
+const registerChartComponents = (type: ChartType) => {
+  const components = chartComponentsMap[type];
+  if (components) {
+    Chart.register(...components);
+  } else {
+    console.warn(`Tipo de gráfico "${type}" no soportado`);
+  }
+};
 // Registrar los componentes
-ChartJS.register(LineController, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+//ChartJS.register(LineController, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-interface StripChartCanvasProps {
-  type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar'; // Tipos de gráfico admitidos
-  data: ChartData; // Datos que se pasarán al gráfico
-  options?: ChartOptions; // Opciones de configuración adicionales para Chart.js
-}
+
 
 const StripChartCanvas: React.FC<StripChartCanvasProps> = ({ type, data, options }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
 
   useEffect(() => {
+    registerChartComponents(type);
+
     const ctx = canvasRef.current!.getContext('2d');
-    const chartInstance = new Chart(ctx!, {
+    if (chartRef.current) {
+      chartRef.current.destroy();
+    }
+    chartRef.current = new Chart(ctx!, {
       type,
       data,
       options,
@@ -59,7 +75,7 @@ const StripChartCanvas: React.FC<StripChartCanvasProps> = ({ type, data, options
 
     // Limpiar el gráfico cuando el componente se desmonte
     return () => {
-      chartInstance.destroy();
+      chartRef.current?.destroy();
     };
   }, [type, data, options]);
 
