@@ -13,10 +13,25 @@ import {
     FiltersButton,
     FiltersTitle 
 } from "../styles/FiltersBoxStyles";
+import { useDataHandlerContext } from '../../context/DataHandlerContext';
+
 
 const FiltersBox: React.FC = () => {
     const [fromDate, setFromDate] = useState<Date | null>(null);
     const [toDate, setToDate] = useState<Date | null>(null);
+    const {setFiltersData, getInspectionData} = useDataHandlerContext();
+
+    const applyFilters = () => {
+        const filters = {
+            current_record_id: -1,
+            requested_record_id: -1,
+            start_date: fromDate ? fromDate.getTime() : -1,
+            end_date: toDate ? toDate.getTime() : -1,
+            disposition: -1,
+        };
+        setFiltersData(filters);
+        getInspectionData("last", filters);
+    }
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -40,7 +55,7 @@ const FiltersBox: React.FC = () => {
                                 slotProps={{ textField: { fullWidth: true } }}
                             />
                         </DatePickersWrapper>
-                        <FiltersButton>
+                        <FiltersButton onClick={applyFilters}>
                             Apply Filters
                         </FiltersButton>
                     </AccordionDetails>
