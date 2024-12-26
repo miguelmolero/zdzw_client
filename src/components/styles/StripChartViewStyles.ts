@@ -1,4 +1,3 @@
-// src/components/EnhancedChartStyles.ts
 import { styled, Box } from "@mui/material";
 
 export const SCcontainer = styled(Box)({
@@ -18,21 +17,19 @@ export const LabelContainer = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: '10px',  // Espacio entre el label y el gráfico
+    margin: '25px 0 10px 0',  // Espacio entre el label y el gráfico
     fontSize: '1.2rem',    // Tamaño del texto del label
     fontWeight: 'bold',    // Texto en negrita
 });
 
-export const RightToolbarContainer = styled(Box)({
+export const GraphContainer = styled(Box)({
     display: "flex",
+    flexDirection: "column",
+    width: "100%",
     height: "100%",
-    width: "50px", // Ancho del marco derecho
-    backgroundColor: "#a5d6a7", // Color del marco derecho
-    justifyContent: "center",
-    flexShrink: 0
 });
 
-export const RowContainer = styled(Box)({
+export const ChartContainer = styled(Box)({
     display: "flex",
     flexDirection: "row",
     width: "100%", // Ancho del gráfico menos el ancho del marco derecho
@@ -40,13 +37,6 @@ export const RowContainer = styled(Box)({
     flexShrink: 1,
     flexGrow: 1,
     flexBasis: 0,
-});
-
-export const ColumnContainer = styled(Box)({
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    height: "100%",
 });
 
 export const ChartCanvasContainer = styled(Box)({

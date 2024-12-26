@@ -27,6 +27,35 @@ const InspectionVisualizator: React.FC = () => {
     const chartOptions: ChartOptions<"line"> = {
         responsive: true,
         maintainAspectRatio: false,
+        layout: {
+            padding: {
+                left: 30,
+                right: 50,
+                top: 25,
+                bottom: 25,
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false, // Remove grid lines on the x-axis
+                }
+            },
+            y: {
+                grid: {
+                    display: true, // Remove grid lines on the y-axis
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'bottom', // Display legend at the bottom
+                labels: {
+                    boxWidth: 20,  // Width of the legend box
+                    padding: 15     // Padding between legend items
+                }
+            }
+        }
     };
 
     const loadRecordData = async () => {
@@ -58,6 +87,7 @@ const InspectionVisualizator: React.FC = () => {
                 backgroundColor: "rgba(75,192,192,0.4)",
                 borderWidth: 1,
                 fill: false,
+                pointRadius: 0,
             })) as ChartData<"line">["datasets"];
 
             setChartData({

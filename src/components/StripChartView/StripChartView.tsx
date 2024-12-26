@@ -5,8 +5,8 @@ import {timestampToDateTimeYMD } from "../../utils/typesConverter";
 import StripChartCanvas from "./StripChartCanvas";
 import { 
     SCcontainer,
-    RowContainer,
-    ColumnContainer,
+    ChartContainer,
+    GraphContainer,
     ChartCanvasContainer,
     LabelContainer
 } from "../styles/StripChartViewStyles";
@@ -27,7 +27,7 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, options, he
         <StripChartContextProvider>
             <SCcontainer>
                 <TopToolbar />
-                <ColumnContainer>
+                <GraphContainer>
                     <LabelContainer>
                         <Typography>
                         {header_meta_data
@@ -35,12 +35,12 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, options, he
                             : "Loading data..."}
                         </Typography>
                     </LabelContainer>
-                    <RowContainer>
+                    <ChartContainer>
                         <ChartCanvasContainer>
                             <StripChartCanvas type={type} data={data} options={options} />
                         </ChartCanvasContainer>
-                    </RowContainer>
-                </ColumnContainer>
+                    </ChartContainer>
+                </GraphContainer>
             </SCcontainer>
         </StripChartContextProvider>
     )
