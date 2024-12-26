@@ -51,6 +51,12 @@ export interface RecordDataRaw {
   payload: PayloadData;
 }
 
+export interface ResponseData {
+  max_record_id?: number;
+  min_record_id?: number;
+  data: RecordDataRaw;
+}
+
 export interface InspectionFilters {
   current_record_id: number;
   requested_record_id: number;
