@@ -20,16 +20,9 @@ export const MainContent = styled(Box)({
 export const CanvasContainerSC = styled(Box)({
   display: 'flex',
   alignSelf: 'center',
-  width: '45%', // Tamaño del área
-  height: '50%', // Tamaño del área
+  width: '60%', // Tamaño del área
+  height: '70%', // Tamaño del área
 });
-
-// export const CanvasContainerAS = styled(Box)({
-//   display: 'flex',
-//   alignSelf: 'center',
-//   width: '45%', // Tamaño del área
-//   height: '100%', // Tamaño del área
-// });
 
 
 // export const RowContainer = styled(Box)({
