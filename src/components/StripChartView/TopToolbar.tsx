@@ -12,9 +12,16 @@ import { useDataHandlerContext } from '../../context/DataHandlerContext';
 
 
 const TopToolbar : React.FC = () => {
-    const {getInspectionData, filtersData} = useDataHandlerContext();
+    const {getInspectionData, filtersData, inspectionData} = useDataHandlerContext();
 
     const getData = (navigation: string) => {
+        if (inspectionData.strip_data.length === 0) {
+            if (navigation === "next") {
+                navigation = "last";
+            } else {
+                navigation = "first";
+            }
+        }
         getInspectionData(navigation, filtersData);
     }
 
