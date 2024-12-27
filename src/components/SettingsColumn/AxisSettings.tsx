@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     AccordionSummary,
     AccordionDetails,
@@ -12,11 +12,10 @@ import {
     StyledContainer, 
     StyledAccordion, 
 } from "../styles/FiltersBoxStyles";
+import { useDataHandlerContext } from "../../context/DataHandlerContext";
 
 const AxisSettings: React.FC = () => {
-    const [xAxis, setXAxis] = useState<string>("sample");
-    const [yAxis, setYAxis] = useState<string>("amplitude");
-
+    const { xAxis, yAxis, updateAxis } = useDataHandlerContext();
     return (
         <>
             <StyledContainer>
@@ -26,7 +25,7 @@ const AxisSettings: React.FC = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControl fullWidth size="small">
-                            <Select value={xAxis} onChange={(e) => setXAxis(e.target.value)}>
+                            <Select value={xAxis} onChange={(e) => updateAxis("xAxis",e.target.value)}>
                                 <MenuItem value="sample">Sample</MenuItem>
                                 <MenuItem value="distance">Distance</MenuItem>
                             </Select>
@@ -41,7 +40,7 @@ const AxisSettings: React.FC = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControl fullWidth size="small">
-                            <Select value={yAxis} onChange={(e) => setYAxis(e.target.value)}>
+                            <Select value={yAxis} onChange={(e) => updateAxis("yAxis", e.target.value)}>
                                 <MenuItem value="amplitude">Amplitude</MenuItem>
                                 <MenuItem value="tof">TOF</MenuItem>
                             </Select>
