@@ -3,22 +3,18 @@ import Header from "../components/Header";
 import Toolbar from "../components/GeneralMenuToolbar";
 import StripChartView from "../components/StripChartView/StripChartView";
 import { ChartData, ChartOptions } from "chart.js";
-import { RecordData, RecordDataRaw, StripData } from "../types/types";
-import { parseRecordData } from "../utils/parseRecordData";
+import { StripData } from "../types/types";
 import {
     MainContent,
     RootContainer,
     InspectionContainer,
     CanvasContainerSC
 } from "./styles/InspectionVisualizatorStyles";
-import api from "../api/axiosConfig";
 import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
-import { DataHandlerProvider } from "../context/DataHandlerContext";
+import { useDataHandlerContext} from "../context/DataHandlerContext";
 
 const InspectionVisualizator: React.FC = () => {
-    const [recordData, setRecordData] = useState<RecordData | null>(null);
-    const xAxis = "sample";
-    const yAxis = "amplitude";
+    const {inspectionData, xAxis, yAxis} = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"line">>({
         labels: [],
         datasets: [],
@@ -63,28 +59,12 @@ const InspectionVisualizator: React.FC = () => {
         }
     };
 
-    const loadRecordData = async () => {
-        try {
-            const response = await api.get<RecordDataRaw>('/api/stripchart/257');
-            const jsonData: RecordDataRaw = response.data;
-            const parsedData = parseRecordData(jsonData);
-            setRecordData(parsedData);
-        } catch (error) {
-            console.error("Error al cargar los datos del registro:", error);
-        }   
-    };
-
     useEffect(() => {
-        loadRecordData();
-    }, []);
+        if (inspectionData && inspectionData.strip_data.length > 0) {
+            //console.log(inspectionData);
+            const labels = inspectionData.strip_data[0][xAxis as keyof StripData] as number[];
 
-    useEffect(() => {
-        if (recordData) {
-            const labels = recordData.strip_data[0][
-            xAxis as keyof StripData
-            ] as number[];
-
-            const datasets = recordData.strip_data.map((strip) => ({
+            const datasets = inspectionData.strip_data.map((strip) => ({
                 label: `Channel ${strip.channel_id} - Gate ${strip.gate_id}`,
                 data: strip[yAxis as keyof StripData],
                 borderColor: "rgba(75,192,192,1)",
@@ -99,10 +79,9 @@ const InspectionVisualizator: React.FC = () => {
                 datasets,
             });
         }
-    }, [xAxis, yAxis, recordData]);
+    }, [inspectionData, xAxis, yAxis]);
 
     return (
-        <DataHandlerProvider>
             <RootContainer>
                 <Header />
                 <MainContent>
@@ -114,13 +93,12 @@ const InspectionVisualizator: React.FC = () => {
                                 type="line"
                                 data={chartData}
                                 options={chartOptions}
-                                header_meta_data={recordData?.meta_data}
+                                header_meta_data={inspectionData?.meta_data}
                             />
                         </CanvasContainerSC>
                     </InspectionContainer>
                 </MainContent>
             </RootContainer>
-        </DataHandlerProvider>
     );
 };
 

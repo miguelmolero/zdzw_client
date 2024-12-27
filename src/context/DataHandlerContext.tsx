@@ -10,6 +10,9 @@ interface DataHandlerContextProps {
     getInspectionData: (navigation: string, filters: InspectionFilters) => void;
     filtersData: InspectionFilters;
     setFiltersData: (filters: InspectionFilters) => void;
+    xAxis: string;
+    yAxis: string;
+    updateAxis: (axis: string, value: string) => void;
 }
 
 const DataHandlerContext = createContext<DataHandlerContextProps | undefined>(undefined);
@@ -19,6 +22,17 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     //     labels: [],
     //     datasets: [],
     // });
+    const [xAxis, setXAxis] = useState<string>("sample");
+    const [yAxis, setYAxis] = useState<string>("amplitude");
+
+    const updateAxis = (axis: string, value: string) => {
+        if (axis === "xAxis") {
+            setXAxis(value);
+        }else if (axis === "yAxis") {
+            setYAxis(value);
+        }
+    };
+
     const [inspectionData, setInspectionData] = useState<RecordData>({
         meta_data: {
             record_id: 0,
@@ -56,7 +70,17 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
 
 
     return (
-        <DataHandlerContext.Provider value={{inspectionData, getInspectionData, filtersData, setFiltersData}}>
+        <DataHandlerContext.Provider 
+            value={{
+                inspectionData, 
+                getInspectionData, 
+                filtersData, 
+                setFiltersData, 
+                xAxis, 
+                yAxis, 
+                updateAxis
+            }}
+        >
             {children}
         </DataHandlerContext.Provider>
     );
