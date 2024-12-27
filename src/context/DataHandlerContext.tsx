@@ -4,7 +4,6 @@ import api from "../api/axiosConfig";
 import {InspectionFilters, RecordDataRaw, RecordData, ResponseData} from "../types/types";
 import {parseRecordData} from "../utils/parseRecordData";
 
-
 interface DataHandlerContextProps {
     inspectionData: RecordData;
     getInspectionData: (navigation: string, filters: InspectionFilters) => void;
@@ -18,10 +17,9 @@ interface DataHandlerContextProps {
 const DataHandlerContext = createContext<DataHandlerContextProps | undefined>(undefined);
 
 export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
-    // const [chartData, setChartData] = useState<ChartData<ChartType>>({
-    //     labels: [],
-    //     datasets: [],
-    // });
+    const [min_record_id, setMinRecordId] = useState<number | undefined>(0);
+    const [max_record_id, setMaxRecordId] = useState<number | undefined>(0);
+    const [current_record_id, setCurrentRecordId] = useState<number | undefined>(0);
     const [xAxis, setXAxis] = useState<string>("sample");
     const [yAxis, setYAxis] = useState<string>("amplitude");
 
@@ -54,15 +52,24 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
 
     const getInspectionData = async (navigation: string, filters: InspectionFilters) => {
         try {
+            if (navigation === "next" && current_record_id === max_record_id) return;
+            if (navigation === "previous" && current_record_id === min_record_id) return;
+                
             const response = await api.post<ResponseData>(
                 `/api/stripchart/${navigation}`,
                 filters,
                 {}
             );
             const jsonData : ResponseData = response.data;
+            if (navigation === "first" || navigation === "last") {
+                setMinRecordId(jsonData.min_record_id);
+                setMaxRecordId(jsonData.max_record_id);
+            }
             const payload: RecordDataRaw = jsonData.data;
             const parsedData = parseRecordData(payload);
             setInspectionData(parsedData);
+            setCurrentRecordId(parsedData.meta_data.record_id);
+            filters.current_record_id = parsedData.meta_data.record_id;
         } catch (error) {
             console.error("Error al cargar los datos del registro:", error);
         }   
