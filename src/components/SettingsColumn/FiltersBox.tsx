@@ -13,6 +13,7 @@ import {
     DatePickersWrapper,
     FiltersButton,
 } from "../styles/FiltersBoxStyles";
+import { InspectionFilters } from "../../types/inspection_types";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
 
 
@@ -22,12 +23,13 @@ const FiltersBox: React.FC = () => {
     const {setFiltersData, getInspectionData} = useDataHandlerContext();
 
     const applyFilters = () => {
-        const filters = {
+        const filters : InspectionFilters = {
             current_record_id: -1,
             requested_record_id: -1,
             start_date: fromDate ? fromDate.getTime() : -1,
             end_date: toDate ? toDate.getTime() : -1,
             disposition: -1,
+            apply_filters: false
         };
         setFiltersData(filters);
         getInspectionData("last", filters);
