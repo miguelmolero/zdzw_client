@@ -1,7 +1,7 @@
 import React, {createContext, useContext, useState} from "react";
 //import { ChartData, ChartType } from "chart.js";
 import api from "../api/axiosConfig";
-import {InspectionFilters, RecordDataRaw, RecordData, ResponseData} from "../types/types";
+import {InspectionFilters, RecordDataRaw, RecordData, ResponseData} from "../types/inspection_types";
 import {parseRecordData} from "../utils/parseRecordData";
 
 interface DataHandlerContextProps {
@@ -48,6 +48,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         start_date: -1,
         end_date: -1,
         disposition: -1,
+        apply_filters: false,
     });
 
     const getInspectionData = async (navigation: string, filters: InspectionFilters) => {
