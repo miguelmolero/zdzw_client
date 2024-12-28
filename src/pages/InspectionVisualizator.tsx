@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import Toolbar from "../components/GeneralMenuToolbar";
 import StripChartView from "../components/StripChartView/StripChartView";
 import { ChartData, ChartOptions } from "chart.js";
-import { StripData } from "../types/types";
+import { ApplicationType } from "../types/aplication_types";
+import { StripData } from "../types/inspection_types";
 import {
     MainContent,
     RootContainer,
@@ -12,9 +14,12 @@ import {
 } from "./styles/InspectionVisualizatorStyles";
 import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import { useDataHandlerContext} from "../context/DataHandlerContext";
+import { useGeneralStateContext } from "../context/GeneralStateContext";
 
 const InspectionVisualizator: React.FC = () => {
     const {inspectionData, xAxis, yAxis} = useDataHandlerContext();
+    const {setApplicationType} = useGeneralStateContext();
+    const location = useLocation();
     const [chartData, setChartData] = useState<ChartData<"line">>({
         labels: [],
         datasets: [],
@@ -58,6 +63,10 @@ const InspectionVisualizator: React.FC = () => {
             }
         }
     };
+
+    useEffect(() => {
+        setApplicationType(ApplicationType.InspectionVisualizator);
+    }, [location, setApplicationType]);
 
     useEffect(() => {
         if (inspectionData && inspectionData.strip_data.length > 0) {
