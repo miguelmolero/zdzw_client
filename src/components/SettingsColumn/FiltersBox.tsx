@@ -15,12 +15,15 @@ import {
 } from "../styles/FiltersBoxStyles";
 import { InspectionFilters } from "../../types/inspection_types";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
+import { useGeneralStateContext } from "../../context/GeneralStateContext";
+import { ApplicationType } from "../../types/aplication_types";
 
 
 const FiltersBox: React.FC = () => {
+    const {setFiltersData, getInspectionData} = useDataHandlerContext();
+    const {applicationType} = useGeneralStateContext();
     const [fromDate, setFromDate] = useState<Date | null>(null);
     const [toDate, setToDate] = useState<Date | null>(null);
-    const {setFiltersData, getInspectionData} = useDataHandlerContext();
 
     const applyFilters = () => {
         const filters : InspectionFilters = {
@@ -29,7 +32,7 @@ const FiltersBox: React.FC = () => {
             start_date: fromDate ? fromDate.getTime() : -1,
             end_date: toDate ? toDate.getTime() : -1,
             disposition: -1,
-            apply_filters: false
+            apply_filters: applicationType == ApplicationType.InspectionAnalysis
         };
         setFiltersData(filters);
         getInspectionData("last", filters);
