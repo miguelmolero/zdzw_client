@@ -12,10 +12,15 @@ import {
     StyledContainer, 
     StyledAccordion, 
 } from "../styles/FiltersBoxStyles";
+import { ApplicationType } from "../../types/aplication_types";
 import { useDataHandlerContext } from "../../context/DataHandlerContext";
+import { useGeneralStateContext } from "../../context/GeneralStateContext";
 
 const AxisSettings: React.FC = () => {
     const { xAxis, yAxis, updateAxis } = useDataHandlerContext();
+    const { applicationType } = useGeneralStateContext();
+    const isInspectionVisualizator = applicationType == ApplicationType.InspectionVisualizator;
+    console.log("isInspectionVisualizator", isInspectionVisualizator);
     return (
         <>
             <StyledContainer>
@@ -43,6 +48,8 @@ const AxisSettings: React.FC = () => {
                             <Select value={yAxis} onChange={(e) => updateAxis("yAxis", e.target.value)}>
                                 <MenuItem value="amplitude">Amplitude</MenuItem>
                                 <MenuItem value="tof">TOF</MenuItem>
+                                <MenuItem value="amp_damages" hidden={isInspectionVisualizator}>Amplitude(damage)</MenuItem>
+                                <MenuItem value="tof_damages" hidden={isInspectionVisualizator}>TOF(damage)</MenuItem>
                             </Select>
                         </FormControl>
                     </AccordionDetails>
