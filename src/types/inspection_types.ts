@@ -5,16 +5,30 @@ export interface StripData {
   distance: number[];
   amplitude: number[];
   tof: number[];
+  amp_damages?: number[];
+  tof_damages?: number[];
 }
 
 export interface RecordMetaData {
   record_id: number;
+  timestamp: number;
   setup_id: number;
   job_id: number;
   name: string;
-  timestamp: number;
   disposition: number;
 }
+
+export interface RecordMetaDataRaw {
+  record_id: number;
+  timestamp: number;
+  setup_id: number;
+  job_id: number;
+  setup_updated_timestamp: number;
+  name: string;
+  disposition: number;
+  is_rotational: boolean;
+}
+
 export interface RecordData {
   meta_data: RecordMetaData;
   strip_data: StripData[];
@@ -27,17 +41,12 @@ export interface StripDataRaw {
   distance: number[];
   amplitude: number[];
   tof: number[];
+  amp_damages?: number[];
+  tof_damages?: number[];
 }
 
 export interface PayloadData {
-  record_id: number;
-  timestamp: number;
-  setup_id: number;
-  job_id: number;
-  setup_updated_timestamp: number;
-  name: string;
-  disposition: number;
-  is_rotational: boolean;
+  meta_data: RecordMetaDataRaw;
   strip_data: StripDataRaw[];
 }
 
@@ -48,7 +57,7 @@ export interface RecordDataRaw {
     msg: string;
     errors: null | string;
   };
-  payload: PayloadData;
+  payload_data: PayloadData;
 }
 
 export interface ResponseData {
@@ -63,4 +72,5 @@ export interface InspectionFilters {
   start_date: number;
   end_date: number;
   disposition: number;
+  apply_filters: boolean;
 }
