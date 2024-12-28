@@ -15,10 +15,11 @@ const TopToolbar : React.FC = () => {
     const {getInspectionData, filtersData, inspectionData} = useDataHandlerContext();
 
     const getData = (navigation: string) => {
-        if (inspectionData.strip_data.length === 0) {
+        if (inspectionData.strip_data.length == 0) {
             if (navigation === "next") {
                 navigation = "last";
-            } else {
+            }
+            if (navigation === "previous") {
                 navigation = "first";
             }
         }
