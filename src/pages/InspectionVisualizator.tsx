@@ -11,6 +11,7 @@ import {
 import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import { useDataHandlerContext} from "../context/DataHandlerContext";
 
+
 const InspectionVisualizator: React.FC = () => {
     const {inspectionData, xAxis, yAxis} = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"line">>({

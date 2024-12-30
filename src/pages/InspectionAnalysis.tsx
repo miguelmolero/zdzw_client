@@ -59,6 +59,7 @@ const InspectionVisualizator: React.FC = () => {
 
     useEffect(() => {
         if (inspectionData && inspectionData.strip_data.length > 0) {
+            console.log(inspectionData);
             const labels = inspectionData.strip_data[0][xAxis as keyof StripData] as number[];
 
             const datasets = inspectionData.strip_data.map((strip) => ({
@@ -70,6 +71,17 @@ const InspectionVisualizator: React.FC = () => {
                 fill: false,
                 pointRadius: 0,
             })) as ChartData<"line">["datasets"];
+
+            const damages = inspectionData.strip_data.map((strip) => ({
+                label: `Channel ${strip.channel_id} - Gate ${strip.gate_id} - Damages`,
+                data: yAxis == "amplitude" ? strip["amp_damages"] : strip["tof_damages"],
+                borderColor: "rgba(255,0,0,1)",
+                backgroundColor: "rgba(255,0,0,0.4)",
+                borderWidth: 1,
+                fill: false,
+                pointRadius: 0,
+            })) as ChartData<"line">["datasets"];
+            datasets.push(...damages);
 
             setChartData({
                 labels,
