@@ -21,13 +21,24 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             mode,
             ...(mode === 'light'
                 ? {
-                      primary: { main: '#1976d2' },
-                      secondary: { main: '#9c27b0' },
+                    primary: { main: '#92ccac' },
+                    secondary: { main: '#c0e4a1' },
                   }
                 : {
-                      primary: { main: '#90caf9' },
-                      secondary: { main: '#ce93d8' },
+                    primary: { main: '#7bdcb5' },
+                    secondary: { main: '#00d084' },
+                    background: { default: '#303030' },
                   }),
+        },
+        components: {
+            MuiIconButton: {
+                styleOverrides: {
+                    root: {
+                        padding: '12px',
+                        borderRadius: '0px',
+                    },
+                },
+            },
         },
     });
 

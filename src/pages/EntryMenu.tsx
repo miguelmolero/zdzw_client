@@ -11,32 +11,29 @@ import Toolbar from "../components/GeneralMenuToolbar"; // Importar la Toolbar r
 import DefaultLayout from "../components/DefaultLayout";
 
 const EntryMenu: React.FC = () => {
-
     return (
         <DefaultLayout>
             <Toolbar />
             <EntryBodyContainer>
                 <EntryGridContainer>
                     <RowGridContainer>
-                        <Link to="/factory-metrics" style={{ textDecoration: "none" }}>
-                            <CardButton elevation={3}>
-                                <CardButtonText>Factory Metrics</CardButtonText>
-                            </CardButton>
-                        </Link>
                         <Link to="/inspection-visualizator" style={{ textDecoration: "none" }}>
-                            <CardButton elevation={3}>
+                            <CardButton elevation={1}>
                                 <CardButtonText>Inspection Visualizer</CardButtonText>
                             </CardButton>
                         </Link>
-                    </RowGridContainer>
-                    <RowGridContainer>
                         <Link to="/inspection-analysis" style={{ textDecoration: "none" }}>
-                            <CardButton elevation={3}>
+                            <CardButton elevation={1}>
                                 <CardButtonText>Inspection Analysis</CardButtonText>
                             </CardButton>
                         </Link>
+                        <Link to="/factory-metrics" style={{ textDecoration: "none" }}>
+                            <CardButton elevation={1}>
+                                <CardButtonText>Factory Metrics</CardButtonText>
+                            </CardButton>
+                        </Link>
                         <Link to="/welding-process-quality" style={{ textDecoration: "none" }}>
-                            <CardButton elevation={3}>
+                            <CardButton elevation={1}>
                                 <CardButtonText>Welding Process Quality</CardButtonText>
                             </CardButton>
                         </Link>

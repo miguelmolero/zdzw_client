@@ -7,7 +7,6 @@ export const settingsColumStyles = () => ({
         justifyContent: 'flex-start',
         height: '100%',
         backgroundColor: '#FFFFFF',
-        borderLeft: '1px solid #ccc',
         boxSizing: 'border-box'
     },
 

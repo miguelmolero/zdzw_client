@@ -7,6 +7,7 @@ export const toolbarStyles = () => ({
       flexDirection: 'column',
       alignItems: 'center',
       paddingTop: 2,
+      borderRight: '1px solid #ccc',
     },
   });
   
