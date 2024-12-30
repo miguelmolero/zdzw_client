@@ -11,7 +11,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { 
     StyledContainer, 
     StyledAccordion, 
-} from "../styles/FiltersBoxStyles";
+} from "./styles/FiltersBoxStyles";
 import { useDataHandlerContext } from "../../context/DataHandlerContext";
 
 const AxisSettings: React.FC = () => {

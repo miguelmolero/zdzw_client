@@ -7,7 +7,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import { 
     LeftButtonsContainer, 
     StyledTopToolbar 
-} from "../styles/TopToolbarStyles";
+} from "./styles/TopToolbarStyles";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
 import { useGeneralStateContext } from "../../context/GeneralStateContext";
 import { ApplicationType } from "../../types/aplication_types";

@@ -9,7 +9,7 @@ import {
     GraphContainer,
     ChartCanvasContainer,
     LabelContainer
-} from "../styles/StripChartViewStyles";
+} from "./styles/StripChartViewStyles";
 import { StripChartContextProvider} from "../../context/StripChartContext";
 import { RecordMetaData } from "../../types/inspection_types";
 import TopToolbar from "./TopToolbar";

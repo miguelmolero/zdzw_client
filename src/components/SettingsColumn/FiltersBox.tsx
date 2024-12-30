@@ -12,7 +12,7 @@ import {
     StyledAccordion, 
     DatePickersWrapper,
     FiltersButton,
-} from "../styles/FiltersBoxStyles";
+} from "./styles/FiltersBoxStyles";
 import { InspectionFilters } from "../../types/inspection_types";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
 import { useGeneralStateContext } from "../../context/GeneralStateContext";
