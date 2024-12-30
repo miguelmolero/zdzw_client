@@ -3,6 +3,7 @@ import React, {createContext, useContext, useState} from "react";
 import api from "../api/axiosConfig";
 import {InspectionFilters, RecordDataRaw, RecordData, ResponseData} from "../types/inspection_types";
 import {parseRecordData} from "../utils/parseRecordData";
+import { apiRoutes } from "../api/apiRoutes";
 
 interface DataHandlerContextProps {
     inspectionData: RecordData;
@@ -57,7 +58,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
             if (navigation === "previous" && current_record_id === min_record_id) return;
                 
             const response = await api.post<ResponseData>(
-                `/api/stripchart/${navigation}`,
+                `${apiRoutes.stripChart}${navigation}`,
                 filters,
                 {}
             );

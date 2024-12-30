@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { apiRoutes } from './apiRoutes';
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000',  // Asegúrate de que la URL del backend sea correcta
@@ -8,7 +9,7 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-    if (token && config.url !== '/login') {  // Excluye el login de incluir el token
+    if (token && config.url !== apiRoutes.login) {  // Excluye el login de incluir el token
       config.headers['Authorization'] = `Bearer ${token}`;
     }
     config.headers['Cache-Control'] = 'no-cache';  // Evita el almacenamiento en caché
