@@ -10,6 +10,14 @@ const applicationNames = {
     [ApplicationType.WeldingProcessQuality]: "Welding Process Quality",
 };
 
+const applicationPath: Record<string, ApplicationType> = {
+    "/factory-metrics": ApplicationType.FactoryMetrics,
+    "/inspection-visualizator": ApplicationType.InspectionVisualizator,
+    "/inspection-analysis": ApplicationType.InspectionAnalysis,
+    "/welding-process-quality": ApplicationType.WeldingProcessQuality,
+    "/entry-menu": ApplicationType.None,
+};
+
 interface GeneralStateProps {
     applicationType: ApplicationType;
     setApplicationType: (type: ApplicationType) => void;
@@ -21,24 +29,8 @@ export const GeneralStateProvider: React.FC<{ children: ReactNode }> = ({ childr
     const [applicationType, setApplicationType] = useState<ApplicationType>(ApplicationType.None);
     const pathName = useLocation().pathname;
 
-    useEffect(() => {   
-        switch (pathName) {
-            case "/factory-metrics":
-                setApplicationType(ApplicationType.FactoryMetrics);
-                break;
-            case "/inspection-visualizator":
-                setApplicationType(ApplicationType.InspectionVisualizator);
-                break;
-            case "/inspection-analysis":
-                setApplicationType(ApplicationType.InspectionAnalysis);
-                break;
-            case "/welding-process-quality":
-                setApplicationType(ApplicationType.WeldingProcessQuality);
-                break;
-            default:
-                setApplicationType(ApplicationType.None);
-                break;
-        }
+    useEffect(() => {
+        setApplicationType(applicationPath[pathName] || ApplicationType.None);
     }, [pathName]);
 
     return (
