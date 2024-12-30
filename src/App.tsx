@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { applicationRoutes } from './context/ApplicationTypeContext';
-import { ProviderContainer } from './context/ProviderContainer';
+import { ContextProvider } from './ContextProvider';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
 import EntryMenu from './pages/EntryMenu';
@@ -13,7 +13,7 @@ import InspectionAnalysis from './pages/InspectionAnalysis';
 const App: React.FC = () => {
     return (
         <Router>
-            <ProviderContainer>
+            <ContextProvider>
                 <Routes>
                     <Route path={applicationRoutes.Login} element={<Login />} />
                     <Route path={applicationRoutes.EntryMenu} element={<PrivateRoute><EntryMenu /></PrivateRoute>} />
@@ -23,7 +23,7 @@ const App: React.FC = () => {
                     <Route path={applicationRoutes.InspectionAnalysis} element={<PrivateRoute><InspectionAnalysis/></PrivateRoute>} />
                     <Route path="*" element={<Navigate to={applicationRoutes.Login} />} />
                 </Routes>
-            </ProviderContainer>
+            </ContextProvider>
         </Router>
     );
 };
