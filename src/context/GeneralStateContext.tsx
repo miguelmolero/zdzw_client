@@ -2,6 +2,14 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { ApplicationType } from "../types/aplication_types";
 import { useLocation } from "react-router-dom";
 
+const applicationNames = {
+    [ApplicationType.None]: "EMAT Ultrasonic Inspection",
+    [ApplicationType.FactoryMetrics]: "Factory Metrics",
+    [ApplicationType.InspectionVisualizator]: "Inspection Visualizer",
+    [ApplicationType.InspectionAnalysis]: "Inspection Analysis",
+    [ApplicationType.WeldingProcessQuality]: "Welding Process Quality",
+};
+
 interface GeneralStateProps {
     applicationType: ApplicationType;
     setApplicationType: (type: ApplicationType) => void;
@@ -52,3 +60,8 @@ export const useGeneralStateContext = (): GeneralStateProps => {
     }
     return context;
 };
+
+export const useApplicationName = (): string => {
+    const { applicationType } = useGeneralStateContext();
+    return applicationNames[applicationType];
+}
