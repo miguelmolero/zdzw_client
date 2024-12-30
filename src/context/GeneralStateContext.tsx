@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { ApplicationType } from "../types/aplication_types";
 import { useLocation } from "react-router-dom";
 
-export const availableRoutes = {
+export const applicationRoutes = {
     Login: "/login",
     EntryMenu: "/entry-menu",
     FactoryMetrics: "/factory-metrics",
@@ -20,11 +20,11 @@ const applicationNames = {
 };
 
 const applicationPath: Record<string, ApplicationType> = {
-    [availableRoutes.FactoryMetrics]: ApplicationType.FactoryMetrics,
-    [availableRoutes.InspectionVisualizator]: ApplicationType.InspectionVisualizator,
-    [availableRoutes.InspectionAnalysis]: ApplicationType.InspectionAnalysis,
-    [availableRoutes.WeldingProcessQuality]: ApplicationType.WeldingProcessQuality,
-    [availableRoutes.EntryMenu]: ApplicationType.None,
+    [applicationRoutes.FactoryMetrics]: ApplicationType.FactoryMetrics,
+    [applicationRoutes.InspectionVisualizator]: ApplicationType.InspectionVisualizator,
+    [applicationRoutes.InspectionAnalysis]: ApplicationType.InspectionAnalysis,
+    [applicationRoutes.WeldingProcessQuality]: ApplicationType.WeldingProcessQuality,
+    [applicationRoutes.EntryMenu]: ApplicationType.None,
 };
 
 interface GeneralStateProps {

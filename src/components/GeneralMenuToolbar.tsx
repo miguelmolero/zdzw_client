@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { toolbarStyles } from './styles/GeneralMenuToolbarStyles'; // Importar estilos de la toolbar
-import { availableRoutes } from '../context/GeneralStateContext';
+import { applicationRoutes } from '../context/GeneralStateContext';
 
 const Toolbar : React.FC = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Toolbar : React.FC = () => {
   return (
     <Box sx={styles.sidebar}>
       <IconButton><MenuIcon /></IconButton>
-      <IconButton onClick={() => {navigate(availableRoutes.EntryMenu)}}><HomeIcon /></IconButton>
+      <IconButton onClick={() => {navigate(applicationRoutes.EntryMenu)}}><HomeIcon /></IconButton>
       <IconButton><SettingsIcon /></IconButton>
     </Box>
   );
