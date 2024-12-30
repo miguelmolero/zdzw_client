@@ -9,6 +9,7 @@ import {
   FormContainer,
 } from './styles/LoginStyles';
 import logo from '../assets/Logo_ZDZW.png';
+import { availableRoutes } from '../context/GeneralStateContext';
 
 const Login: React.FC = () => {
   const { login } = useAuth();
@@ -21,7 +22,7 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
       await login(username, password);
-      navigate('/entry-menu'); // Redirige a la página de Dashboard después del login
+      navigate(availableRoutes.EntryMenu); // Redirige a la página de Dashboard después del login
     } catch (error) {
       setError('Error al iniciar sesión. Verifique sus credenciales.');
     }

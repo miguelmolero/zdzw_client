@@ -2,6 +2,15 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { ApplicationType } from "../types/aplication_types";
 import { useLocation } from "react-router-dom";
 
+export const availableRoutes = {
+    Login: "/login",
+    EntryMenu: "/entry-menu",
+    FactoryMetrics: "/factory-metrics",
+    InspectionVisualizator: "/inspection-visualizator",
+    InspectionAnalysis: "/inspection-analysis",
+    WeldingProcessQuality: "/welding-process-quality",
+};
+
 const applicationNames = {
     [ApplicationType.None]: "EMAT Ultrasonic Inspection",
     [ApplicationType.FactoryMetrics]: "Factory Metrics",
@@ -11,11 +20,11 @@ const applicationNames = {
 };
 
 const applicationPath: Record<string, ApplicationType> = {
-    "/factory-metrics": ApplicationType.FactoryMetrics,
-    "/inspection-visualizator": ApplicationType.InspectionVisualizator,
-    "/inspection-analysis": ApplicationType.InspectionAnalysis,
-    "/welding-process-quality": ApplicationType.WeldingProcessQuality,
-    "/entry-menu": ApplicationType.None,
+    [availableRoutes.FactoryMetrics]: ApplicationType.FactoryMetrics,
+    [availableRoutes.InspectionVisualizator]: ApplicationType.InspectionVisualizator,
+    [availableRoutes.InspectionAnalysis]: ApplicationType.InspectionAnalysis,
+    [availableRoutes.WeldingProcessQuality]: ApplicationType.WeldingProcessQuality,
+    [availableRoutes.EntryMenu]: ApplicationType.None,
 };
 
 interface GeneralStateProps {
