@@ -10,28 +10,25 @@ import InspectionVisualizator from './pages/InspectionVisualizator';
 import FactoryMetrics from './pages/FactoryMetrics';
 import WeldingProcessQuality from './pages/WeldingProcessQuality';
 import InspectionAnalysis from './pages/InspectionAnalysis';
-import GeneralLayout from './pages/GeneralLayout';
 
 const App: React.FC = () => {
     return (
         <AuthProvider>
-            <GeneralStateProvider>
-                <DataHandlerProvider>
-                    <Router>
+            <Router>
+                <GeneralStateProvider>
+                    <DataHandlerProvider>
                         <Routes>
                             <Route path="/login" element={<Login />} />
-                            <Route path="/" element={<GeneralLayout/>}>
-                                <Route path="/entry-menu" element={<PrivateRoute><EntryMenu /></PrivateRoute>} />
-                                <Route path="/inspection-visualizator" element={<PrivateRoute><InspectionVisualizator/></PrivateRoute>} />
-                                <Route path="/factory-metrics" element={<PrivateRoute><FactoryMetrics/></PrivateRoute>} />
-                                <Route path="/welding-process-quality" element={<PrivateRoute><WeldingProcessQuality/></PrivateRoute>} />
-                                <Route path='/inspection-analysis' element={<PrivateRoute><InspectionAnalysis/></PrivateRoute>} />
-                            </Route>
+                            <Route path="/entry-menu" element={<PrivateRoute><EntryMenu /></PrivateRoute>} />
+                            <Route path="/inspection-visualizator" element={<PrivateRoute><InspectionVisualizator/></PrivateRoute>} />
+                            <Route path="/factory-metrics" element={<PrivateRoute><FactoryMetrics/></PrivateRoute>} />
+                            <Route path="/welding-process-quality" element={<PrivateRoute><WeldingProcessQuality/></PrivateRoute>} />
+                            <Route path='/inspection-analysis' element={<PrivateRoute><InspectionAnalysis/></PrivateRoute>} />
                             <Route path="*" element={<Navigate to="/login" />} />
                         </Routes>
-                    </Router>
-                </DataHandlerProvider>
-            </GeneralStateProvider>
+                    </DataHandlerProvider>
+                </GeneralStateProvider>
+            </Router>
         </AuthProvider>
     );
 };
