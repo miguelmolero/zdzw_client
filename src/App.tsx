@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { applicationRoutes, GeneralStateProvider } from './context/GeneralStateContext';
+import { applicationRoutes, GeneralStateProvider } from './context/ApplicationTypeContext';
 import { DataHandlerProvider } from './context/DataHandlerContext';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';

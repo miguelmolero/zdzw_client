@@ -9,12 +9,12 @@ import {
     StyledTopToolbar 
 } from "./styles/TopToolbarStyles";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
-import { useGeneralStateContext } from "../../context/GeneralStateContext";
+import { useApplicationTypeContext } from "../../context/ApplicationTypeContext";
 import { ApplicationType } from "../../types/aplication_types";
 
 const TopToolbar : React.FC = () => {
     const {getInspectionData, filtersData, inspectionData, setFiltersData} = useDataHandlerContext();
-    const {applicationType} = useGeneralStateContext();
+    const {applicationType} = useApplicationTypeContext();
 
     const getData = (navigation: string) => {
         if (inspectionData.strip_data.length == 0) {

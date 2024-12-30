@@ -2,7 +2,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { applicationRoutes } from '../context/GeneralStateContext';
+import { applicationRoutes } from '../context/ApplicationTypeContext';
 
 interface PrivateRouteProps {
   children: JSX.Element;

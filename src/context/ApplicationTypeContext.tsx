@@ -54,7 +54,7 @@ export const GeneralStateProvider: React.FC<{ children: ReactNode }> = ({ childr
     );
 };
 
-export const useGeneralStateContext = (): GeneralStateProps => {
+export const useApplicationTypeContext = (): GeneralStateProps => {
     const context = useContext(GeneralState);
     if (!context) {
         throw new Error("useGeneralState must be used within a GeneralStateProvider");
@@ -63,6 +63,6 @@ export const useGeneralStateContext = (): GeneralStateProps => {
 };
 
 export const useApplicationName = (): string => {
-    const { applicationType } = useGeneralStateContext();
+    const { applicationType } = useApplicationTypeContext();
     return applicationNames[applicationType];
 }

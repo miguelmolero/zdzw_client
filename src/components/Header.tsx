@@ -3,7 +3,7 @@ import { Box, Typography, Avatar } from '@mui/material';
 import { headerStyles } from './styles/HeaderStyles';
 import PersonIcon from '@mui/icons-material/Person';
 import logo from '../assets/Logo_ZDZW.png';
-import { useApplicationName } from '../context/GeneralStateContext';
+import { useApplicationName } from '../context/ApplicationTypeContext';
 
 const Header : React.FC = () => {
   const styles = headerStyles();

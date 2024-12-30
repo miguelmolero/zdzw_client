@@ -9,7 +9,7 @@ import {
   FormContainer,
 } from './styles/LoginStyles';
 import logo from '../assets/Logo_ZDZW.png';
-import { applicationRoutes } from '../context/GeneralStateContext';
+import { applicationRoutes } from '../context/ApplicationTypeContext';
 
 const Login: React.FC = () => {
   const { login } = useAuth();

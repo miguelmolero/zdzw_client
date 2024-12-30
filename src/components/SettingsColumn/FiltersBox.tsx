@@ -15,13 +15,13 @@ import {
 } from "./styles/FiltersBoxStyles";
 import { InspectionFilters } from "../../types/inspection_types";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
-import { useGeneralStateContext } from "../../context/GeneralStateContext";
+import { useApplicationTypeContext } from "../../context/ApplicationTypeContext";
 import { ApplicationType } from "../../types/aplication_types";
 
 
 const FiltersBox: React.FC = () => {
     const {setFiltersData, getInspectionData} = useDataHandlerContext();
-    const {applicationType} = useGeneralStateContext();
+    const {applicationType} = useApplicationTypeContext();
     const [fromDate, setFromDate] = useState<Date | null>(null);
     const [toDate, setToDate] = useState<Date | null>(null);
 
