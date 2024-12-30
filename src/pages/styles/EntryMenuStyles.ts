@@ -6,6 +6,8 @@ export const RootEntryContainer = styled(Box)({
     overflow: 'hidden', // Evitar scrollbar
 });
 export const EntryMainContentContainer = styled(Box)({
+    display: 'flex',
+    flexDirection: 'column',
     flexGrow: 1,
     backgroundColor: '#e0f7e9', // Fondo verde suave detrás de las cajas
 });
@@ -14,12 +16,12 @@ export const EntryBodyContainer = styled(Box)({
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
-    padding: 3,
 });
 export const EntryGridContainer = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
-    gap: 100, // Mayor separación vertical entre filas
+    height: '100%',
+    justifyContent: 'space-evenly',
 });
 export const RowGridContainer = styled(Box)({
     display: 'flex',
