@@ -1,20 +1,18 @@
 import React from "react";
 import {
-    RootFactoryMetricContainer,
     FactoryMetricMainContentContainer,
 } from "./styles/FactoryMetricStyles" // Importar los estilos
-import Header from "../components/Header"; // Importar el Header reutilizable
 import Toolbar from "../components/GeneralMenuToolbar"; // Importar la Toolbar reutilizable
+import DefaultLayout from "../components/DefaultLayout";
 
 const FactoryMetrics: React.FC = () => {
 
     return (
-        <RootFactoryMetricContainer>
+        <DefaultLayout>
             <Toolbar />
             <FactoryMetricMainContentContainer>
-                <Header />
             </FactoryMetricMainContentContainer>
-        </RootFactoryMetricContainer>
+        </DefaultLayout>
     )
 }
 

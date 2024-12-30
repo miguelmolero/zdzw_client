@@ -1,21 +1,12 @@
 import { styled, Box, Paper, Typography } from "@mui/material";
 
-export const RootEntryContainer = styled(Box)({
-    display: 'flex',
-    height: '100vh',
-    overflow: 'hidden', // Evitar scrollbar
-});
-export const EntryMainContentContainer = styled(Box)({
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    backgroundColor: '#e0f7e9', // Fondo verde suave detrás de las cajas
-});
 export const EntryBodyContainer = styled(Box)({
+    backgroundColor: '#e0f7e9', // Fondo verde suave detrás de las cajas
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
+    width: '100%',
 });
 export const EntryGridContainer = styled(Box)({
     display: 'flex',

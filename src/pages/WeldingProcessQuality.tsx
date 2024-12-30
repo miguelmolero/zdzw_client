@@ -1,20 +1,18 @@
 import React from "react";
 import {
-    RootWPQContainer,
     WPQMainContentContainer,
 } from "./styles/WeldingProcessQualityStyles" // Importar los estilos
-import Header from "../components/Header"; // Importar el Header reutilizable
 import Toolbar from "../components/GeneralMenuToolbar"; // Importar la Toolbar reutilizable
+import DefaultLayout from "../components/DefaultLayout";
 
 const WeldingProcessQuality: React.FC = () => {
 
     return (
-        <RootWPQContainer>
+        <DefaultLayout>
             <Toolbar />
             <WPQMainContentContainer>
-                <Header />
             </WPQMainContentContainer>
-        </RootWPQContainer>
+        </DefaultLayout>
     )
 }
 

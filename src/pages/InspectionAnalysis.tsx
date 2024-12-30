@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
 import Toolbar from "../components/GeneralMenuToolbar";
+import DefaultLayout from "../components/DefaultLayout";
 import StripChartView from "../components/StripChartView/StripChartView";
 import { ChartData, ChartOptions } from "chart.js";
 import { StripData } from "../types/inspection_types";
 import {
-    MainContent,
-    RootContainer,
     InspectionContainer,
     CanvasContainerSC
 } from "./styles/InspectionVisualizatorStyles";
@@ -81,23 +79,20 @@ const InspectionVisualizator: React.FC = () => {
     }, [inspectionData, xAxis, yAxis]);
 
     return (
-            <RootContainer>
-                <Header />
-                <MainContent>
-                    <Toolbar />
-                    <InspectionContainer>
-                        <InspectionSettingsColumn />
-                        <CanvasContainerSC>
-                            <StripChartView
-                                type="line"
-                                data={chartData}
-                                options={chartOptions}
-                                header_meta_data={inspectionData?.meta_data}
-                            />
-                        </CanvasContainerSC>
-                    </InspectionContainer>
-                </MainContent>
-            </RootContainer>
+        <DefaultLayout>
+            <Toolbar />
+            <InspectionContainer>
+                <InspectionSettingsColumn />
+                <CanvasContainerSC>
+                    <StripChartView
+                        type="line"
+                        data={chartData}
+                        options={chartOptions}
+                        header_meta_data={inspectionData?.meta_data}
+                    />
+                </CanvasContainerSC>
+            </InspectionContainer>
+        </DefaultLayout>
     );
 };
 
