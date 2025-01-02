@@ -44,7 +44,8 @@ interface DataHandlerContextProps {
     setFiltersData: (filters: InspectionFilters) => void;
     xAxis: XAxisUnits;
     yAxis: FeatureType;
-    updateAxis: (axis: string, value: XAxisUnits | FeatureType) => void;
+    setXAxis: (value: XAxisUnits) => void;
+    setYAxis: (value: FeatureType) => void;
     orderType: OrderType;
     orderDirection: OrderDirection;
     setOrderType: (value: OrderType) => void;
@@ -62,14 +63,6 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     const [orderType, setOrderType] = useState<OrderType>(OrderType.Date);
     const [orderDirection, setOrderDirection] = useState<OrderDirection>(OrderDirection.Asc);
 
-    const updateAxis = (axis: string, value: XAxisUnits | FeatureType) => {
-        if (axis === "xAxis") {
-            setXAxis(value as XAxisUnits);
-        }else if (axis === "yAxis") {
-            setYAxis(value as FeatureType);
-        }
-    };
-
     const [inspectionData, setInspectionData] = useState<RecordData>({
         meta_data: {
             record_id: 0,
@@ -81,6 +74,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         },
         strip_data: [],
     });
+    
     const [filtersData, setFiltersData] = useState<InspectionFilters>({
         current_record_id: -1,
         requested_record_id: -1,
@@ -135,7 +129,8 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
                 setFiltersData, 
                 xAxis, 
                 yAxis, 
-                updateAxis,
+                setXAxis,
+                setYAxis,
                 orderType,
                 orderDirection,
                 setOrderType,

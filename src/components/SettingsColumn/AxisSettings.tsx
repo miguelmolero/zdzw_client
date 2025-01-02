@@ -16,7 +16,7 @@ import { FeatureTypeLabels, useDataHandlerContext, XAxisUnitsLabels } from "../.
 import { FeatureType, XAxisUnits } from "../../types/inspection_types";
 
 const AxisSettings: React.FC = () => {
-    const { xAxis, yAxis, updateAxis } = useDataHandlerContext();
+    const { xAxis, yAxis, setXAxis, setYAxis } = useDataHandlerContext();
 
     return (
         <>
@@ -27,7 +27,7 @@ const AxisSettings: React.FC = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControl fullWidth size="small">
-                            <Select value={xAxis} onChange={(e) => updateAxis("xAxis", e.target.value as XAxisUnits)}>
+                            <Select value={xAxis} onChange={(e) => setXAxis(e.target.value as XAxisUnits)}>
                                 {Object.values(XAxisUnits).map((unit) => (
                                     <MenuItem key={unit} value={unit}>
                                         {XAxisUnitsLabels[unit]}
@@ -45,7 +45,7 @@ const AxisSettings: React.FC = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControl fullWidth size="small">
-                            <Select value={yAxis} onChange={(e) => updateAxis("yAxis", e.target.value as FeatureType)}>
+                            <Select value={yAxis} onChange={(e) => setYAxis(e.target.value as FeatureType)}>
                                 {Object.values(FeatureType).map((type) => (
                                     <MenuItem key={type} value={type}>
                                         {FeatureTypeLabels[type]}
