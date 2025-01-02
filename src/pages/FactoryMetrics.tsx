@@ -4,7 +4,7 @@ import {
 } from "./styles/FactoryMetricStyles";
 import Toolbar from "../components/GeneralMenuToolbar";
 import DefaultLayout from "../components/DefaultLayout";
-import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
+import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
 
 const FactoryMetrics: React.FC = () => {
 
@@ -12,7 +12,7 @@ const FactoryMetrics: React.FC = () => {
         <DefaultLayout>
             <Toolbar />
             <FactoryMetricMainContentContainer>
-                <InspectionSettingsColumn />
+                <SettingsColumn />
             </FactoryMetricMainContentContainer>
         </DefaultLayout>
     )

@@ -13,6 +13,10 @@ interface DataHandlerContextProps {
     xAxis: string;
     yAxis: string;
     updateAxis: (axis: string, value: string) => void;
+    orderBy: string;
+    orderDirection: string;
+    setOrderBy: (value: string) => void;
+    setOrderDirection: (value: string) => void;
 }
 
 const DataHandlerContext = createContext<DataHandlerContextProps | undefined>(undefined);
@@ -23,6 +27,8 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     const [current_record, setCurrentRecord] = useState<LimitedRecord | undefined>();
     const [xAxis, setXAxis] = useState<string>("sample");
     const [yAxis, setYAxis] = useState<string>("amplitude");
+    const [orderBy, setOrderBy] = useState<string>("date");
+    const [orderDirection, setOrderDirection] = useState<string>("asc");
 
     const updateAxis = (axis: string, value: string) => {
         if (axis === "xAxis") {
@@ -95,7 +101,11 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
                 setFiltersData, 
                 xAxis, 
                 yAxis, 
-                updateAxis
+                updateAxis,
+                orderBy,
+                orderDirection,
+                setOrderBy,
+                setOrderDirection,
             }}
         >
             {children}

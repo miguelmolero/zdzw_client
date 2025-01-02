@@ -4,6 +4,7 @@ import { settingsColumStyles } from './styles/SettingsColumStyles';
 import { StripChartContextProvider } from '../../context/StripChartContext';
 import FiltersBox from './FiltersBox';
 import AxisSettings from './AxisSettings';
+import OrderingBox from './OrderingBox';
 
 interface SettingsColumnProps {
     isInspectionView?: boolean;
@@ -16,8 +17,10 @@ const SettingsColumn : React.FC<SettingsColumnProps> = ({ isInspectionView = fal
         <StripChartContextProvider>
             <Box sx={styles.container}>
                 <FiltersBox />
-                {isInspectionView &&
+                {isInspectionView ?
                     <AxisSettings />
+                    :
+                    <OrderingBox />
                 }
             </Box>
         </StripChartContextProvider>
