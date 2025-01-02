@@ -50,6 +50,13 @@ export interface PayloadData {
   strip_data: StripDataRaw[];
 }
 
+export interface LocalizationData {
+  factory_id: number;
+  factory_name: string;
+  device_id: number;
+  device_name: string;
+}
+
 export interface RecordDataRaw {
   success: boolean;
   error: {
@@ -58,12 +65,18 @@ export interface RecordDataRaw {
     errors: null | string;
   };
   payload_data: PayloadData;
+  localization_data: LocalizationData;
 }
 
 export interface ResponseData {
-  max_record_id?: number;
-  min_record_id?: number;
+  max_record?: LimitedRecord 
+  min_record?: LimitedRecord
   data: RecordDataRaw;
+}
+export interface LimitedRecord {
+  factory_id: number;
+  device_id: number;
+  record_id: number;
 }
 
 export interface InspectionFilters {
@@ -72,5 +85,7 @@ export interface InspectionFilters {
   start_date: number;
   end_date: number;
   disposition: number;
+  factory_id: number;
+  device_id: number;
   apply_filters: boolean;
 }

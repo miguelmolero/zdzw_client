@@ -32,6 +32,8 @@ const FiltersBox: React.FC = () => {
             start_date: fromDate ? fromDate.getTime() : -1,
             end_date: toDate ? toDate.getTime() : -1,
             disposition: -1,
+            factory_id: -1,
+            device_id: -1,
             apply_filters: applicationType == ApplicationType.InspectionAnalysis
         };
         setFiltersData(filters);
