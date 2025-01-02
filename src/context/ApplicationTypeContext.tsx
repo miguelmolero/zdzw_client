@@ -27,14 +27,14 @@ const applicationPath: Record<string, ApplicationType> = {
     [applicationRoutes.EntryMenu]: ApplicationType.None,
 };
 
-interface GeneralStateProps {
+interface ApplicationTypeProps {
     applicationType: ApplicationType;
     setApplicationType: (type: ApplicationType) => void;
 }
 
-const GeneralState = createContext<GeneralStateProps | undefined>(undefined);
+const ApplicationTypeState = createContext<ApplicationTypeProps | undefined>(undefined);
 
-export const GeneralStateProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const ApplicationTypeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [applicationType, setApplicationType] = useState<ApplicationType>(ApplicationType.None);
     const pathName = useLocation().pathname;
 
@@ -43,21 +43,21 @@ export const GeneralStateProvider: React.FC<{ children: ReactNode }> = ({ childr
     }, [pathName]);
 
     return (
-        <GeneralState.Provider
+        <ApplicationTypeState.Provider
             value={{
                 applicationType,
                 setApplicationType,
             }}
         >
             {children}
-        </GeneralState.Provider>
+        </ApplicationTypeState.Provider>
     );
 };
 
-export const useApplicationTypeContext = (): GeneralStateProps => {
-    const context = useContext(GeneralState);
+export const useApplicationTypeContext = (): ApplicationTypeProps => {
+    const context = useContext(ApplicationTypeState);
     if (!context) {
-        throw new Error("useGeneralState must be used within a GeneralStateProvider");
+        throw new Error("useApplicationTypeContext must be used within a ApplicationTypeProvider");
     }
     return context;
 };
