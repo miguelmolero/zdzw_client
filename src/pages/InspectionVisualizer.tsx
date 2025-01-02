@@ -7,12 +7,11 @@ import { StripData } from "../types/inspection_types";
 import {
     InspectionContainer,
     CanvasContainerSC
-} from "./styles/InspectionVisualizatorStyles";
+} from "./styles/InspectionVisualizerStyles";
 import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import { useDataHandlerContext} from "../context/DataHandlerContext";
 
-
-const InspectionVisualizator: React.FC = () => {
+const InspectionVisualizer: React.FC = () => {
     const { getInspectionData, filtersData, inspectionData, xAxis, yAxis } = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"line">>({
         labels: [],
@@ -101,4 +100,4 @@ const InspectionVisualizator: React.FC = () => {
     );
 };
 
-export default InspectionVisualizator;
+export default InspectionVisualizer;

@@ -6,7 +6,7 @@ export const applicationRoutes = {
     Login: "/login",
     EntryMenu: "/entry-menu",
     FactoryMetrics: "/factory-metrics",
-    InspectionVisualizator: "/inspection-visualizator",
+    InspectionVisualizer: "/inspection-visualizator",
     InspectionAnalysis: "/inspection-analysis",
     WeldingProcessQuality: "/welding-process-quality",
 };
@@ -14,14 +14,14 @@ export const applicationRoutes = {
 const applicationNames = {
     [ApplicationType.None]: "EMAT Ultrasonic Inspection",
     [ApplicationType.FactoryMetrics]: "Factory Metrics",
-    [ApplicationType.InspectionVisualizator]: "Inspection Visualizer",
+    [ApplicationType.InspectionVisualizer]: "Inspection Visualizer",
     [ApplicationType.InspectionAnalysis]: "Inspection Analysis",
     [ApplicationType.WeldingProcessQuality]: "Welding Process Quality",
 };
 
 const applicationPath: Record<string, ApplicationType> = {
     [applicationRoutes.FactoryMetrics]: ApplicationType.FactoryMetrics,
-    [applicationRoutes.InspectionVisualizator]: ApplicationType.InspectionVisualizator,
+    [applicationRoutes.InspectionVisualizer]: ApplicationType.InspectionVisualizer,
     [applicationRoutes.InspectionAnalysis]: ApplicationType.InspectionAnalysis,
     [applicationRoutes.WeldingProcessQuality]: ApplicationType.WeldingProcessQuality,
     [applicationRoutes.EntryMenu]: ApplicationType.None,

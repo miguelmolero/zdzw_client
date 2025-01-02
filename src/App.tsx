@@ -5,7 +5,7 @@ import { ContextProvider } from './ContextProvider';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
 import EntryMenu from './pages/EntryMenu';
-import InspectionVisualizator from './pages/InspectionVisualizator';
+import InspectionVisualizer from './pages/InspectionVisualizer';
 import FactoryMetrics from './pages/FactoryMetrics';
 import WeldingProcessQuality from './pages/WeldingProcessQuality';
 import InspectionAnalysis from './pages/InspectionAnalysis';
@@ -17,7 +17,7 @@ const App: React.FC = () => {
                 <Routes>
                     <Route path={applicationRoutes.Login} element={<Login />} />
                     <Route path={applicationRoutes.EntryMenu} element={<PrivateRoute><EntryMenu /></PrivateRoute>} />
-                    <Route path={applicationRoutes.InspectionVisualizator} element={<PrivateRoute><InspectionVisualizator/></PrivateRoute>} />
+                    <Route path={applicationRoutes.InspectionVisualizer} element={<PrivateRoute><InspectionVisualizer/></PrivateRoute>} />
                     <Route path={applicationRoutes.FactoryMetrics} element={<PrivateRoute><FactoryMetrics/></PrivateRoute>} />
                     <Route path={applicationRoutes.WeldingProcessQuality} element={<PrivateRoute><WeldingProcessQuality/></PrivateRoute>} />
                     <Route path={applicationRoutes.InspectionAnalysis} element={<PrivateRoute><InspectionAnalysis/></PrivateRoute>} />
