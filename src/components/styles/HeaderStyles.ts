@@ -7,7 +7,7 @@ export const StyledHeader = styled(Box)(({ theme }) => ({
   padding: '16px',
   bgcolor: '#fff',
   position: 'relative',
-  background: 'rgba(255,255,255,1)',
+  background: `${theme.palette.background.default}`,
   '&::after': {
       content: '""',
       position: 'absolute',
@@ -18,16 +18,16 @@ export const StyledHeader = styled(Box)(({ theme }) => ({
       background: `linear-gradient(90deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 50%, ${theme.palette.primary.main} 70%)`,
   },
 }));
-export const LogoContainer = styled(Box)(({ theme }) => ({
+export const LogoContainer = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
 }));
-export const Logo = styled('img')(({ theme }) => ({
+export const Logo = styled('img')(() => ({
   height: '40px',
   width: 'auto',
   marginRight: '8px',
 }));
-export const Title = styled(Typography)(({ theme }) => ({
+export const Title = styled(Typography)(() => ({
   fontSize: '1.5rem',
   fontWeight: 'bold',
 }));

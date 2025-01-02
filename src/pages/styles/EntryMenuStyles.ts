@@ -6,7 +6,7 @@ export const EntryBodyContainer = styled(Box)(({ theme }) => ({
     alignItems: 'center',
     height: '100%',
     width: '100%',
-    background: `radial-gradient(circle, rgb(170,238,113,1) 0%, rgba(45,97,69,1) 100%)`,
+    background: `radial-gradient(circle, ${theme.palette.entryMenu.primary} 0%, ${theme.palette.entryMenu.secondary} 100%)`,
 }));
 export const EntryGridContainer = styled(Box)({
     display: 'flex',
@@ -29,11 +29,11 @@ export const CardButton = styled(Paper)(({ theme }) => ({
     justifyContent: 'center',
     alignItems: 'flex-start',
     cursor: 'pointer',
-    backgroundColor: 'rgba(146, 204, 172, 0.3)', // Semi-transparent white background
-    backdropFilter: 'blur(1px)', // Blur effect
+    backgroundColor: `${theme.palette.entryMenu.cards.main}`,
+    backdropFilter: 'blur(1px)',
     transition: 'background-color 0.3s ease',
     '&:hover': {
-        backgroundColor: 'rgba(192, 228, 161, 0.5)',
+        backgroundColor: `${theme.palette.entryMenu.cards.hover}`,
         backdropFilter: 'blur(3px)',
     },
     [theme.breakpoints.up('sm')]: {
