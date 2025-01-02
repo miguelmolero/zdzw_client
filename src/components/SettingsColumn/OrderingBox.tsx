@@ -12,8 +12,8 @@ import {
     StyledContainer, 
     StyledAccordion, 
 } from "./styles/FiltersBoxStyles";
-import { useDataHandlerContext } from "../../context/DataHandlerContext";
 import { OrderDirection, OrderType } from "../../types/inspection_types";
+import { OrderDirectionLabels, OrderLabels, useDataHandlerContext } from "../../context/DataHandlerContext";
 
 const OrderingBox: React.FC = () => {
     const { orderType, orderDirection, setOrderType, setOrderDirection } = useDataHandlerContext();
@@ -28,17 +28,21 @@ const OrderingBox: React.FC = () => {
                     <FormControl fullWidth size="small">
                         <Typography variant="caption">Type</Typography>
                         <Select value={orderType} onChange={(e) => setOrderType(e.target.value as OrderType)}>
-                            <MenuItem value="date">Date</MenuItem>
-                            <MenuItem value="pass">Pass Count</MenuItem>
-                            <MenuItem value="fail">Fails Count</MenuItem>
-                            <MenuItem value="invalid">Invalids Count</MenuItem>
+                            {Object.values(OrderType).map((type) => (
+                                <MenuItem key={type} value={type}>
+                                    {OrderLabels[type]}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
                     <FormControl fullWidth size="small">
                         <Typography variant="caption">Direction</Typography>
                         <Select value={orderDirection} onChange={(e) => setOrderDirection(e.target.value as OrderDirection)}>
-                            <MenuItem value="asc">Ascending</MenuItem>
-                            <MenuItem value="desc">Descending</MenuItem>
+                            {Object.values(OrderDirection).map((type) => (
+                                <MenuItem key={type} value={type}>
+                                    {OrderDirectionLabels[type]}
+                                </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
                 </AccordionDetails>

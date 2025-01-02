@@ -14,6 +14,28 @@ import {
 import {parseRecordData} from "../utils/parseRecordData";
 import { apiRoutes } from "../api/apiRoutes";
 
+export const XAxisUnitsLabels: Record<XAxisUnits, string> = {
+    [XAxisUnits.Sample]: "Sample",
+    [XAxisUnits.Distance]: "Distance",
+};
+
+export const FeatureTypeLabels: Record<FeatureType, string> = {
+    [FeatureType.Amplitude]: "Amplitude",
+    [FeatureType.TOF]: "TOF",
+};
+
+export const OrderLabels: Record<OrderType, string> = {
+    [OrderType.Date]: "Order by Date",
+    [OrderType.Pass]: "Order by Pass Count",
+    [OrderType.Fail]: "Order by Fail Count",
+    [OrderType.Invalid]: "Order by Invalid Count",
+};
+
+export const OrderDirectionLabels: Record<OrderDirection, string> = {
+    [OrderDirection.Asc]: "Ascending",
+    [OrderDirection.Desc]: "Descending",
+};
+
 interface DataHandlerContextProps {
     inspectionData: RecordData;
     getInspectionData: (navigation: string, filters: InspectionFilters) => void;

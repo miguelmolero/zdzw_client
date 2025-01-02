@@ -12,7 +12,7 @@ import {
     StyledContainer, 
     StyledAccordion, 
 } from "./styles/FiltersBoxStyles";
-import { useDataHandlerContext } from "../../context/DataHandlerContext";
+import { FeatureTypeLabels, useDataHandlerContext, XAxisUnitsLabels } from "../../context/DataHandlerContext";
 import { FeatureType, XAxisUnits } from "../../types/inspection_types";
 
 const AxisSettings: React.FC = () => {
@@ -28,8 +28,11 @@ const AxisSettings: React.FC = () => {
                     <AccordionDetails>
                         <FormControl fullWidth size="small">
                             <Select value={xAxis} onChange={(e) => updateAxis("xAxis", e.target.value as XAxisUnits)}>
-                                <MenuItem value="sample">Sample</MenuItem>
-                                <MenuItem value="distance">Distance</MenuItem>
+                                {Object.values(XAxisUnits).map((unit) => (
+                                    <MenuItem key={unit} value={unit}>
+                                        {XAxisUnitsLabels[unit]}
+                                    </MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
                     </AccordionDetails>
@@ -43,8 +46,11 @@ const AxisSettings: React.FC = () => {
                     <AccordionDetails>
                         <FormControl fullWidth size="small">
                             <Select value={yAxis} onChange={(e) => updateAxis("yAxis", e.target.value as FeatureType)}>
-                                <MenuItem value="amplitude">Amplitude</MenuItem>
-                                <MenuItem value="tof">TOF</MenuItem>
+                                {Object.values(FeatureType).map((type) => (
+                                    <MenuItem key={type} value={type}>
+                                        {FeatureTypeLabels[type]}
+                                    </MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
                     </AccordionDetails>
