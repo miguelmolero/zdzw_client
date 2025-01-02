@@ -91,7 +91,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
             if (current_record && max_record && min_record) {
                 if (navigation === "next" && areRecordsEqual(current_record, max_record)) return;
                 if (navigation === "previous" && areRecordsEqual(current_record, min_record)) return;
-            }            
+            }
             const response = await api.post<ResponseData>(
                 `${apiRoutes.stripChart}${navigation}`,
                 filters,
@@ -102,23 +102,24 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
                 setMinRecord(jsonData.min_record);
                 setMaxRecord(jsonData.max_record);
             }
-            //console.log("jsonData", jsonData);
             const payload: RecordDataRaw = jsonData.data;
             const parsedData = parseRecordData(payload);
             setInspectionData(parsedData);
             setCurrentRecord({
-                record_id: parsedData.meta_data.record_id,
+                    record_id: parsedData.meta_data.record_id,
+                    factory_id: payload.localization_data.factory_id,
+                    device_id: payload.localization_data.device_id,
+                });
+            setFiltersData({
+                ...filters,
+                current_record_id: parsedData.meta_data.record_id,
                 factory_id: payload.localization_data.factory_id,
                 device_id: payload.localization_data.device_id,
             });
-            filters.current_record_id = parsedData.meta_data.record_id;
-            filters.factory_id = payload.localization_data.factory_id;
-            filters.device_id = payload.localization_data.device_id;
         } catch (error) {
             console.error("Error al cargar los datos del registro:", error);
-        }   
+        }
     }
-
 
     return (
         <DataHandlerContext.Provider 
