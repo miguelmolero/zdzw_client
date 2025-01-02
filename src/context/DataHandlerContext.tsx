@@ -9,7 +9,8 @@ import {
     OrderType, 
     OrderDirection,
     XAxisUnits,
-    FeatureType
+    FeatureType,
+    areRecordsEqual,
 } from "../types/inspection_types";
 import {parseRecordData} from "../utils/parseRecordData";
 import { apiRoutes } from "../api/apiRoutes";
@@ -93,9 +94,10 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
 
     const getInspectionData = async (navigation: string, filters: InspectionFilters) => {
         try {
-            if (navigation === "next" && current_record === max_record) return;
-            if (navigation === "previous" && current_record === min_record) return;
-                
+            if (current_record && max_record && min_record) {
+                if (navigation === "next" && areRecordsEqual(current_record, max_record)) return;
+                if (navigation === "previous" && areRecordsEqual(current_record, min_record)) return;
+            }            
             const response = await api.post<ResponseData>(
                 `${apiRoutes.stripChart}${navigation}`,
                 filters,
@@ -106,6 +108,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
                 setMinRecord(jsonData.min_record);
                 setMaxRecord(jsonData.max_record);
             }
+            //console.log("jsonData", jsonData);
             const payload: RecordDataRaw = jsonData.data;
             const parsedData = parseRecordData(payload);
             setInspectionData(parsedData);

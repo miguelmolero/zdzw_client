@@ -90,6 +90,14 @@ export interface InspectionFilters {
   apply_filters: boolean;
 }
 
+export const areRecordsEqual = (record1: LimitedRecord, record2: LimitedRecord) : boolean => {
+  return (
+    record1.factory_id === record2.factory_id && 
+    record1.device_id === record2.device_id && 
+    record1.record_id === record2.record_id
+  ) 
+}
+
 export enum XAxisUnits {
   Sample = "sample",
   Distance = "distance",
