@@ -1,9 +1,10 @@
 import React from "react";
 import {
     FactoryMetricMainContentContainer,
-} from "./styles/FactoryMetricStyles" // Importar los estilos
-import Toolbar from "../components/GeneralMenuToolbar"; // Importar la Toolbar reutilizable
+} from "./styles/FactoryMetricStyles";
+import Toolbar from "../components/GeneralMenuToolbar";
 import DefaultLayout from "../components/DefaultLayout";
+import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
 
 const FactoryMetrics: React.FC = () => {
 
@@ -11,6 +12,7 @@ const FactoryMetrics: React.FC = () => {
         <DefaultLayout>
             <Toolbar />
             <FactoryMetricMainContentContainer>
+                <InspectionSettingsColumn />
             </FactoryMetricMainContentContainer>
         </DefaultLayout>
     )
