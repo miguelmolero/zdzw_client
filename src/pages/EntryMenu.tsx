@@ -1,19 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Importar Link para la navegación
+import { Link } from "react-router-dom";
 import {
     EntryBodyContainer,
     EntryGridContainer,
     RowGridContainer,
     CardButton,
     CardButtonText,
-} from "./styles/EntryMenuStyles"; // Importar los estilos
-import Toolbar from "../components/GeneralMenuToolbar"; // Importar la Toolbar reutilizable
+} from "./styles/EntryMenuStyles";
 import DefaultLayout from "../components/DefaultLayout";
 
 const EntryMenu: React.FC = () => {
     return (
         <DefaultLayout>
-            <Toolbar />
             <EntryBodyContainer>
                 <EntryGridContainer>
                     <RowGridContainer>
