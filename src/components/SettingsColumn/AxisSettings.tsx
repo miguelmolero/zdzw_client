@@ -13,6 +13,7 @@ import {
     StyledAccordion, 
 } from "./styles/FiltersBoxStyles";
 import { useDataHandlerContext } from "../../context/DataHandlerContext";
+import { FeatureType, XAxisUnits } from "../../types/inspection_types";
 
 const AxisSettings: React.FC = () => {
     const { xAxis, yAxis, updateAxis } = useDataHandlerContext();
@@ -26,7 +27,7 @@ const AxisSettings: React.FC = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControl fullWidth size="small">
-                            <Select value={xAxis} onChange={(e) => updateAxis("xAxis",e.target.value)}>
+                            <Select value={xAxis} onChange={(e) => updateAxis("xAxis", e.target.value as XAxisUnits)}>
                                 <MenuItem value="sample">Sample</MenuItem>
                                 <MenuItem value="distance">Distance</MenuItem>
                             </Select>
@@ -41,7 +42,7 @@ const AxisSettings: React.FC = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <FormControl fullWidth size="small">
-                            <Select value={yAxis} onChange={(e) => updateAxis("yAxis", e.target.value)}>
+                            <Select value={yAxis} onChange={(e) => updateAxis("yAxis", e.target.value as FeatureType)}>
                                 <MenuItem value="amplitude">Amplitude</MenuItem>
                                 <MenuItem value="tof">TOF</MenuItem>
                             </Select>

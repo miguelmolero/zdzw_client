@@ -1,7 +1,16 @@
 import React, {createContext, useContext, useState} from "react";
-//import { ChartData, ChartType } from "chart.js";
 import api from "../api/axiosConfig";
-import {InspectionFilters, RecordDataRaw, RecordData, ResponseData, LimitedRecord} from "../types/inspection_types";
+import {
+    InspectionFilters, 
+    RecordDataRaw, 
+    RecordData, 
+    ResponseData, 
+    LimitedRecord, 
+    OrderType, 
+    OrderDirection,
+    XAxisUnits,
+    FeatureType
+} from "../types/inspection_types";
 import {parseRecordData} from "../utils/parseRecordData";
 import { apiRoutes } from "../api/apiRoutes";
 
@@ -10,13 +19,13 @@ interface DataHandlerContextProps {
     getInspectionData: (navigation: string, filters: InspectionFilters) => void;
     filtersData: InspectionFilters;
     setFiltersData: (filters: InspectionFilters) => void;
-    xAxis: string;
-    yAxis: string;
-    updateAxis: (axis: string, value: string) => void;
-    orderBy: string;
-    orderDirection: string;
-    setOrderBy: (value: string) => void;
-    setOrderDirection: (value: string) => void;
+    xAxis: XAxisUnits;
+    yAxis: FeatureType;
+    updateAxis: (axis: string, value: XAxisUnits | FeatureType) => void;
+    orderType: OrderType;
+    orderDirection: OrderDirection;
+    setOrderType: (value: OrderType) => void;
+    setOrderDirection: (value: OrderDirection) => void;
 }
 
 const DataHandlerContext = createContext<DataHandlerContextProps | undefined>(undefined);
@@ -25,16 +34,16 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     const [min_record, setMinRecord] = useState<LimitedRecord | undefined>();
     const [max_record, setMaxRecord] = useState<LimitedRecord | undefined>();
     const [current_record, setCurrentRecord] = useState<LimitedRecord | undefined>();
-    const [xAxis, setXAxis] = useState<string>("sample");
-    const [yAxis, setYAxis] = useState<string>("amplitude");
-    const [orderBy, setOrderBy] = useState<string>("date");
-    const [orderDirection, setOrderDirection] = useState<string>("asc");
+    const [xAxis, setXAxis] = useState<XAxisUnits>(XAxisUnits.Sample);
+    const [yAxis, setYAxis] = useState<FeatureType>(FeatureType.Amplitude);
+    const [orderType, setOrderType] = useState<OrderType>(OrderType.Date);
+    const [orderDirection, setOrderDirection] = useState<OrderDirection>(OrderDirection.Asc);
 
-    const updateAxis = (axis: string, value: string) => {
+    const updateAxis = (axis: string, value: XAxisUnits | FeatureType) => {
         if (axis === "xAxis") {
-            setXAxis(value);
+            setXAxis(value as XAxisUnits);
         }else if (axis === "yAxis") {
-            setYAxis(value);
+            setYAxis(value as FeatureType);
         }
     };
 
@@ -102,9 +111,9 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
                 xAxis, 
                 yAxis, 
                 updateAxis,
-                orderBy,
+                orderType,
                 orderDirection,
-                setOrderBy,
+                setOrderType,
                 setOrderDirection,
             }}
         >

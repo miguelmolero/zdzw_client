@@ -89,3 +89,26 @@ export interface InspectionFilters {
   device_id: number;
   apply_filters: boolean;
 }
+
+export enum XAxisUnits {
+  Sample = "sample",
+  Distance = "distance",
+}
+
+export enum FeatureType {
+  Amplitude = "amplitude",
+  TOF = "tof",
+}
+
+
+export enum OrderType {
+  Date = "date",
+  Pass = "pass",
+  Fail = "fail",
+  Invalid = "invalid",
+}
+
+export enum OrderDirection {
+  Asc = "asc",
+  Desc = "desc",
+}
