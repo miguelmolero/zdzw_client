@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import { ApplicationType } from "../types/aplication_types";
+import { ApplicationType } from "../types/application_types";
 import { useLocation } from "react-router-dom";
 
 export const applicationRoutes = {

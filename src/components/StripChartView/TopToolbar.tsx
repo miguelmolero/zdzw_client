@@ -10,7 +10,7 @@ import {
 } from "./styles/TopToolbarStyles";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
 import { useApplicationTypeContext } from "../../context/ApplicationTypeContext";
-import { ApplicationType } from "../../types/aplication_types";
+import { ApplicationType } from "../../types/application_types";
 
 const TopToolbar : React.FC = () => {
     const {getInspectionData, filtersData, inspectionData, setFiltersData} = useDataHandlerContext();

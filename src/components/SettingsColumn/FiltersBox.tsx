@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     AccordionSummary,
     AccordionDetails,
@@ -11,34 +11,29 @@ import {
     StyledContainer, 
     StyledAccordion, 
     DatePickersWrapper,
-    FiltersButton,
+    StyledTextField,
 } from "./styles/FiltersBoxStyles";
 import { InspectionFilters } from "../../types/inspection_types";
 import { useDataHandlerContext } from '../../context/DataHandlerContext';
-import { useApplicationTypeContext } from "../../context/ApplicationTypeContext";
-import { ApplicationType } from "../../types/aplication_types";
 
 
 const FiltersBox: React.FC = () => {
-    const {setFiltersData, getInspectionData} = useDataHandlerContext();
-    const {applicationType} = useApplicationTypeContext();
-    const [fromDate, setFromDate] = useState<Date | null>(null);
-    const [toDate, setToDate] = useState<Date | null>(null);
+    const { filtersData, setFiltersData } = useDataHandlerContext();
 
-    const applyFilters = () => {
-        const filters : InspectionFilters = {
-            current_record_id: -1,
-            requested_record_id: -1,
-            start_date: fromDate ? fromDate.getTime() : -1,
-            end_date: toDate ? toDate.getTime() : -1,
-            disposition: -1,
-            factory_id: -1,
-            device_id: -1,
-            apply_filters: applicationType == ApplicationType.InspectionAnalysis
-        };
-        setFiltersData(filters);
-        getInspectionData("last", filters);
-    }
+    const updateFiltersData = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target;
+        setFiltersData({
+            ...filtersData,
+            [id]: parseInt(value, 10) || value || -1, // Parse as number or fallback to raw value
+        });
+    };
+
+    const updateDateFilters = (key: keyof InspectionFilters, date: Date | null) => {
+        setFiltersData({
+            ...filtersData,
+            [key]: date ? date.getTime() : -1,
+        });
+    };
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -51,20 +46,52 @@ const FiltersBox: React.FC = () => {
                         <DatePickersWrapper>
                             <DatePicker
                                 label="From"
-                                value={fromDate}
-                                onChange={(newValue) => setFromDate(newValue)}
-                                slotProps={{ textField: { fullWidth: true, size: 'small' } }}
+                                value={filtersData.start_date ? new Date(filtersData.start_date) : null}
+                                onChange={(newValue) => updateDateFilters("start_date", newValue)}
+                                slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
                             <DatePicker
                                 label="To"
-                                value={toDate}
-                                onChange={(newValue) => setToDate(newValue)}
-                                slotProps={{ textField: { fullWidth: true, size: 'small' } }}
+                                value={filtersData.end_date ? new Date(filtersData.end_date) : null}
+                                onChange={(newValue) => updateDateFilters("end_date", newValue)}
+                                slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
                         </DatePickersWrapper>
-                        <FiltersButton onClick={applyFilters}>
-                            Apply Filters
-                        </FiltersButton>
+                        <StyledTextField
+                            label="Disposition"
+                            id="disposition"
+                            size="small"
+                            value={filtersData.disposition || ""}
+                            onChange={updateFiltersData}
+                        />
+                        <StyledTextField
+                            label="Factory ID"
+                            id="factory_id"
+                            size="small"
+                            value={filtersData.factory_id || ""}
+                            onChange={updateFiltersData}
+                        />
+                        <StyledTextField
+                            label="Device ID"
+                            id="device_id"
+                            size="small"
+                            value={filtersData.device_id || ""}
+                            onChange={updateFiltersData}
+                        />
+                        <StyledTextField
+                            label="Record ID"
+                            id="requested_record_id"
+                            size="small"
+                            value={filtersData.requested_record_id || ""}
+                            onChange={updateFiltersData}
+                        />
+                        <StyledTextField
+                            label="Job ID"
+                            id="job_id"
+                            size="small"
+                            value={filtersData.job_id || ""}
+                            onChange={updateFiltersData}
+                        />
                     </AccordionDetails>
                 </StyledAccordion>
             </StyledContainer>

@@ -87,6 +87,7 @@ export interface InspectionFilters {
   disposition: number;
   factory_id: number;
   device_id: number;
+  job_id: number;
   apply_filters: boolean;
 }
 

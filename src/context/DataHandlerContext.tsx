@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import api from "../api/axiosConfig";
 import {
     InspectionFilters, 
@@ -74,7 +74,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         },
         strip_data: [],
     });
-    
+
     const [filtersData, setFiltersData] = useState<InspectionFilters>({
         current_record_id: -1,
         requested_record_id: -1,
@@ -83,6 +83,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         disposition: -1,
         factory_id: -1,
         device_id: -1,
+        job_id: -1,
         apply_filters: false,
     });
 
@@ -121,12 +122,16 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         }
     }
 
+    useEffect(() => {
+        getInspectionData("last", filtersData);
+    });
+
     return (
         <DataHandlerContext.Provider 
             value={{
                 inspectionData, 
                 getInspectionData, 
-                filtersData, 
+                filtersData,
                 setFiltersData, 
                 xAxis, 
                 yAxis, 

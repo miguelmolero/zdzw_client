@@ -1,4 +1,4 @@
-import { styled, Box, Accordion, Button } from "@mui/material";
+import { styled, Box, Accordion, Button, TextField } from "@mui/material";
 
 // Contenedor principal del overlay
 export const StyledContainer = styled(Box)({
@@ -38,3 +38,7 @@ export const FiltersButton = styled(Button)({
         backgroundColor: "#8bcf8a", // Verde más oscuro
     },
 });
+
+export const StyledTextField = styled(TextField)({
+    marginBottom: "16px",
+})
