@@ -8,7 +8,7 @@ import {
     InspectionContainer,
     CanvasContainerSC
 } from "./styles/InspectionVisualizerStyles";
-import InspectionSettingsColumn from "../components/SettingsColumn/SettingsColumn";
+import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import { useDataHandlerContext} from "../context/DataHandlerContext";
 
 const InspectionAnalysis: React.FC = () => {
@@ -97,7 +97,7 @@ const InspectionAnalysis: React.FC = () => {
         <DefaultLayout>
             <Toolbar />
             <InspectionContainer>
-                <InspectionSettingsColumn />
+                <SettingsColumn isInspectionView />
                 <CanvasContainerSC>
                     <StripChartView
                         type="line"

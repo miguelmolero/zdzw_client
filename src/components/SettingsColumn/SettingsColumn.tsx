@@ -4,11 +4,13 @@ import { settingsColumStyles } from './styles/SettingsColumStyles';
 import { StripChartContextProvider } from '../../context/StripChartContext';
 import FiltersBox from './FiltersBox';
 import AxisSettings from './AxisSettings';
-import { useApplicationTypeContext } from '../../context/ApplicationTypeContext';
 
-const SettingsColumn : React.FC = () => {
+interface SettingsColumnProps {
+    isInspectionView?: boolean;
+}
+
+const SettingsColumn : React.FC<SettingsColumnProps> = ({ isInspectionView = false }) => {
     const styles = settingsColumStyles();
-    const { isInspectionView } = useApplicationTypeContext();
 
     return (
         <StripChartContextProvider>

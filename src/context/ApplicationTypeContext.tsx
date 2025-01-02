@@ -30,29 +30,25 @@ const applicationPath: Record<string, ApplicationType> = {
 interface ApplicationTypeProps {
     applicationType: ApplicationType;
     setApplicationType: (type: ApplicationType) => void;
-    isInspectionView: boolean;
 }
 
 const ApplicationTypeState = createContext<ApplicationTypeProps | undefined>(undefined);
 
 export const ApplicationTypeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [applicationType, setApplicationType] = useState<ApplicationType>(ApplicationType.None);
-    const [isInspectionView, setIsInspectionView] = useState<boolean>(false);
     const pathName = useLocation().pathname;
 
     useEffect(() => {
         setApplicationType(applicationPath[pathName] || ApplicationType.None);
-        setIsInspectionView([applicationRoutes.InspectionVisualizer, applicationRoutes.InspectionAnalysis].includes(pathName));
     }, [pathName]);
 
+    const value = React.useMemo(() => ({
+        applicationType,
+        setApplicationType,
+    }), [applicationType]);
+
     return (
-        <ApplicationTypeState.Provider
-            value={{
-                applicationType,
-                setApplicationType,
-                isInspectionView,
-            }}
-        >
+        <ApplicationTypeState.Provider value={value}>
             {children}
         </ApplicationTypeState.Provider>
     );
