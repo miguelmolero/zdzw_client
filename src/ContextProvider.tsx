@@ -1,7 +1,7 @@
 import { ApplicationTypeProvider } from "./context/ApplicationTypeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { DataHandlerProvider } from "./context/DataHandlerContext";
-import { ThemeProvider } from "./theme/ThemeContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
