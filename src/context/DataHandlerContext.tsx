@@ -105,7 +105,6 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         record_id: 0,
     });
 
-
     const getInspectionData = async (navigation: string) => {
         const nav_filters: InspectionFilters = inspectionFilters;
         const loaded_record : LimitedRecord = current_record;

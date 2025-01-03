@@ -32,6 +32,13 @@ const FiltersBox: React.FC = () => {
         });
     };
 
+    const updateSelectFilters = (key: keyof InspectionFilters, value: number) => {
+        setInspectionFilters({
+            ...inspectionFilters,
+            [key]: value,
+        });
+    };
+
     const updateDateFilters = (key: keyof InspectionFilters, date: Date | null) => {
         setInspectionFilters({
             ...inspectionFilters,
@@ -68,9 +75,12 @@ const FiltersBox: React.FC = () => {
                                 label="Disposition"
                                 id="disposition"
                                 size="small"
-                                value={inspectionFilters.disposition != -1 ? inspectionFilters.disposition : DispositionTypeName[DispositionType.Pass]}
-                                // onChange={updateFiltersData}
-                                onChange={(e) => console.log(e.target.value)}
+                                value={
+                                    inspectionFilters.disposition !== undefined
+                                        ? inspectionFilters.disposition
+                                        : -1
+                                }
+                                onChange={(e) => updateSelectFilters("disposition", Number(e.target.value))}
                             >
                                 <MenuItem value={-1}>All</MenuItem>
                                 {Object.values(DispositionType)
