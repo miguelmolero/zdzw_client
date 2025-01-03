@@ -18,7 +18,7 @@ import { DispositionTypeName } from "../../context/DataHandlerContext";
 const DispositionColor: Record<DispositionType, string> = {
     [DispositionType.Pass]: "green",
     [DispositionType.Fail]: "red",
-    [DispositionType.Invalid]: "yellow",
+    [DispositionType.Invalid]: "darkorange",
 };
 
 interface StripChartViewProps {
@@ -95,8 +95,12 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta
                 <GraphContainer>
                     <LabelContainer>
                         <StyledTypography justifyContent="flex-start">
-                            <span style={{ color: dispositionColor }}>
-                                {header_meta_data ? `Disposition: ${dispositionName}` : "Loading data..."}
+                            <span>
+                                {header_meta_data ? (
+                                    <>Disposition: <span style={{ color: dispositionColor }}>{dispositionName}</span></>
+                                ) : (
+                                    "Loading data..."
+                                )}
                             </span>
                             <span>{`Date: ${header_meta_data?.timestamp ? timestampToDateTimeYMD(header_meta_data.timestamp) : ""}`}</span>
                         </StyledTypography>
