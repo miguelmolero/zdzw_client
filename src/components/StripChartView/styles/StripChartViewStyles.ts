@@ -24,11 +24,13 @@ export const LabelContainer = styled(Box)({
 });
 
 export const StyledTypography = styled(Typography)<{ justifyContent?: "flex-start" | "center" | "flex-end" }>(
-    ({ align = "flex-start" }) => ({
+    ({ justifyContent = "flex-start" }) => ({
         display: "flex",
         flexDirection: "column",
-        justifyContent: align,
-        alignItems: align,
+        justifyContent: justifyContent,
+        alignItems: justifyContent,
+        fontSize: "0.9rem",
+        lineHeight: "1.3rem",
     })
 );
 

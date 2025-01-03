@@ -1,4 +1,4 @@
-import { styled, Box, Accordion, Button, TextField, FormControl } from "@mui/material";
+import { styled, Box, Accordion, Button, TextField, FormControl, AccordionDetails } from "@mui/material";
 
 // Contenedor principal del overlay
 export const StyledContainer = styled(Box)({
@@ -21,12 +21,18 @@ export const StyledAccordion = styled(Accordion)({
     boxShadow: "none", // Sin sombra adicional para mantener un diseño limpio
 });
 
+export const StyledAccordionDetails = styled(AccordionDetails)({
+    display: "flex",
+    flexDirection: "column",
+    gap: "16px",
+    padding: "16px",
+});
+
 // Contenedor de los DatePickers
 export const DatePickersWrapper = styled(Box)({
     display: "flex",
     flexDirection: "column",
     gap: "16px", // Espaciado entre los inputs
-    marginBottom: "16px", // Espaciado inferior
 });
 
 export const FiltersButton = styled(Button)({
@@ -38,11 +44,3 @@ export const FiltersButton = styled(Button)({
         backgroundColor: "#8bcf8a", // Verde más oscuro
     },
 });
-
-export const StyledTextField = styled(TextField)({
-    marginBottom: "16px",
-})
-
-export const StyledFormControl = styled(FormControl)({
-    marginBottom: "16px",
-})

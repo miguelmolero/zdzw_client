@@ -10,7 +10,6 @@ import {
     LabelContainer,
     StyledTypography
 } from "./styles/StripChartViewStyles";
-import { StripChartContextProvider} from "../../context/StripChartContext";
 import { RecordMetaData, DispositionType } from "../../types/inspection_types";
 import TopToolbar from "./TopToolbar";
 import { DispositionTypeName } from "../../context/DataHandlerContext";
@@ -89,38 +88,36 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta
     const { name: dispositionName, color: dispositionColor } = getDispositionDetails(header_meta_data?.disposition);
 
     return (
-        <StripChartContextProvider>
-            <SCcontainer>
-                <TopToolbar />
-                <GraphContainer>
-                    <LabelContainer>
-                        <StyledTypography justifyContent="flex-start">
-                            <span>
-                                {header_meta_data ? (
-                                    <>Disposition: <span style={{ color: dispositionColor }}>{dispositionName}</span></>
-                                ) : (
-                                    "Loading data..."
-                                )}
-                            </span>
-                            <span>{`Date: ${header_meta_data?.timestamp ? timestampToDateTimeYMD(header_meta_data.timestamp) : ""}`}</span>
-                        </StyledTypography>
-                        <StyledTypography justifyContent="center">
-                            <span>{`Record ID: ${header_meta_data?.record_id ? header_meta_data.record_id : ""}`}</span>
-                            <span>{`Job: ${header_meta_data?.job_id ? header_meta_data.job_id : ""}`}</span>
-                        </StyledTypography>
-                        <StyledTypography justifyContent="flex-end">
-                            <span>{`Factory: ${header_meta_data?.factory_name ? header_meta_data.factory_name : ""}`}</span>
-                            <span>{`Device: ${header_meta_data?.device_name ? header_meta_data.device_name : ""}`}</span>
-                        </StyledTypography>
-                    </LabelContainer>
-                    <ChartContainer>
-                        <ChartCanvasContainer>
-                            <StripChartCanvas type={type} data={data} options={chartOptions} />
-                        </ChartCanvasContainer>
-                    </ChartContainer>
-                </GraphContainer>
-            </SCcontainer>
-        </StripChartContextProvider>
+        <SCcontainer>
+            <TopToolbar />
+            <GraphContainer>
+                <LabelContainer>
+                    <StyledTypography justifyContent="flex-start">
+                        <span>
+                            {header_meta_data ? (
+                                <>Disposition: <span style={{ color: dispositionColor }}>{dispositionName}</span></>
+                            ) : (
+                                "Loading data..."
+                            )}
+                        </span>
+                        <span>{`Date: ${header_meta_data?.timestamp ? timestampToDateTimeYMD(header_meta_data.timestamp) : ""}`}</span>
+                    </StyledTypography>
+                    <StyledTypography justifyContent="center">
+                        <span>{`Record ID: ${header_meta_data?.record_id ? header_meta_data.record_id : ""}`}</span>
+                        <span>{`Job: ${header_meta_data?.job_id ? header_meta_data.job_id : ""}`}</span>
+                    </StyledTypography>
+                    <StyledTypography justifyContent="flex-end">
+                        <span>{`Factory: ${header_meta_data?.factory_name ? header_meta_data.factory_name : ""}`}</span>
+                        <span>{`Device: ${header_meta_data?.device_name ? header_meta_data.device_name : ""}`}</span>
+                    </StyledTypography>
+                </LabelContainer>
+                <ChartContainer>
+                    <ChartCanvasContainer>
+                        <StripChartCanvas type={type} data={data} options={chartOptions} />
+                    </ChartCanvasContainer>
+                </ChartContainer>
+            </GraphContainer>
+        </SCcontainer>
     )
 };
 

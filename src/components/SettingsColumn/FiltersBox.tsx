@@ -1,11 +1,12 @@
 import React from "react";
 import {
     AccordionSummary,
-    AccordionDetails,
     Typography,
     Select,
     MenuItem,
     InputLabel,
+    TextField,
+    FormControl,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -14,8 +15,7 @@ import {
     StyledContainer, 
     StyledAccordion, 
     DatePickersWrapper,
-    StyledTextField,
-    StyledFormControl,
+    StyledAccordionDetails,
 } from "./styles/FiltersBoxStyles";
 import { InspectionFilters, DispositionType } from "../../types/inspection_types";
 import { DispositionTypeName, useDataHandlerContext } from '../../context/DataHandlerContext';
@@ -53,7 +53,7 @@ const FiltersBox: React.FC = () => {
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography variant="body2">Filters</Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <StyledAccordionDetails>
                         <DatePickersWrapper>
                             <DatePicker
                                 label="From"
@@ -68,7 +68,7 @@ const FiltersBox: React.FC = () => {
                                 slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
                         </DatePickersWrapper>
-                        <StyledFormControl fullWidth size="small">
+                        <FormControl fullWidth size="small">
                             <InputLabel id="disposition-label">Disposition</InputLabel>
                             <Select
                                 labelId="disposition-label"
@@ -91,36 +91,36 @@ const FiltersBox: React.FC = () => {
                                         </MenuItem>
                                     ))}
                             </Select>
-                        </StyledFormControl>
-                        <StyledTextField
+                        </FormControl>
+                        <TextField
                             label="Factory ID"
                             id="factory_id"
                             size="small"
                             value={inspectionFilters.factory_id < 1 ? "" : inspectionFilters.factory_id}
                             onChange={updateFiltersData}
                         />
-                        <StyledTextField
+                        <TextField
                             label="Device ID"
                             id="device_id"
                             size="small"
                             value={inspectionFilters.device_id < 1 ? "" : inspectionFilters.device_id}
                             onChange={updateFiltersData}
                         />
-                        <StyledTextField
+                        <TextField
                             label="Record ID"
                             id="requested_record_id"
                             size="small"
                             value={inspectionFilters.requested_record_id < 1 ? "" : inspectionFilters.requested_record_id}
                             onChange={updateFiltersData}
                         />
-                        <StyledTextField
+                        <TextField
                             label="Job ID"
                             id="job_id"
                             size="small"
                             value={inspectionFilters.job_id < 1 ? "" : inspectionFilters.job_id}
                             onChange={updateFiltersData}
                         />
-                    </AccordionDetails>
+                    </StyledAccordionDetails>
                 </StyledAccordion>
             </StyledContainer>
         </LocalizationProvider>

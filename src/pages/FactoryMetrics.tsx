@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    CanvasContainerStats,
     FactoryMetricMainContentContainer,
 } from "./styles/FactoryMetricStyles";
 import Toolbar from "../components/GeneralMenuToolbar";
@@ -13,6 +14,9 @@ const FactoryMetrics: React.FC = () => {
             <Toolbar />
             <FactoryMetricMainContentContainer>
                 <SettingsColumn />
+                <CanvasContainerStats>
+
+                </CanvasContainerStats>
             </FactoryMetricMainContentContainer>
         </DefaultLayout>
     )
