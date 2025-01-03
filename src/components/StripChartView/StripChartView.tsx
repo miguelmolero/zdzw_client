@@ -11,14 +11,36 @@ import {
     StyledTypography
 } from "./styles/StripChartViewStyles";
 import { StripChartContextProvider} from "../../context/StripChartContext";
-import { RecordMetaData } from "../../types/inspection_types";
+import { RecordMetaData, DispositionType } from "../../types/inspection_types";
 import TopToolbar from "./TopToolbar";
+  
+const DispositionTypeName: Record<DispositionType, string> = {
+    [DispositionType.Pass]: "Pass",
+    [DispositionType.Fail]: "Fail",
+    [DispositionType.Invalid]: "Invalid",
+};
+
+const DispositionColor: Record<DispositionType, string> = {
+    [DispositionType.Pass]: "green",
+    [DispositionType.Fail]: "red",
+    [DispositionType.Invalid]: "yellow",
+};
 
 interface StripChartViewProps {
     type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
     data: ChartData;
     header_meta_data?: RecordMetaData;
 }
+
+const getDispositionDetails = (disposition?: number) => {
+    if (!disposition || !(disposition in DispositionType)) {
+        return { name: "", color: "black" };
+    }
+    return {
+        name: DispositionTypeName[disposition as DispositionType],
+        color: DispositionColor[disposition as DispositionType],
+    };
+};
 
 const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta_data}) => {
 
@@ -69,6 +91,8 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta
         }
     }
 
+    const { name: dispositionName, color: dispositionColor } = getDispositionDetails(header_meta_data?.disposition);
+
     return (
         <StripChartContextProvider>
             <SCcontainer>
@@ -76,40 +100,18 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta
                 <GraphContainer>
                     <LabelContainer>
                         <StyledTypography justifyContent="flex-start">
-                            <span>
-                                {header_meta_data
-                                    ? `Disposition: ${header_meta_data?.disposition}`
-                                    : "Loading data..."}
+                            <span style={{ color: dispositionColor }}>
+                                {header_meta_data ? `Disposition: ${dispositionName}` : "Loading data..."}
                             </span>
-                            <span>
-                                {header_meta_data
-                                    ? `Date: ${timestampToDateTimeYMD(header_meta_data?.timestamp)}`
-                                    : "Loading data..."}
-                            </span>
+                            <span>{`Date: ${header_meta_data?.timestamp ? timestampToDateTimeYMD(header_meta_data.timestamp) : ""}`}</span>
                         </StyledTypography>
                         <StyledTypography justifyContent="center">
-                            <span>
-                                {header_meta_data
-                                    ? `Record ID: ${header_meta_data?.record_id}`
-                                    : ""}
-                            </span>
-                            <span>
-                                {header_meta_data
-                                    ? `Job: ${header_meta_data?.job_id}`
-                                    : ""}
-                            </span>
+                            <span>{`Record ID: ${header_meta_data?.record_id ? header_meta_data.record_id : ""}`}</span>
+                            <span>{`Job: ${header_meta_data?.job_id ? header_meta_data.job_id : ""}`}</span>
                         </StyledTypography>
                         <StyledTypography justifyContent="flex-end">
-                            <span>
-                                {header_meta_data
-                                    ? `Factory: ${header_meta_data?.factory_name}`
-                                    : ""}
-                            </span>
-                            <span>
-                                {header_meta_data
-                                    ? `Device: ${header_meta_data?.device_name}`
-                                    : ""}
-                            </span>
+                            <span>{`Factory: ${header_meta_data?.factory_name ? header_meta_data.factory_name : ""}`}</span>
+                            <span>{`Device: ${header_meta_data?.device_name ? header_meta_data.device_name : ""}`}</span>
                         </StyledTypography>
                     </LabelContainer>
                     <ChartContainer>

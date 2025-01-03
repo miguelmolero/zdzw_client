@@ -116,3 +116,9 @@ export enum OrderDirection {
   Asc = "asc",
   Desc = "desc",
 }
+
+export enum DispositionType {
+  Pass = 1,
+  Fail = 2,
+  Invalid = 3,
+}
