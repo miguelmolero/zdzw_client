@@ -27,7 +27,7 @@ const TopToolbar : React.FC = () => {
         }
         setFiltersData({
             ...filtersData, 
-            isAnalysis: applicationType == ApplicationType.InspectionAnalysis  
+            is_analysis: applicationType == ApplicationType.InspectionAnalysis  
         });
         getInspectionData(navigation);
     }

@@ -83,7 +83,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         factory_id: -1,
         device_id: -1,
         job_id: -1,
-        isAnalysis: false,
+        is_analysis: false,
     });
 
     const getInspectionData = async (navigation: string) => {
