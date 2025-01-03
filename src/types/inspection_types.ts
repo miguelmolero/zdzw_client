@@ -88,7 +88,7 @@ export interface InspectionFilters {
   factory_id: number;
   device_id: number;
   job_id: number;
-  apply_filters: boolean;
+  isAnalysis: boolean;
 }
 
 export enum XAxisUnits {
