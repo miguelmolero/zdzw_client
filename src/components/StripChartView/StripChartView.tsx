@@ -1,5 +1,5 @@
 import React from "react";
-import { ChartData, ChartOptions } from "chart.js";
+import { ChartData, ChartOptions, Point } from "chart.js";
 import { Typography } from "@mui/material";
 import {timestampToDateTimeYMD } from "../../utils/typesConverter";
 import StripChartCanvas from "./StripChartCanvas";
@@ -15,13 +15,59 @@ import { RecordMetaData } from "../../types/inspection_types";
 import TopToolbar from "./TopToolbar";
 
 interface StripChartViewProps {
-    type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar'; // Tipos de gráfico admitidos
-    data: ChartData; // Datos que se pasarán al gráfico
-    options?: ChartOptions; // Opciones de configuración adicionales para Chart.js
-    header_meta_data?: RecordMetaData; // Metadatos del registro
+    type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
+    data: ChartData;
+    header_meta_data?: RecordMetaData;
 }
 
-const StripChartView : React.FC<StripChartViewProps> = ({type, data, options, header_meta_data}) => {
+const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta_data}) => {
+
+    const chartOptions: ChartOptions<"line"> = {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+            padding: {
+                left: 30,
+                right: 50,
+                top: 25,
+                bottom: 25,
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+                ticks: {
+                    maxTicksLimit: 15,
+                    callback: function (value) {
+                        const currentLabels = data?.labels as number[];
+                        const tickValue = currentLabels[value as number];
+                        return tickValue?.toFixed(1);
+                    },
+                },
+            },
+            y: {
+                grid: {
+                    display: true,
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxWidth: 20,
+                    padding: 15
+                }
+            },
+            tooltip: {
+                enabled: true,
+                intersect: false,
+                position: 'nearest',
+            }
+        }
+    }
 
     return (
         <StripChartContextProvider>
@@ -37,7 +83,7 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, options, he
                     </LabelContainer>
                     <ChartContainer>
                         <ChartCanvasContainer>
-                            <StripChartCanvas type={type} data={data} options={options} />
+                            <StripChartCanvas type={type} data={data} options={chartOptions} />
                         </ChartCanvasContainer>
                     </ChartContainer>
                 </GraphContainer>

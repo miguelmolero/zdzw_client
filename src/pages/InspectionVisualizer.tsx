@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Toolbar from "../components/GeneralMenuToolbar";
 import DefaultLayout from "../components/DefaultLayout";
 import StripChartView from "../components/StripChartView/StripChartView";
-import { ChartData, ChartOptions } from "chart.js";
+import { ChartData } from "chart.js";
 import { StripData } from "../types/inspection_types";
 import {
     InspectionContainer,
@@ -18,48 +18,11 @@ const InspectionVisualizer: React.FC = () => {
         datasets: [],
     });
 
-    const chartOptions: ChartOptions<"line"> = {
-        responsive: true,
-        maintainAspectRatio: false,
-        layout: {
-            padding: {
-                left: 30,
-                right: 50,
-                top: 25,
-                bottom: 25,
-            },
-        },
-        scales: {
-            x: {
-                grid: {
-                    display: false,
-                }
-            },
-            y: {
-                grid: {
-                    display: true,
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                position: 'bottom',
-                labels: {
-                    boxWidth: 20,
-                    padding: 15
-                }
-            },
-            tooltip: {
-                enabled: true,
-                intersect: false,
-                position: 'nearest',
-            }
-        }
-    };
-
     useEffect(() => {
         if (inspectionData && inspectionData.strip_data.length > 0) {
-            const labels = inspectionData.strip_data[0][xAxis as keyof StripData] as number[];
+            const selectedLabels = xAxis === "sample"
+                ? inspectionData.strip_data[0].sample
+                : inspectionData.strip_data[0].distance;
 
             const datasets = inspectionData.strip_data.map((strip) => ({
                 label: `Channel ${strip.channel_id + 1} - Gate ${strip.gate_id + 1}`,
@@ -72,7 +35,7 @@ const InspectionVisualizer: React.FC = () => {
             })) as ChartData<"line">["datasets"];
 
             setChartData({
-                labels,
+                labels: selectedLabels,
                 datasets,
             });
         }
@@ -87,7 +50,6 @@ const InspectionVisualizer: React.FC = () => {
                     <StripChartView
                         type="line"
                         data={chartData}
-                        options={chartOptions}
                         header_meta_data={inspectionData?.meta_data}
                     />
                 </CanvasContainerSC>
