@@ -12,7 +12,7 @@ import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import { useDataHandlerContext} from "../context/DataHandlerContext";
 
 const InspectionAnalysis: React.FC = () => {
-    const { getInspectionData, filtersData, inspectionData, xAxis, yAxis } = useDataHandlerContext();
+    const { getInspectionData, inspectionData, xAxis, yAxis } = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"line">>({
         labels: [],
         datasets: [],
@@ -58,7 +58,7 @@ const InspectionAnalysis: React.FC = () => {
     };
 
     useEffect(() => {
-        getInspectionData("first", filtersData);
+        getInspectionData("last");
     }, []);
 
     useEffect(() => {

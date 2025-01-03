@@ -38,7 +38,7 @@ export const OrderDirectionLabels: Record<OrderDirection, string> = {
 
 interface DataHandlerContextProps {
     inspectionData: RecordData;
-    getInspectionData: (navigation: string, filters: InspectionFilters) => void;
+    getInspectionData: (navigation: string) => void;
     filtersData: InspectionFilters;
     setFiltersData: (filters: InspectionFilters) => void;
     xAxis: XAxisUnits;
@@ -86,7 +86,8 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         apply_filters: false,
     });
 
-    const getInspectionData = async (navigation: string, filters: InspectionFilters) => {
+    const getInspectionData = async (navigation: string) => {
+        const filters: InspectionFilters = filtersData;
         try {
             if (current_record && max_record && min_record) {
                 if (navigation === "next" && areRecordsEqual(current_record, max_record)) return;
@@ -106,13 +107,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
             const parsedData = parseRecordData(payload);
             setInspectionData(parsedData);
             setCurrentRecord({
-                    record_id: parsedData.meta_data.record_id,
-                    factory_id: payload.localization_data.factory_id,
-                    device_id: payload.localization_data.device_id,
-                });
-            setFiltersData({
-                ...filters,
-                current_record_id: parsedData.meta_data.record_id,
+                record_id: parsedData.meta_data.record_id,
                 factory_id: payload.localization_data.factory_id,
                 device_id: payload.localization_data.device_id,
             });
@@ -122,8 +117,8 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     }
 
     useEffect(() => {
-        getInspectionData("last", filtersData);
-    });
+        getInspectionData("last");
+    }, [filtersData]);
 
     return (
         <DataHandlerContext.Provider 
