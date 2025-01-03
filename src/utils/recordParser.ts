@@ -1,4 +1,4 @@
-import { RecordDataRaw, RecordData, StripDataRaw } from "../types/inspection_types";
+import { RecordDataRaw, RecordData, StripDataRaw, LimitedRecord } from "../types/inspection_types";
 
 export function parseRecordData(jsonData: RecordDataRaw): RecordData {
   const recordData: RecordData = {
@@ -24,4 +24,11 @@ export function parseRecordData(jsonData: RecordDataRaw): RecordData {
 
   return recordData;
 }
-  
+
+export const areRecordsEqual = (record1: LimitedRecord, record2: LimitedRecord) : boolean => {
+  return (
+    record1.factory_id === record2.factory_id && 
+    record1.device_id === record2.device_id && 
+    record1.record_id === record2.record_id
+  ) 
+}

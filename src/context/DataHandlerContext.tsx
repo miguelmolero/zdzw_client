@@ -9,10 +9,9 @@ import {
     OrderType, 
     OrderDirection,
     XAxisUnits,
-    FeatureType,
-    areRecordsEqual,
+    FeatureType
 } from "../types/inspection_types";
-import {parseRecordData} from "../utils/parseRecordData";
+import { parseRecordData, areRecordsEqual } from "../utils/recordParser";
 import { apiRoutes } from "../api/apiRoutes";
 
 export const XAxisUnitsLabels: Record<XAxisUnits, string> = {
