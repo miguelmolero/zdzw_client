@@ -79,7 +79,6 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     });
 
     const [inspectionFilters, setInspectionFilters] = useState<InspectionFilters>({
-        current_record_id: -1,
         requested_record_id: -1,
         start_date: -1,
         end_date: -1,

@@ -80,7 +80,6 @@ export interface LimitedRecord {
 }
 
 export interface InspectionFilters {
-  current_record_id: number;
   requested_record_id: number;
   start_date: number;
   end_date: number;
