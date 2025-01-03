@@ -6,6 +6,7 @@ import {
 import Toolbar from "../components/GeneralMenuToolbar";
 import DefaultLayout from "../components/DefaultLayout";
 import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
+import StatsView from "../components/StatsView/StatsView";
 
 const FactoryMetrics: React.FC = () => {
 
@@ -15,7 +16,7 @@ const FactoryMetrics: React.FC = () => {
             <FactoryMetricMainContentContainer>
                 <SettingsColumn />
                 <CanvasContainerStats>
-
+                    <StatsView />
                 </CanvasContainerStats>
             </FactoryMetricMainContentContainer>
         </DefaultLayout>

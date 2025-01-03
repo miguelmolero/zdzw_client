@@ -1,4 +1,4 @@
-import { styled, Box, Accordion, Button, TextField, FormControl, AccordionDetails } from "@mui/material";
+import { styled, Box, Accordion, Button, AccordionDetails } from "@mui/material";
 
 // Contenedor principal del overlay
 export const StyledContainer = styled(Box)({
