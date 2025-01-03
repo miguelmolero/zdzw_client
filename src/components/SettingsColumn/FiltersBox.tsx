@@ -18,19 +18,19 @@ import { useDataHandlerContext } from '../../context/DataHandlerContext';
 
 
 const FiltersBox: React.FC = () => {
-    const { filtersData, setFiltersData } = useDataHandlerContext();
+    const { inspectionFilters, setInspectionFilters } = useDataHandlerContext();
 
     const updateFiltersData = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
-        setFiltersData({
-            ...filtersData,
+        setInspectionFilters({
+            ...inspectionFilters,
             [id]: parseInt(value, 10) || value || -1, // Parse as number or fallback to raw value
         });
     };
 
     const updateDateFilters = (key: keyof InspectionFilters, date: Date | null) => {
-        setFiltersData({
-            ...filtersData,
+        setInspectionFilters({
+            ...inspectionFilters,
             [key]: date ? date.getTime() : -1,
         });
     };
@@ -46,13 +46,13 @@ const FiltersBox: React.FC = () => {
                         <DatePickersWrapper>
                             <DatePicker
                                 label="From"
-                                value={filtersData.start_date && filtersData.start_date != -1 ? new Date(filtersData.start_date) : null}
+                                value={inspectionFilters.start_date && inspectionFilters.start_date != -1 ? new Date(inspectionFilters.start_date) : null}
                                 onChange={(newValue) => updateDateFilters("start_date", newValue)}
                                 slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
                             <DatePicker
                                 label="To"
-                                value={filtersData.end_date && filtersData.end_date != -1 ? new Date(filtersData.end_date) : null}
+                                value={inspectionFilters.end_date && inspectionFilters.end_date != -1 ? new Date(inspectionFilters.end_date) : null}
                                 onChange={(newValue) => updateDateFilters("end_date", newValue)}
                                 slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
@@ -61,35 +61,35 @@ const FiltersBox: React.FC = () => {
                             label="Disposition"
                             id="disposition"
                             size="small"
-                            value={filtersData.disposition != -1 ? filtersData.disposition : ""}
+                            value={inspectionFilters.disposition != -1 ? inspectionFilters.disposition : ""}
                             onChange={updateFiltersData}
                         />
                         <StyledTextField
                             label="Factory ID"
                             id="factory_id"
                             size="small"
-                            value={filtersData.factory_id < 1 ? "" : filtersData.factory_id}
+                            value={inspectionFilters.factory_id < 1 ? "" : inspectionFilters.factory_id}
                             onChange={updateFiltersData}
                         />
                         <StyledTextField
                             label="Device ID"
                             id="device_id"
                             size="small"
-                            value={filtersData.device_id < 1 ? "" : filtersData.device_id}
+                            value={inspectionFilters.device_id < 1 ? "" : inspectionFilters.device_id}
                             onChange={updateFiltersData}
                         />
                         <StyledTextField
                             label="Record ID"
                             id="requested_record_id"
                             size="small"
-                            value={filtersData.requested_record_id < 1 ? "" : filtersData.requested_record_id}
+                            value={inspectionFilters.requested_record_id < 1 ? "" : inspectionFilters.requested_record_id}
                             onChange={updateFiltersData}
                         />
                         <StyledTextField
                             label="Job ID"
                             id="job_id"
                             size="small"
-                            value={filtersData.job_id < 1 ? "" : filtersData.job_id}
+                            value={inspectionFilters.job_id < 1 ? "" : inspectionFilters.job_id}
                             onChange={updateFiltersData}
                         />
                     </AccordionDetails>

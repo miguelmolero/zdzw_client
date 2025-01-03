@@ -41,8 +41,10 @@ export const OrderDirectionLabels: Record<OrderDirection, string> = {
 interface DataHandlerContextProps {
     inspectionData: RecordData;
     getInspectionData: (navigation: string) => void;
-    filtersData: InspectionFilters;
-    setFiltersData: (filters: InspectionFilters) => void;
+    current_record: LimitedRecord | undefined;
+    setCurrentRecord: (record: LimitedRecord) => void;
+    inspectionFilters: InspectionFilters;
+    setInspectionFilters: (filters: InspectionFilters) => void;
     xAxis: XAxisUnits;
     yAxis: FeatureType;
     setXAxis: (value: XAxisUnits) => void;
@@ -59,8 +61,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     const { applicationType } = useApplicationTypeContext();
     const [min_record, setMinRecord] = useState<LimitedRecord | undefined>();
     const [max_record, setMaxRecord] = useState<LimitedRecord | undefined>();
-    const [current_record, setCurrentRecord] = useState<LimitedRecord | undefined>();
-    const [xAxis, setXAxis] = useState<XAxisUnits>(XAxisUnits.Distance);
+    const [xAxis, setXAxis] = useState<XAxisUnits>(XAxisUnits.Sample);
     const [yAxis, setYAxis] = useState<FeatureType>(FeatureType.Amplitude);
     const [orderType, setOrderType] = useState<OrderType>(OrderType.Date);
     const [orderDirection, setOrderDirection] = useState<OrderDirection>(OrderDirection.Asc);
@@ -77,7 +78,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         strip_data: [],
     });
 
-    const [filtersData, setFiltersData] = useState<InspectionFilters>({
+    const [inspectionFilters, setInspectionFilters] = useState<InspectionFilters>({
         current_record_id: -1,
         requested_record_id: -1,
         start_date: -1,
@@ -89,17 +90,29 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         is_analysis: false,
     });
 
+    const [current_record, setCurrentRecord] = useState<LimitedRecord>({
+        factory_id: 0,
+        device_id: 0,
+        record_id: 0,
+    });
+
+
     const getInspectionData = async (navigation: string) => {
-        const filters: InspectionFilters = filtersData;
-        filters.is_analysis = applicationType === ApplicationType.InspectionAnalysis;
+        const nav_filters: InspectionFilters = inspectionFilters;
+        const loaded_record : LimitedRecord = current_record;
+        nav_filters.is_analysis = applicationType === ApplicationType.InspectionAnalysis;
         try {
             if (current_record && max_record && min_record) {
                 if (navigation === "next" && areRecordsEqual(current_record, max_record)) return;
                 if (navigation === "previous" && areRecordsEqual(current_record, min_record)) return;
             }
+            const requested_payload = {
+                nav_filters,
+                loaded_record
+            };
             const response = await api.post<ResponseData>(
                 `${apiRoutes.stripChart}${navigation}`,
-                filters,
+                requested_payload,
                 {}
             );
             const jsonData : ResponseData = response.data;
@@ -123,7 +136,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     useEffect(() => {
         if (!current_record) return;
         getInspectionData("last");
-    }, [filtersData]);
+    }, [inspectionFilters]);
 
     useEffect(() => {
         if (![ApplicationType.InspectionVisualizer, ApplicationType.InspectionAnalysis].includes(applicationType)) return;
@@ -134,9 +147,11 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
         <DataHandlerContext.Provider 
             value={{
                 inspectionData, 
-                getInspectionData, 
-                filtersData,
-                setFiltersData, 
+                getInspectionData,
+                current_record,
+                setCurrentRecord, 
+                inspectionFilters,
+                setInspectionFilters, 
                 xAxis, 
                 yAxis, 
                 setXAxis,
