@@ -66,7 +66,7 @@ const InspectionAnalysis: React.FC = () => {
             const labels = inspectionData.strip_data[0][xAxis as keyof StripData] as number[];
 
             const datasets = inspectionData.strip_data.map((strip) => ({
-                label: `Channel ${strip.channel_id} - Gate ${strip.gate_id}`,
+                label: `Channel ${strip.channel_id + 1} - Gate ${strip.gate_id + 1}`,
                 data: strip[yAxis as keyof StripData],
                 borderColor: "rgba(75,192,192,1)",
                 backgroundColor: "rgba(75,192,192,0.4)",
@@ -76,7 +76,7 @@ const InspectionAnalysis: React.FC = () => {
             })) as ChartData<"line">["datasets"];
 
             const damages = inspectionData.strip_data.map((strip) => ({
-                label: `Channel ${strip.channel_id} - Gate ${strip.gate_id} - Damages`,
+                label: `Channel ${strip.channel_id + 1} - Gate ${strip.gate_id + 1} - Damages`,
                 data: yAxis == "amplitude" ? strip["amp_damages"] : strip["tof_damages"],
                 borderColor: "rgba(255,0,0,1)",
                 backgroundColor: "rgba(255,0,0,0.4)",
