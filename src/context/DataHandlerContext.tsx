@@ -9,7 +9,8 @@ import {
     OrderType, 
     OrderDirection,
     XAxisUnits,
-    FeatureType
+    FeatureType,
+    RequestedPayload
 } from "../types/inspection_types";
 import { parseRecordData, areRecordsEqual } from "../utils/recordParser";
 import { apiRoutes } from "../api/apiRoutes";
@@ -107,7 +108,7 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
                 if (navigation === "next" && areRecordsEqual(current_record, max_record)) return;
                 if (navigation === "previous" && areRecordsEqual(current_record, min_record)) return;
             }
-            const requested_payload = {
+            const requested_payload : RequestedPayload = {
                 nav_filters,
                 loaded_record
             };

@@ -94,6 +94,11 @@ export interface InspectionFilters {
   is_analysis: boolean;
 }
 
+export interface RequestedPayload {
+  nav_filters: InspectionFilters;
+  loaded_record: LimitedRecord;
+}
+
 export enum XAxisUnits {
   Sample = "sample",
   Distance = "distance",
