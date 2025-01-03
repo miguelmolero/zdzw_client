@@ -1,6 +1,5 @@
 import React from "react";
-import { ChartData, ChartOptions, Point } from "chart.js";
-import { Typography } from "@mui/material";
+import { ChartData, ChartOptions } from "chart.js";
 import {timestampToDateTimeYMD } from "../../utils/typesConverter";
 import StripChartCanvas from "./StripChartCanvas";
 import { 
@@ -8,7 +7,8 @@ import {
     ChartContainer,
     GraphContainer,
     ChartCanvasContainer,
-    LabelContainer
+    LabelContainer,
+    StyledTypography
 } from "./styles/StripChartViewStyles";
 import { StripChartContextProvider} from "../../context/StripChartContext";
 import { RecordMetaData } from "../../types/inspection_types";
@@ -75,11 +75,42 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta
                 <TopToolbar />
                 <GraphContainer>
                     <LabelContainer>
-                        <Typography>
-                        {header_meta_data
-                            ? `Disposition: FAIL - Date: ${timestampToDateTimeYMD(header_meta_data.timestamp)} - Record ID: ${header_meta_data.record_id} - Job: ${header_meta_data.job_id}`
-                            : "Loading data..."}
-                        </Typography>
+                        <StyledTypography justifyContent="flex-start">
+                            <span>
+                                {header_meta_data
+                                    ? `Disposition: ${header_meta_data?.disposition}`
+                                    : "Loading data..."}
+                            </span>
+                            <span>
+                                {header_meta_data
+                                    ? `Date: ${timestampToDateTimeYMD(header_meta_data?.timestamp)}`
+                                    : "Loading data..."}
+                            </span>
+                        </StyledTypography>
+                        <StyledTypography justifyContent="center">
+                            <span>
+                                {header_meta_data
+                                    ? `Record ID: ${header_meta_data?.record_id}`
+                                    : ""}
+                            </span>
+                            <span>
+                                {header_meta_data
+                                    ? `Job: ${header_meta_data?.job_id}`
+                                    : ""}
+                            </span>
+                        </StyledTypography>
+                        <StyledTypography justifyContent="flex-end">
+                            <span>
+                                {header_meta_data
+                                    ? `Factory: ${header_meta_data?.factory_name}`
+                                    : ""}
+                            </span>
+                            <span>
+                                {header_meta_data
+                                    ? `Device: ${header_meta_data?.device_name}`
+                                    : ""}
+                            </span>
+                        </StyledTypography>
                     </LabelContainer>
                     <ChartContainer>
                         <ChartCanvasContainer>

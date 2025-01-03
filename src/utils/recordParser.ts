@@ -9,6 +9,10 @@ export function parseRecordData(jsonData: RecordDataRaw): RecordData {
       name: jsonData.payload_data.meta_data.name,
       timestamp: jsonData.payload_data.meta_data.timestamp,
       disposition: jsonData.payload_data.meta_data.disposition,
+      factory_id: jsonData.localization_data.factory_id,
+      device_id: jsonData.localization_data.device_id,
+      factory_name: jsonData.localization_data.factory_name,
+      device_name: jsonData.localization_data.device_name,
     },
     strip_data: jsonData.payload_data.strip_data.map((strip: StripDataRaw) => ({
       channel_id: strip.channel_id,

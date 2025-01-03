@@ -16,6 +16,10 @@ export interface RecordMetaData {
   job_id: number;
   name: string;
   disposition: number;
+  factory_id?: number;
+  device_id?: number;
+  factory_name?: string;
+  device_name?: string;
 }
 
 export interface RecordMetaDataRaw {

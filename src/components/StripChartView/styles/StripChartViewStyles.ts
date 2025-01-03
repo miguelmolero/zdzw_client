@@ -1,4 +1,4 @@
-import { styled, Box } from "@mui/material";
+import { styled, Box, Typography } from "@mui/material";
 
 export const SCcontainer = styled(Box)({
     display: "flex",
@@ -6,7 +6,7 @@ export const SCcontainer = styled(Box)({
     position: "relative",
     width: "100%",
     height: "100%",
-    backgroundColor: "#fff", // Fondo blanco
+    backgroundColor: "#fff",
     justifyContent: "flex-start",
     alignItems: "flex-start",
     boxSizing: 'border-box',
@@ -15,12 +15,22 @@ export const SCcontainer = styled(Box)({
 
 export const LabelContainer = styled(Box)({
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: '25px 0 10px 0',  // Espacio entre el label y el gráfico
-    fontSize: '1.2rem',    // Tamaño del texto del label
-    fontWeight: 'bold',    // Texto en negrita
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    margin: '15px 50px 0px 30px;',
+    fontSize: '1.2rem',
+    fontWeight: 'bold',
 });
+
+export const StyledTypography = styled(Typography)<{ justifyContent?: "flex-start" | "center" | "flex-end" }>(
+    ({ align = "flex-start" }) => ({
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: align,
+        alignItems: align,
+    })
+);
 
 export const GraphContainer = styled(Box)({
     display: "flex",

@@ -74,6 +74,8 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
             name: "",
             timestamp: 0,
             disposition: 0,
+            factory_id: 0,
+            device_id: 0,
         },
         strip_data: [],
     });
