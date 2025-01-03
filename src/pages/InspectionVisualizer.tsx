@@ -12,7 +12,7 @@ import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import { useDataHandlerContext} from "../context/DataHandlerContext";
 
 const InspectionVisualizer: React.FC = () => {
-    const { getInspectionData, inspectionData, xAxis, yAxis } = useDataHandlerContext();
+    const { inspectionData, xAxis, yAxis } = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"line">>({
         labels: [],
         datasets: [],
@@ -56,10 +56,6 @@ const InspectionVisualizer: React.FC = () => {
             }
         }
     };
-
-    useEffect(() => {
-        getInspectionData("last");
-    }, []);
 
     useEffect(() => {
         if (inspectionData && inspectionData.strip_data.length > 0) {

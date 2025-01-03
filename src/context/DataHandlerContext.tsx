@@ -92,7 +92,6 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     const getInspectionData = async (navigation: string) => {
         const filters: InspectionFilters = filtersData;
         filters.is_analysis = applicationType === ApplicationType.InspectionAnalysis;
-        
         try {
             if (current_record && max_record && min_record) {
                 if (navigation === "next" && areRecordsEqual(current_record, max_record)) return;
@@ -122,8 +121,14 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     }
 
     useEffect(() => {
+        if (!current_record) return;
         getInspectionData("last");
     }, [filtersData]);
+
+    useEffect(() => {
+        if (![ApplicationType.InspectionVisualizer, ApplicationType.InspectionAnalysis].includes(applicationType)) return;
+        getInspectionData("last");
+    }, [applicationType]);
 
     return (
         <DataHandlerContext.Provider 
