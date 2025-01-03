@@ -13,6 +13,8 @@ import {
 } from "../types/inspection_types";
 import { parseRecordData, areRecordsEqual } from "../utils/recordParser";
 import { apiRoutes } from "../api/apiRoutes";
+import { useApplicationTypeContext } from "./ApplicationTypeContext";
+import { ApplicationType } from "../types/application_types";
 
 export const XAxisUnitsLabels: Record<XAxisUnits, string> = {
     [XAxisUnits.Sample]: "Sample",
@@ -54,6 +56,7 @@ interface DataHandlerContextProps {
 const DataHandlerContext = createContext<DataHandlerContextProps | undefined>(undefined);
 
 export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
+    const { applicationType } = useApplicationTypeContext();
     const [min_record, setMinRecord] = useState<LimitedRecord | undefined>();
     const [max_record, setMaxRecord] = useState<LimitedRecord | undefined>();
     const [current_record, setCurrentRecord] = useState<LimitedRecord | undefined>();
@@ -88,6 +91,8 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
 
     const getInspectionData = async (navigation: string) => {
         const filters: InspectionFilters = filtersData;
+        filters.is_analysis = applicationType === ApplicationType.InspectionAnalysis;
+        
         try {
             if (current_record && max_record && min_record) {
                 if (navigation === "next" && areRecordsEqual(current_record, max_record)) return;
