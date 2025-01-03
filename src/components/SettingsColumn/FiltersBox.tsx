@@ -46,13 +46,13 @@ const FiltersBox: React.FC = () => {
                         <DatePickersWrapper>
                             <DatePicker
                                 label="From"
-                                value={filtersData.start_date ? new Date(filtersData.start_date) : null}
+                                value={filtersData.start_date && filtersData.start_date != -1 ? new Date(filtersData.start_date) : null}
                                 onChange={(newValue) => updateDateFilters("start_date", newValue)}
                                 slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
                             <DatePicker
                                 label="To"
-                                value={filtersData.end_date ? new Date(filtersData.end_date) : null}
+                                value={filtersData.end_date && filtersData.end_date != -1 ? new Date(filtersData.end_date) : null}
                                 onChange={(newValue) => updateDateFilters("end_date", newValue)}
                                 slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
@@ -61,35 +61,35 @@ const FiltersBox: React.FC = () => {
                             label="Disposition"
                             id="disposition"
                             size="small"
-                            value={filtersData.disposition || ""}
+                            value={filtersData.disposition != -1 ? filtersData.disposition : ""}
                             onChange={updateFiltersData}
                         />
                         <StyledTextField
                             label="Factory ID"
                             id="factory_id"
                             size="small"
-                            value={filtersData.factory_id || ""}
+                            value={filtersData.factory_id < 1 ? "" : filtersData.factory_id}
                             onChange={updateFiltersData}
                         />
                         <StyledTextField
                             label="Device ID"
                             id="device_id"
                             size="small"
-                            value={filtersData.device_id || ""}
+                            value={filtersData.device_id < 1 ? "" : filtersData.device_id}
                             onChange={updateFiltersData}
                         />
                         <StyledTextField
                             label="Record ID"
                             id="requested_record_id"
                             size="small"
-                            value={filtersData.requested_record_id || ""}
+                            value={filtersData.requested_record_id < 1 ? "" : filtersData.requested_record_id}
                             onChange={updateFiltersData}
                         />
                         <StyledTextField
                             label="Job ID"
                             id="job_id"
                             size="small"
-                            value={filtersData.job_id || ""}
+                            value={filtersData.job_id < 1 ? "" : filtersData.job_id}
                             onChange={updateFiltersData}
                         />
                     </AccordionDetails>
