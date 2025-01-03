@@ -10,7 +10,7 @@ import {
     OrderDirection,
     XAxisUnits,
     FeatureType,
-    DispositionType
+    DispositionType,
     RequestedPayload
 } from "../types/inspection_types";
 import { parseRecordData, areRecordsEqual } from "../utils/recordParser";
