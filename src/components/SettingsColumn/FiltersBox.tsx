@@ -3,6 +3,9 @@ import {
     AccordionSummary,
     AccordionDetails,
     Typography,
+    Select,
+    MenuItem,
+    InputLabel,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -12,9 +15,10 @@ import {
     StyledAccordion, 
     DatePickersWrapper,
     StyledTextField,
+    StyledFormControl,
 } from "./styles/FiltersBoxStyles";
-import { InspectionFilters } from "../../types/inspection_types";
-import { useDataHandlerContext } from '../../context/DataHandlerContext';
+import { InspectionFilters, DispositionType } from "../../types/inspection_types";
+import { DispositionTypeName, useDataHandlerContext } from '../../context/DataHandlerContext';
 
 
 const FiltersBox: React.FC = () => {
@@ -57,13 +61,27 @@ const FiltersBox: React.FC = () => {
                                 slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
                         </DatePickersWrapper>
-                        <StyledTextField
-                            label="Disposition"
-                            id="disposition"
-                            size="small"
-                            value={inspectionFilters.disposition != -1 ? inspectionFilters.disposition : ""}
-                            onChange={updateFiltersData}
-                        />
+                        <StyledFormControl fullWidth size="small">
+                            <InputLabel id="disposition-label">Disposition</InputLabel>
+                            <Select
+                                labelId="disposition-label"
+                                label="Disposition"
+                                id="disposition"
+                                size="small"
+                                value={inspectionFilters.disposition != -1 ? inspectionFilters.disposition : DispositionTypeName[DispositionType.Pass]}
+                                // onChange={updateFiltersData}
+                                onChange={(e) => console.log(e.target.value)}
+                            >
+                                <MenuItem value={-1}>All</MenuItem>
+                                {Object.values(DispositionType)
+                                    .filter((key) => !isNaN(Number(key)) ? key : null)
+                                    .map((unit) => (
+                                        <MenuItem key={unit} value={unit}>
+                                            {DispositionTypeName[unit as DispositionType]}
+                                        </MenuItem>
+                                    ))}
+                            </Select>
+                        </StyledFormControl>
                         <StyledTextField
                             label="Factory ID"
                             id="factory_id"

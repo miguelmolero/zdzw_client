@@ -10,6 +10,7 @@ import {
     OrderDirection,
     XAxisUnits,
     FeatureType,
+    DispositionType
     RequestedPayload
 } from "../types/inspection_types";
 import { parseRecordData, areRecordsEqual } from "../utils/recordParser";
@@ -38,6 +39,12 @@ export const OrderDirectionLabels: Record<OrderDirection, string> = {
     [OrderDirection.Asc]: "Ascending",
     [OrderDirection.Desc]: "Descending",
 };
+
+export const DispositionTypeName: Record<DispositionType, string> = {
+    [DispositionType.Pass]: "Pass",
+    [DispositionType.Fail]: "Fail",
+    [DispositionType.Invalid]: "Invalid",
+  };
 
 interface DataHandlerContextProps {
     inspectionData: RecordData;

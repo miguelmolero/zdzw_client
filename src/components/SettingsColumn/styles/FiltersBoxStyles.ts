@@ -1,4 +1,4 @@
-import { styled, Box, Accordion, Button, TextField } from "@mui/material";
+import { styled, Box, Accordion, Button, TextField, FormControl } from "@mui/material";
 
 // Contenedor principal del overlay
 export const StyledContainer = styled(Box)({
@@ -40,5 +40,9 @@ export const FiltersButton = styled(Button)({
 });
 
 export const StyledTextField = styled(TextField)({
+    marginBottom: "16px",
+})
+
+export const StyledFormControl = styled(FormControl)({
     marginBottom: "16px",
 })

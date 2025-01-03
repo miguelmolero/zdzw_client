@@ -13,13 +13,8 @@ import {
 import { StripChartContextProvider} from "../../context/StripChartContext";
 import { RecordMetaData, DispositionType } from "../../types/inspection_types";
 import TopToolbar from "./TopToolbar";
+import { DispositionTypeName } from "../../context/DataHandlerContext";
   
-const DispositionTypeName: Record<DispositionType, string> = {
-    [DispositionType.Pass]: "Pass",
-    [DispositionType.Fail]: "Fail",
-    [DispositionType.Invalid]: "Invalid",
-};
-
 const DispositionColor: Record<DispositionType, string> = {
     [DispositionType.Pass]: "green",
     [DispositionType.Fail]: "red",
