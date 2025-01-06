@@ -8,10 +8,10 @@ import {
     LeftButtonsContainer, 
     StyledTopToolbar 
 } from "./styles/TopToolbarStyles";
-import { useDataHandlerContext } from '../../context/DataHandlerContext';
+import { useStripChartContext } from '../../context/StripChartContext';
 
 const TopToolbar : React.FC = () => {
-    const { getInspectionData, inspectionData } = useDataHandlerContext();
+    const { getInspectionData, inspectionData } = useStripChartContext();
 
     const getData = (navigation: string) => {
         if (inspectionData.strip_data.length == 0) {

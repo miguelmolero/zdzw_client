@@ -1,6 +1,8 @@
 import { ApplicationTypeProvider } from "./context/ApplicationTypeContext";
 import { AuthProvider } from "./context/AuthContext";
 import { DataHandlerProvider } from "./context/DataHandlerContext";
+import { StripChartProvider } from "./context/StripChartContext";
+//import 
 import { ThemeProvider } from "./context/ThemeContext";
 
 export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -9,7 +11,9 @@ export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({ child
             <AuthProvider>
                 <ApplicationTypeProvider>
                     <DataHandlerProvider>
-                        {children}
+                        <StripChartProvider>
+                            {children}
+                        </StripChartProvider>
                     </DataHandlerProvider>
                 </ApplicationTypeProvider>
             </AuthProvider>

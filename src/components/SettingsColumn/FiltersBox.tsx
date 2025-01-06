@@ -18,11 +18,12 @@ import {
     StyledAccordionDetails,
 } from "./styles/FiltersBoxStyles";
 import { InspectionFilters, DispositionType } from "../../types/inspection_types";
-import { DispositionTypeName, useDataHandlerContext } from '../../context/DataHandlerContext';
+import { DispositionTypeName} from '../../context/DataHandlerContext';
+import {useStripChartContext} from "../../context/StripChartContext"
 
 
 const FiltersBox: React.FC = () => {
-    const { inspectionFilters, setInspectionFilters } = useDataHandlerContext();
+    const { inspectionFilters, setInspectionFilters } = useStripChartContext();
 
     const updateFiltersData = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;

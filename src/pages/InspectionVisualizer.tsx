@@ -9,10 +9,12 @@ import {
     CanvasContainerSC
 } from "./styles/InspectionVisualizerStyles";
 import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
-import { useDataHandlerContext} from "../context/DataHandlerContext";
+import { useDataHandlerContext } from "../context/DataHandlerContext";
+import { useStripChartContext} from "../context/StripChartContext";
 
 const InspectionVisualizer: React.FC = () => {
-    const { inspectionData, xAxis, yAxis } = useDataHandlerContext();
+    const { inspectionData} = useStripChartContext();
+    const { xAxis, yAxis } = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"line">>({
         labels: [],
         datasets: [],
