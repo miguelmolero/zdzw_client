@@ -4,6 +4,11 @@
     - [x] Send User and password to create token
     - [x] Allow to Entry Menu only if user is correct
     - [ ] Check valid token in each navigation action
+    - [ ] Create "Profile" modal with options:
+        - [ ] Logout
+        - [ ] Dark/Light Mode
+    - [ ] Add Menu Button logic to toggle Setting Column opening effect
+    - [ ] Entry Menu styling: add images and/or descriptions
 - [ ] Plot data
     - [x] Create core canvas to handle different types of representations
     - [ ] Create inspection navigation system
