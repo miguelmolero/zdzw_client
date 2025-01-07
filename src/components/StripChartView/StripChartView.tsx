@@ -12,7 +12,12 @@ import {
 } from "./styles/StripChartViewStyles";
 import { RecordMetaData, DispositionType } from "../../types/inspection_types";
 import TopToolbar from "./TopToolbar";
-import { DispositionTypeName } from "../../context/DataHandlerContext";
+import { 
+    DispositionTypeName, 
+    FeatureTypeLabels, 
+    useDataHandlerContext, 
+    XAxisUnitsLabels
+} from "../../context/DataHandlerContext";
   
 const DispositionColor: Record<DispositionType, string> = {
     [DispositionType.Pass]: "green",
@@ -37,6 +42,7 @@ const getDispositionDetails = (disposition?: number) => {
 };
 
 const StripChartView : React.FC<StripChartViewProps> = ({data, header_meta_data}) => {
+    const { xAxis: xAxisTitle, yAxis: yAxisTitle } = useDataHandlerContext();
 
     const chartOptions: ChartOptions<"line"> = {
         responsive: true,
@@ -63,11 +69,25 @@ const StripChartView : React.FC<StripChartViewProps> = ({data, header_meta_data}
                         return tickValue?.toFixed(1);
                     },
                 },
+                title: {
+                    display: true,
+                    text: XAxisUnitsLabels[xAxisTitle],
+                    font: {
+                        size: 14,
+                    },
+                },
             },
             y: {
                 grid: {
                     display: true,
-                }
+                },
+                title: {
+                    display: true,
+                    text: FeatureTypeLabels[yAxisTitle],
+                    font: {
+                        size: 14,
+                    },
+                },
             }
         },
         plugins: {
