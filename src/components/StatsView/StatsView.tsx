@@ -1,19 +1,22 @@
 import React from "react";
+import { ChartData } from "chart.js";
 import { StatsContainer } from "./styles/StatsViewStyles";
 import StatsCard from "./StatsCard";
 
-const StatsView : React.FC = () => {
+interface StatsViewProps {
+    data: ChartData;
+}
+
+const StatsView : React.FC<StatsViewProps> = ({data}) => {
 
     return (
         <StatsContainer>
-            <StatsCard />
-            <StatsCard />
-            <StatsCard />
-            <StatsCard />
-            <StatsCard />
-            <StatsCard />
-            <StatsCard />
-            <StatsCard />
+            {/* {} */}
+            <StatsCard data={data}/>
+            <StatsCard data={data}/>
+            <StatsCard data={data}/>
+            <StatsCard data={data}/>
+            <StatsCard data={data}/>
         </StatsContainer>
     )
 };
