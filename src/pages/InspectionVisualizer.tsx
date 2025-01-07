@@ -11,9 +11,11 @@ import {
 import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import { useDataHandlerContext } from "../context/DataHandlerContext";
 import { useStripChartContext} from "../context/StripChartContext";
+import { useApplicationTypeContext } from "../context/ApplicationTypeContext";
 
 const InspectionVisualizer: React.FC = () => {
-    const { inspectionData} = useStripChartContext();
+    const { applicationType } = useApplicationTypeContext();
+    const { inspectionData, getInspectionData} = useStripChartContext();
     const { xAxis, yAxis } = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"line">>({
         labels: [],
@@ -42,6 +44,10 @@ const InspectionVisualizer: React.FC = () => {
             });
         }
     }, [inspectionData, xAxis, yAxis]);
+
+    useEffect(() => {
+        getInspectionData("last");
+    }, [applicationType]);
 
     return (
         <DefaultLayout>

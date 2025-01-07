@@ -100,11 +100,6 @@ export const StripChartProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         getInspectionData("last");
     }, [inspectionFilters]);
 
-    useEffect(() => {
-        if (![ApplicationType.InspectionVisualizer, ApplicationType.InspectionAnalysis].includes(applicationType)) return;
-        getInspectionData("last");
-    }, [applicationType]);
-
     return (
         <StripChartContext.Provider
             value={{
