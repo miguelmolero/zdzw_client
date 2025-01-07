@@ -7,6 +7,7 @@
     - [ ] Create "Profile" modal with options:
         - [ ] Logout
         - [ ] Dark/Light Mode
+            - [ ] Link components styles to theme primary colors
     - [ ] Add Menu Button logic to toggle Setting Column opening effect
     - [ ] Entry Menu styling: add images and/or descriptions
 - [ ] Plot data
