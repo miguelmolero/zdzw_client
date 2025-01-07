@@ -46,9 +46,22 @@ const Login: React.FC = () => {
           label="Username"
           variant="outlined"
           fullWidth
-          sx={{ marginBottom: 2 }}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          sx={{
+            marginBottom: 2,
+            '& .MuiInputBase-input': {
+              fontSize: '13px',
+              letterSpacing: 'normal',
+            },
+            '& .MuiInputBase-input:-webkit-autofill': {
+              fontSize: '13px',
+              letterSpacing: 'normal',
+            },
+            '& .Mui-focused .MuiInputBase-input': {
+              letterSpacing: 'normal',
+            },
+          }}
         />
         <TextField
           label="Password"

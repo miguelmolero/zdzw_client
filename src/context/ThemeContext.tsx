@@ -86,7 +86,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                     margin: 'dense',
                     size: 'small',
                     fullWidth: true,
-                    InputLabelProps: { shrink: true }
+                    InputLabelProps: { 
+                        shrink: true, 
+                    },
                 }
             }
         },
