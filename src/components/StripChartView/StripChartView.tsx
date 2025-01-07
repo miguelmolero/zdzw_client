@@ -10,7 +10,7 @@ import {
     LabelContainer,
     StyledTypography
 } from "./styles/StripChartViewStyles";
-import { RecordMetaData, DispositionType } from "../../types/inspection_types";
+import { RecordMetaData, DispositionType, FeatureType } from "../../types/inspection_types";
 import TopToolbar from "./TopToolbar";
 import { 
     DispositionTypeName, 
@@ -24,7 +24,10 @@ const DispositionColor: Record<DispositionType, string> = {
     [DispositionType.Fail]: "red",
     [DispositionType.Invalid]: "darkorange",
 };
-// type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
+
+const xAxisDecimals = 1;
+const amplitudeDecimal = 0;
+const tofDecimal = 3;
 
 interface StripChartViewProps {
     data: ChartData;
@@ -50,7 +53,7 @@ const StripChartView : React.FC<StripChartViewProps> = ({data, header_meta_data}
         animation: false,
         layout: {
             padding: {
-                left: 30,
+                left: 25,
                 right: 50,
                 top: 25,
                 bottom: 25,
@@ -61,14 +64,6 @@ const StripChartView : React.FC<StripChartViewProps> = ({data, header_meta_data}
                 grid: {
                     display: false,
                 },
-                ticks: {
-                    maxTicksLimit: 15,
-                    callback: function (value) {
-                        const currentLabels = data?.labels as number[];
-                        const tickValue = currentLabels[value as number];
-                        return tickValue?.toFixed(1);
-                    },
-                },
                 title: {
                     display: true,
                     text: XAxisUnitsLabels[xAxisTitle],
@@ -76,6 +71,14 @@ const StripChartView : React.FC<StripChartViewProps> = ({data, header_meta_data}
                         size: 14,
                     },
                 },
+                ticks: {
+                    maxTicksLimit: 15,
+                    callback: function (value) {
+                        const currentLabels = data?.labels as number[];
+                        const tickValue = currentLabels[value as number];
+                        return tickValue?.toFixed(xAxisDecimals);
+                    },
+                }
             },
             y: {
                 grid: {
@@ -88,6 +91,13 @@ const StripChartView : React.FC<StripChartViewProps> = ({data, header_meta_data}
                         size: 14,
                     },
                 },
+                ticks: {
+                    maxTicksLimit: 10,
+                    callback: function (value) {
+                        const decimal = yAxisTitle === FeatureType.Amplitude ? amplitudeDecimal : tofDecimal;
+                        return (value as number)?.toFixed(decimal);
+                    },
+                }
             }
         },
         plugins: {
