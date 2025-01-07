@@ -1,5 +1,6 @@
 export const apiRoutes = {
     login: "/login",
     logout: "/logout",
-    stripChart: "/api/stripchart/"
+    stripChart: "/api/stripchart/",
+    statistics: "/api/statistics"
 }
