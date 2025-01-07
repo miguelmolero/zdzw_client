@@ -41,6 +41,7 @@ const StripChartView : React.FC<StripChartViewProps> = ({data, header_meta_data}
     const chartOptions: ChartOptions<"line"> = {
         responsive: true,
         maintainAspectRatio: false,
+        animation: false,
         layout: {
             padding: {
                 left: 30,
