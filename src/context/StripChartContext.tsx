@@ -72,7 +72,6 @@ export const StripChartProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 nav_filters,
                 loaded_record
             };
-            console.log("Requested payload:", requested_payload);
             const response = await api.post<ResponseData>(
                 `${apiRoutes.stripChart}${navigation}`,
                 requested_payload,
@@ -97,7 +96,7 @@ export const StripChartProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
 
     useEffect(() => {
-        if (!current_record) return;
+        if (!current_record || ![ApplicationType.InspectionVisualizer, ApplicationType.InspectionAnalysis].includes(applicationType)) return;
         getInspectionData("last");
     }, [inspectionFilters]);
 
