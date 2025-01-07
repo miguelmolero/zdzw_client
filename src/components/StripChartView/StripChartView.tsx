@@ -1,7 +1,7 @@
 import React from "react";
 import { ChartData, ChartOptions } from "chart.js";
 import {timestampToDateTimeYMD } from "../../utils/typesConverter";
-import StripChartCanvas from "./StripChartCanvas";
+import ChartCanvasBase from "../ChartCanvasBase";
 import { 
     SCcontainer,
     ChartContainer,
@@ -19,9 +19,9 @@ const DispositionColor: Record<DispositionType, string> = {
     [DispositionType.Fail]: "red",
     [DispositionType.Invalid]: "darkorange",
 };
+// type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
 
 interface StripChartViewProps {
-    type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar';
     data: ChartData;
     header_meta_data?: RecordMetaData;
 }
@@ -36,7 +36,7 @@ const getDispositionDetails = (disposition?: number) => {
     };
 };
 
-const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta_data}) => {
+const StripChartView : React.FC<StripChartViewProps> = ({data, header_meta_data}) => {
 
     const chartOptions: ChartOptions<"line"> = {
         responsive: true,
@@ -113,7 +113,7 @@ const StripChartView : React.FC<StripChartViewProps> = ({type, data, header_meta
                 </LabelContainer>
                 <ChartContainer>
                     <ChartCanvasContainer>
-                        <StripChartCanvas type={type} data={data} options={chartOptions} />
+                        <ChartCanvasBase type={"line"} data={data} options={chartOptions} />
                     </ChartCanvasContainer>
                 </ChartContainer>
             </GraphContainer>

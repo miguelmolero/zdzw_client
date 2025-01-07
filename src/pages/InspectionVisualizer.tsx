@@ -50,7 +50,6 @@ const InspectionVisualizer: React.FC = () => {
                 <SettingsColumn isInspectionView />
                 <CanvasContainerSC>
                     <StripChartView
-                        type="line"
                         data={chartData}
                         header_meta_data={inspectionData?.meta_data}
                     />
