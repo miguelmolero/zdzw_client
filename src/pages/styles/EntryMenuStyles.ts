@@ -53,6 +53,7 @@ export const CardButtonText = styled(Typography)(({ theme }) => ({
     color: '#fff',
     textAlign: 'center',
     margin: 'auto',
+    padding: '0 1.5rem',
     [theme.breakpoints.up('sm')]: {
         fontSize: '2rem',
     },
