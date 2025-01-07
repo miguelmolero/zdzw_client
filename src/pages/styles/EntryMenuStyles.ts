@@ -17,6 +17,7 @@ export const EntryGridContainer = styled(Box)({
 export const RowGridContainer = styled(Box)({
     display: 'flex',
     justifyContent: 'center',
+    marginBottom: '5%',
     '@media (max-width: 600px)': {
         flexDirection: 'column',
         alignItems: 'center',
@@ -37,12 +38,12 @@ export const CardButton = styled(Paper)(({ theme }) => ({
         backdropFilter: 'blur(3px)',
     },
     [theme.breakpoints.up('sm')]: {
-        width: '450px',
+        width: '250px',
         height: '250px',
     },
     [theme.breakpoints.up('md')]: {
         width: '300px',
-        height: '500px',
+        height: '300px',
     },
 }));
 export const CardButtonText = styled(Typography)(({ theme }) => ({
@@ -51,7 +52,7 @@ export const CardButtonText = styled(Typography)(({ theme }) => ({
     fontWeight: '500',
     color: '#fff',
     textAlign: 'center',
-    padding: '2em 0 0 0',
+    margin: 'auto',
     [theme.breakpoints.up('sm')]: {
         fontSize: '2rem',
     },
