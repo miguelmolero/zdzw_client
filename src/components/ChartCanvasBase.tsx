@@ -26,7 +26,7 @@ import {
 
 ChartJS.register(Title, Tooltip, Legend);
 
-interface StripChartCanvasProps {
+interface ChartCanvasBaseProps {
   type: 'bar' | 'line' | 'pie' | 'doughnut' | 'radar'; // Tipos de gráfico admitidos
   data: ChartData; // Datos que se pasarán al gráfico
   options?: ChartOptions; // Opciones de configuración adicionales para Chart.js
@@ -56,7 +56,7 @@ const registerChartComponents = (type: ChartType) => {
 
 
 
-const StripChartCanvas: React.FC<StripChartCanvasProps> = ({ type, data, options }) => {
+const ChartCanvasBase: React.FC<ChartCanvasBaseProps> = ({ type, data, options }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<Chart | null>(null);
 
@@ -82,4 +82,4 @@ const StripChartCanvas: React.FC<StripChartCanvasProps> = ({ type, data, options
   return <canvas ref={canvasRef}/>;
 };
 
-export default StripChartCanvas;
+export default ChartCanvasBase;
