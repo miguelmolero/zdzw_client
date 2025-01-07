@@ -80,6 +80,15 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                     },
                 },
             },
+            MuiTextField: {
+                defaultProps: {
+                    variant: 'outlined',
+                    margin: 'dense',
+                    size: 'small',
+                    fullWidth: true,
+                    InputLabelProps: { shrink: true }
+                }
+            }
         },
     });
 
