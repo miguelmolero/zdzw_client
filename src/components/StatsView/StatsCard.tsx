@@ -1,14 +1,37 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {ChartData, ChartOptions} from "chart.js";
-import { StatsItem } from "./styles/StatsViewStyles";
-import StatsData from "./StatsData";
+import { PieChartContainer, StatsItem } from "./styles/StatsViewStyles";
+import StatsInfoData from "./StatsData";
 import ChartCanvasBase from "../ChartCanvasBase"
+import { StatsData } from "../../types/statistics_types";
 
 interface StatsCardProps {
-    data: ChartData;
+    data: StatsData;
+    n_columns: number;
 }
 
-const StatsCard : React.FC<StatsCardProps> = ({data}) => {
+const StatsCard : React.FC<StatsCardProps> = ({data, n_columns}) => {
+    const [chartData, setChartData] = useState<ChartData<"pie">>({
+        labels: [],
+        datasets: [],
+    });
+
+    useEffect(() => {
+        if (data != undefined) {
+            const data_labels = ["Pass", "Fail", "Invalid"];
+            const datasets = [{
+                data: [data.pass_rate, data.fail_rate, data.invalid_rate],
+                backgroundColor: ['#4CAF50', '#F44336', '#FFEB3B'], 
+                borderWidth: 3,
+            }];
+            //console.log(datasets);
+
+            setChartData({
+                labels: data_labels,
+                datasets,
+            });
+        }
+    }, [data]);
 
     const chartOptions: ChartOptions<"pie"> = {
         responsive: true,
@@ -34,9 +57,11 @@ const StatsCard : React.FC<StatsCardProps> = ({data}) => {
     };
 
     return (
-        <StatsItem>
-            <StatsData />
-            <ChartCanvasBase type={"pie"} data={data} options={chartOptions} />
+        <StatsItem columns={n_columns}>
+            <StatsInfoData data={data}/>
+            <PieChartContainer>
+                <ChartCanvasBase type={"pie"} data={chartData} options={chartOptions} />
+            </PieChartContainer>
         </StatsItem>
     )
 };
