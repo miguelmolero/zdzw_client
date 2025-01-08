@@ -54,8 +54,6 @@ const registerChartComponents = (type: ChartType) => {
 // Registrar los componentes
 //ChartJS.register(LineController, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-
-
 const ChartCanvasBase: React.FC<ChartCanvasBaseProps> = ({ type, data, options }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<Chart | null>(null);

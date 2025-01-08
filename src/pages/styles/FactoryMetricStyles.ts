@@ -13,4 +13,5 @@ export const CanvasContainerStats = styled(Box)({
     justifyContent: 'flex-start',
     alignSelf: 'flex-start',
     height: '100%',
+    overflow: 'auto',
 });
