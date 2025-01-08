@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import {ChartData} from "chart.js"
+import React from "react";
 import {
     CanvasContainerStats,
     FactoryMetricMainContentContainer,
@@ -12,10 +11,6 @@ import { useStatisticsContext} from "../context/StatisticsContext";
 
 const FactoryMetrics: React.FC = () => {
     const { statisticsData } = useStatisticsContext();
-    const [chartData, setChartData] = useState<ChartData<"pie">>({
-        labels: [],
-        datasets: [],
-    });
 
     return (
         <DefaultLayout>
@@ -23,7 +18,7 @@ const FactoryMetrics: React.FC = () => {
             <FactoryMetricMainContentContainer>
                 <SettingsColumn />
                 <CanvasContainerStats>
-                    <StatsView data={chartData}/>
+                    <StatsView data={statisticsData}/>
                 </CanvasContainerStats>
             </FactoryMetricMainContentContainer>
         </DefaultLayout>
