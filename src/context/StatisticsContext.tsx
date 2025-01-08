@@ -9,6 +9,7 @@ import { InspectionFilters, LimitedRecord, RequestedPayload } from "../types/ins
 import { apiRoutes } from "../api/apiRoutes";
 import { useApplicationTypeContext } from "./ApplicationTypeContext";
 import { ApplicationType } from "../types/application_types";
+import { parseStatisticsData } from "../utils/statisticsParser";
 interface StatisticsContextProps {
     statisticsData: StatisticsData;
     getStatisticsData: () => void;
@@ -47,7 +48,7 @@ export const StatisticsProvider: React.FC<{children: React.ReactNode}> = ({child
             `${apiRoutes.statistics}`,
             payload_data
         )
-        console.log("STATISTICS DATA", response)
+        setStatisticsData(parseStatisticsData(response.data));
     };
 
     useEffect(() => {
