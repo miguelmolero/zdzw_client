@@ -15,8 +15,8 @@ import { useApplicationTypeContext } from "../context/ApplicationTypeContext";
 
 const InspectionAnalysis: React.FC = () => {
     const { applicationType } = useApplicationTypeContext();
-    const { inspectionData, getInspectionData } = useStripChartContext();
-    const { xAxis, yAxis } = useDataHandlerContext();
+    const { current_record, inspectionData, getInspectionData } = useStripChartContext();
+    const { xAxis, yAxis, inspectionFilters } = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"line">>({
         labels: [],
         datasets: [],
@@ -53,6 +53,11 @@ const InspectionAnalysis: React.FC = () => {
             });
         }
     }, [inspectionData, xAxis, yAxis]);
+
+    useEffect(() => {
+        if (!current_record ) return;
+        getInspectionData("last");
+    }, [inspectionFilters]);
 
     useEffect(() => {
         getInspectionData("last");
