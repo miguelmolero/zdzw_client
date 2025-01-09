@@ -17,7 +17,7 @@ const StatsInfoData : React.FC<StatsInfoDataProps> = ({data}) => {
 
     return (
         <StatsDataItem>
-            <StatsDataTable>
+            <StatsDataTable size="small">
                 <StatsTableHead>
                     <StatsTableRow>
                         <StatsTableCell></StatsTableCell>
@@ -27,24 +27,24 @@ const StatsInfoData : React.FC<StatsInfoDataProps> = ({data}) => {
                 </StatsTableHead>
                 <StatsTableBody>
                     <StatsTableRow>
-                        <StatsTableCell>Pass</StatsTableCell>
-                        <StatsTableCell>{data.pass_count}</StatsTableCell>
-                        <StatsTableCell>{data.pass_rate.toFixed(2)}</StatsTableCell>
+                        <StatsTableCell align="center">Pass</StatsTableCell>
+                        <StatsTableCell align="center">{data.pass_count}</StatsTableCell>
+                        <StatsTableCell align="center">{data.pass_rate.toFixed(2)}</StatsTableCell>
                     </StatsTableRow>
                     <StatsTableRow>
-                        <StatsTableCell>Fail</StatsTableCell>
-                        <StatsTableCell>{data.fail_count}</StatsTableCell>
-                        <StatsTableCell>{data.fail_rate.toFixed(2)}</StatsTableCell>
+                        <StatsTableCell align="center">Fail</StatsTableCell>
+                        <StatsTableCell align="center">{data.fail_count}</StatsTableCell>
+                        <StatsTableCell align="center">{data.fail_rate.toFixed(2)}</StatsTableCell>
                     </StatsTableRow>
                     <StatsTableRow>
-                        <StatsTableCell>Invalid</StatsTableCell>
-                        <StatsTableCell>{data.invalid_count}</StatsTableCell>
-                        <StatsTableCell>{data.invalid_rate.toFixed(2)}</StatsTableCell>
+                        <StatsTableCell align="center">Invalid</StatsTableCell>
+                        <StatsTableCell align="center">{data.invalid_count}</StatsTableCell>
+                        <StatsTableCell align="center">{data.invalid_rate.toFixed(2)}</StatsTableCell>
                     </StatsTableRow>
                     <StatsTableRow>
-                        <StatsTableCell>Total</StatsTableCell>
-                        <StatsTableCell>{data.total_count}</StatsTableCell>
-                        <StatsTableCell>{Math.round(data.pass_rate + data.fail_rate + data.invalid_rate)}</StatsTableCell>
+                        <StatsTableCell align="center">Total</StatsTableCell>
+                        <StatsTableCell align="center">{data.total_count}</StatsTableCell>
+                        <StatsTableCell align="center">{Math.round(data.pass_rate + data.fail_rate + data.invalid_rate)}</StatsTableCell>
                     </StatsTableRow>
                 </StatsTableBody>
             </StatsDataTable>
