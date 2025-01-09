@@ -18,12 +18,14 @@ import {
     StyledAccordionDetails,
 } from "./styles/FiltersBoxStyles";
 import { InspectionFilters, DispositionType } from "../../types/inspection_types";
-import { DispositionTypeName} from '../../context/DataHandlerContext';
-import {useStripChartContext} from "../../context/StripChartContext"
+import { DispositionTypeName, useDataHandlerContext} from '../../context/DataHandlerContext';
+import { useApplicationTypeContext } from "../../context/ApplicationTypeContext";
+import { ApplicationType } from "../../types/application_types";
 
 
 const FiltersBox: React.FC = () => {
-    const { inspectionFilters, setInspectionFilters } = useStripChartContext();
+    const { applicationType } = useApplicationTypeContext();
+    const { inspectionFilters, setInspectionFilters } = useDataHandlerContext();
 
     const updateFiltersData = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
@@ -47,6 +49,8 @@ const FiltersBox: React.FC = () => {
         });
     };
 
+    const isStatisticsApp = [ApplicationType.FactoryMetrics, ApplicationType.WeldingProcessQuality].includes(applicationType);
+
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StyledContainer>
@@ -69,7 +73,8 @@ const FiltersBox: React.FC = () => {
                                 slotProps={{ textField: { fullWidth: true, size: "small" } }}
                             />
                         </DatePickersWrapper>
-                        <FormControl fullWidth size="small">
+                        {!isStatisticsApp && 
+                        (<FormControl fullWidth size="small">
                             <InputLabel id="disposition-label">Disposition</InputLabel>
                             <Select
                                 labelId="disposition-label"
@@ -92,7 +97,7 @@ const FiltersBox: React.FC = () => {
                                         </MenuItem>
                                     ))}
                             </Select>
-                        </FormControl>
+                        </FormControl>)}
                         <TextField
                             label="Factory ID"
                             id="factory_id"
@@ -100,20 +105,22 @@ const FiltersBox: React.FC = () => {
                             value={inspectionFilters.factory_id < 1 ? "" : inspectionFilters.factory_id}
                             onChange={updateFiltersData}
                         />
-                        <TextField
+                        {!isStatisticsApp && 
+                        (<TextField
                             label="Device ID"
                             id="device_id"
                             size="small"
                             value={inspectionFilters.device_id < 1 ? "" : inspectionFilters.device_id}
                             onChange={updateFiltersData}
-                        />
-                        <TextField
+                        />)}
+                        {!isStatisticsApp && 
+                        (<TextField
                             label="Record ID"
                             id="requested_record_id"
                             size="small"
                             value={inspectionFilters.requested_record_id < 1 ? "" : inspectionFilters.requested_record_id}
                             onChange={updateFiltersData}
-                        />
+                        />)}
                         <TextField
                             label="Job ID"
                             id="job_id"
