@@ -1,14 +1,12 @@
-import React, {createContext, useContext, useState, useEffect} from "react";
+import React, {createContext, useContext, useState} from "react";
 import api from "../api/axiosConfig";
 import {
     StatisticsDataRaw,
-    StatisticsData,
-    StatsData
+    StatisticsData
 } from "../types/statistics_types";
 import { InspectionFilters, LimitedRecord, RequestedPayload } from "../types/inspection_types";
 import { apiRoutes } from "../api/apiRoutes";
-import { useApplicationTypeContext } from "./ApplicationTypeContext";
-import { ApplicationType } from "../types/application_types";
+import { useDataHandlerContext } from "./DataHandlerContext"; 
 import { parseStatisticsData } from "../utils/statisticsParser";
 interface StatisticsContextProps {
     statisticsData: StatisticsData;
@@ -18,19 +16,9 @@ interface StatisticsContextProps {
 const StatisticsContext = createContext<StatisticsContextProps | undefined>(undefined);
 
 export const StatisticsProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
-    const { applicationType } = useApplicationTypeContext();
+    const {inspectionFilters} = useDataHandlerContext();
     const [statisticsData, setStatisticsData] = useState<StatisticsData>({
         factory_stats: []
-    });
-    const [statisticFilters, setStatisticFilters] = useState<InspectionFilters>({
-        requested_record_id: -1,
-        start_date: -1,
-        end_date: -1,
-        disposition: -1,
-        factory_id: -1,
-        device_id: -1,
-        job_id: -1,
-        is_analysis: false,
     });
     const [current_record, setCurrentRecord] = useState<LimitedRecord>({
         factory_id: 0,
@@ -38,7 +26,7 @@ export const StatisticsProvider: React.FC<{children: React.ReactNode}> = ({child
         record_id: 0,
     });
     const getStatisticsData = async () => {
-        const nav_filters : InspectionFilters = statisticFilters;
+        const nav_filters : InspectionFilters = inspectionFilters;
         const loaded_record : LimitedRecord = current_record;
         const payload_data : RequestedPayload = {
             nav_filters,
@@ -50,11 +38,6 @@ export const StatisticsProvider: React.FC<{children: React.ReactNode}> = ({child
         )
         setStatisticsData(parseStatisticsData(response.data));
     };
-
-    useEffect(() => {
-        if (![ApplicationType.FactoryMetrics, ApplicationType.WeldingProcessQuality].includes(applicationType)) return;
-        getStatisticsData();
-    }, [applicationType]);
 
     return (
         <StatisticsContext.Provider 

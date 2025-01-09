@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import api from '../api/axiosConfig';
 import {
     InspectionFilters,
@@ -12,14 +12,13 @@ import { parseRecordData, areRecordsEqual } from "../utils/recordParser";
 import { apiRoutes } from "../api/apiRoutes";
 import { useApplicationTypeContext } from "./ApplicationTypeContext";
 import { ApplicationType } from "../types/application_types";
+import { useDataHandlerContext } from './DataHandlerContext';
 
 interface StripChartContextProps {
     inspectionData: RecordData;
     getInspectionData: (navigation: string) => void;
     current_record: LimitedRecord | undefined;
     setCurrentRecord: (record: LimitedRecord) => void;
-    inspectionFilters: InspectionFilters;
-    setInspectionFilters: (filters: InspectionFilters) => void;
 }
 
 const StripChartContext = createContext<StripChartContextProps | undefined>(undefined);
@@ -28,6 +27,7 @@ export const StripChartProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     const { applicationType } = useApplicationTypeContext();
     const [min_record, setMinRecord] = useState<LimitedRecord | undefined>();
     const [max_record, setMaxRecord] = useState<LimitedRecord | undefined>();
+    const {inspectionFilters} = useDataHandlerContext();
     const [current_record, setCurrentRecord] = useState<LimitedRecord>({
         factory_id: 0,
         device_id: 0,
@@ -46,17 +46,6 @@ export const StripChartProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             device_id: 0,
         },
         strip_data: [],
-    });
-    
-    const [inspectionFilters, setInspectionFilters] = useState<InspectionFilters>({
-        requested_record_id: -1,
-        start_date: -1,
-        end_date: -1,
-        disposition: -1,
-        factory_id: -1,
-        device_id: -1,
-        job_id: -1,
-        is_analysis: false,
     });
 
     const getInspectionData = async (navigation: string) => {
@@ -95,11 +84,6 @@ export const StripChartProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         }
     }
 
-    useEffect(() => {
-        if (!current_record || ![ApplicationType.InspectionVisualizer, ApplicationType.InspectionAnalysis].includes(applicationType)) return;
-        getInspectionData("last");
-    }, [inspectionFilters]);
-
     return (
         <StripChartContext.Provider
             value={{
@@ -107,8 +91,6 @@ export const StripChartProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 getInspectionData,
                 current_record,
                 setCurrentRecord,
-                inspectionFilters,
-                setInspectionFilters,
             }}
         >
             {children}

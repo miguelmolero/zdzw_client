@@ -5,6 +5,7 @@ import {
     XAxisUnits,
     FeatureType,
     DispositionType,
+    InspectionFilters
 } from "../types/inspection_types";
 //import { useApplicationTypeContext } from "./ApplicationTypeContext";
 //import { ApplicationType } from "../types/application_types";
@@ -38,6 +39,11 @@ export const DispositionTypeName: Record<DispositionType, string> = {
 };
 
 interface DataHandlerContextProps {
+    inspectionFilters: InspectionFilters;
+    setInspectionFilters: (filters: InspectionFilters) => void;
+    resetFilters: () => void;
+    selectedFactory: number;
+    setSelectedFactory: (value: number) => void;
     xAxis: XAxisUnits;
     yAxis: FeatureType;
     setXAxis: (value: XAxisUnits) => void;
@@ -56,10 +62,39 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     const [yAxis, setYAxis] = useState<FeatureType>(FeatureType.Amplitude);
     const [orderType, setOrderType] = useState<OrderType>(OrderType.Date);
     const [orderDirection, setOrderDirection] = useState<OrderDirection>(OrderDirection.Asc);
+    const [selectedFactory, setSelectedFactory] = useState<number>(-1);
+    const [inspectionFilters, setInspectionFilters] = useState<InspectionFilters>({
+        requested_record_id: -1,
+        start_date: -1,
+        end_date: -1,
+        disposition: -1,
+        factory_id: -1,
+        device_id: -1,
+        job_id: -1,
+        is_analysis: false,
+    });
+
+    const resetFilters = () => {
+        setInspectionFilters({
+            requested_record_id: -1,
+            start_date: -1,
+            end_date: -1,
+            disposition: -1,
+            factory_id: -1,
+            device_id: -1,
+            job_id: -1,
+            is_analysis: false,
+        });
+    }
 
     return (
         <DataHandlerContext.Provider 
             value={{
+                inspectionFilters,
+                setInspectionFilters,
+                resetFilters,
+                selectedFactory,
+                setSelectedFactory,
                 xAxis, 
                 yAxis, 
                 setXAxis,
