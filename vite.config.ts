@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import fullReload from 'vite-plugin-full-reload';
+import CONFIG from './src/config/config'
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -19,7 +20,7 @@ export default defineConfig({
   ],
   base: isProduction ? '/static/' : '/',
   server: {
-    port: parseInt(process.env.VITE_CLIENT_PORT || '3000'),
+    port: parseInt(CONFIG.VITE_CLIENT_PORT || '3000'),
     hmr: {
       overlay: false,
     },
