@@ -9,7 +9,7 @@ export const StatsColumnContainer = styled(Box)({
 
 export const StatsContainer = styled(Box)({
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
     gridAutoRows: '60%',
     gap: '5px',
     padding: '5px',
