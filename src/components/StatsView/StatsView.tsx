@@ -21,9 +21,9 @@ const StatsView : React.FC<StatsViewProps> = ({data}) => {
     if (isWPQApp) {
         let factory_number = 0;
         if (selectedFactory == -1) {
-            factory_number = 0;
+            factory_number = data?.factory_stats[0]?.factory_data?.id;
         }else{
-            factory_number = selectedFactory-1;
+            factory_number = selectedFactory;
         }
 
         return (
@@ -33,7 +33,7 @@ const StatsView : React.FC<StatsViewProps> = ({data}) => {
                 </Typography>
                 <StatsContainer>
                     {
-                        data.factory_stats[factory_number]?.device_stats?.map((stats: StatsData) => (
+                        data?.factory_stats[factory_number]?.device_stats?.map((stats: StatsData) => (
                             <StatsCard key={stats.id} data={stats}/>
                         ))
                     }
@@ -45,7 +45,7 @@ const StatsView : React.FC<StatsViewProps> = ({data}) => {
     return (
         <StatsContainer>
             {
-                data.factory_stats.map((factory: FactoryStatsData) => (
+                data?.factory_stats?.map((factory: FactoryStatsData) => (
                     <StatsCard key={factory.factory_data.id} data={factory.factory_data}/>
                 ))
             }
