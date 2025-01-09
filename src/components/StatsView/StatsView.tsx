@@ -29,7 +29,7 @@ const StatsView : React.FC<StatsViewProps> = ({data}) => {
         return (
             <StatsColumnContainer>
                 <Typography sx={{textDecoration: "underline"}} align="center" variant="h5" component="h5" >
-                        Factory ID - {factory_number+1}
+                        Factory ID - {factory_number}
                 </Typography>
                 <StatsContainer>
                     {
