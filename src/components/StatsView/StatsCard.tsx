@@ -1,20 +1,37 @@
 import React, {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {ChartData, ChartOptions} from "chart.js";
-import { PieChartContainer, StatsItem } from "./styles/StatsViewStyles";
+import { Typography } from "@mui/material";
+import { 
+    PieChartContainer, 
+    StatsItem,
+    StatsItemColumn
+} from "./styles/StatsViewStyles";
 import StatsInfoData from "./StatsData";
 import ChartCanvasBase from "../ChartCanvasBase"
+import { ApplicationType } from "../../types/application_types";
 import { StatsData } from "../../types/statistics_types";
+import { useApplicationTypeContext, applicationRoutes } from "../../context/ApplicationTypeContext";
+import { useDataHandlerContext } from "../../context/DataHandlerContext";
 
 interface StatsCardProps {
     data: StatsData;
-    n_columns: number;
 }
 
-const StatsCard : React.FC<StatsCardProps> = ({data, n_columns}) => {
+const StatsCard : React.FC<StatsCardProps> = ({data}) => {
+    const navigate = useNavigate();
+    const { applicationType } = useApplicationTypeContext();
+    const { setSelectedFactory } = useDataHandlerContext();
     const [chartData, setChartData] = useState<ChartData<"pie">>({
         labels: [],
         datasets: [],
     });
+
+    const navigateToWPQ = () => {
+        if (applicationType != ApplicationType.FactoryMetrics) return;
+        setSelectedFactory(data.id);
+        navigate(applicationRoutes.WeldingProcessQuality)
+    }
 
     useEffect(() => {
         if (data != undefined) {
@@ -34,7 +51,9 @@ const StatsCard : React.FC<StatsCardProps> = ({data, n_columns}) => {
     }, [data]);
 
     const chartOptions: ChartOptions<"pie"> = {
+        animation: false,
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'bottom', 
@@ -57,12 +76,22 @@ const StatsCard : React.FC<StatsCardProps> = ({data, n_columns}) => {
     };
 
     return (
-        <StatsItem columns={n_columns}>
-            <StatsInfoData data={data}/>
-            <PieChartContainer>
-                <ChartCanvasBase type={"pie"} data={chartData} options={chartOptions} />
-            </PieChartContainer>
-        </StatsItem>
+        <StatsItemColumn onClick={navigateToWPQ}>
+            <Typography align="center">
+                {
+                    applicationType == ApplicationType.WeldingProcessQuality ? 
+                    `Device ID - ` : 
+                    `Factory ID - `
+                }
+                {data.id}
+            </Typography>
+            <StatsItem>
+                <StatsInfoData data={data}/>
+                <PieChartContainer>
+                    <ChartCanvasBase type={"pie"} data={chartData} options={chartOptions} />
+                </PieChartContainer>
+            </StatsItem>
+        </StatsItemColumn>
     )
 };
 
