@@ -94,8 +94,14 @@ export interface InspectionFilters {
   is_analysis: boolean;
 }
 
+export interface OrderFilters {
+  order_type: OrderType;
+  order_direction: OrderDirection;
+}
+
 export interface RequestedPayload {
   nav_filters: InspectionFilters;
+  order_filters?: OrderFilters;
   loaded_record: LimitedRecord;
 }
 

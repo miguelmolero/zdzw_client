@@ -5,7 +5,8 @@ import {
     XAxisUnits,
     FeatureType,
     DispositionType,
-    InspectionFilters
+    InspectionFilters,
+    OrderFilters
 } from "../types/inspection_types";
 //import { useApplicationTypeContext } from "./ApplicationTypeContext";
 //import { ApplicationType } from "../types/application_types";
@@ -41,6 +42,8 @@ export const DispositionTypeName: Record<DispositionType, string> = {
 interface DataHandlerContextProps {
     inspectionFilters: InspectionFilters;
     setInspectionFilters: (filters: InspectionFilters) => void;
+    orderFilters: OrderFilters;
+    setOrderFilters: (filters: OrderFilters) => void;
     resetFilters: () => void;
     selectedFactory: number;
     setSelectedFactory: (value: number) => void;
@@ -48,10 +51,6 @@ interface DataHandlerContextProps {
     yAxis: FeatureType;
     setXAxis: (value: XAxisUnits) => void;
     setYAxis: (value: FeatureType) => void;
-    orderType: OrderType;
-    orderDirection: OrderDirection;
-    setOrderType: (value: OrderType) => void;
-    setOrderDirection: (value: OrderDirection) => void;
 }
 
 const DataHandlerContext = createContext<DataHandlerContextProps | undefined>(undefined);
@@ -60,9 +59,11 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
     // const { applicationType } = useApplicationTypeContext();
     const [xAxis, setXAxis] = useState<XAxisUnits>(XAxisUnits.Sample);
     const [yAxis, setYAxis] = useState<FeatureType>(FeatureType.Amplitude);
-    const [orderType, setOrderType] = useState<OrderType>(OrderType.Date);
-    const [orderDirection, setOrderDirection] = useState<OrderDirection>(OrderDirection.Asc);
     const [selectedFactory, setSelectedFactory] = useState<number>(-1);
+    const [orderFilters, setOrderFilters] = useState<OrderFilters>({
+        order_type: OrderType.Date,
+        order_direction: OrderDirection.Asc,
+    });
     const [inspectionFilters, setInspectionFilters] = useState<InspectionFilters>({
         requested_record_id: -1,
         start_date: -1,
@@ -92,6 +93,8 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
             value={{
                 inspectionFilters,
                 setInspectionFilters,
+                orderFilters,
+                setOrderFilters,
                 resetFilters,
                 selectedFactory,
                 setSelectedFactory,
@@ -99,10 +102,6 @@ export const DataHandlerProvider: React.FC<{children: React.ReactNode}> = ({chil
                 yAxis, 
                 setXAxis,
                 setYAxis,
-                orderType,
-                orderDirection,
-                setOrderType,
-                setOrderDirection,
             }}
         >
             {children}

@@ -12,11 +12,22 @@ import {
     StyledContainer, 
     StyledAccordion, 
 } from "./styles/FiltersBoxStyles";
-import { OrderDirection, OrderType } from "../../types/inspection_types";
+import { 
+    OrderDirection, 
+    OrderType,
+    OrderFilters
+} from "../../types/inspection_types";
 import { OrderDirectionLabels, OrderLabels, useDataHandlerContext } from "../../context/DataHandlerContext";
 
 const OrderingBox: React.FC = () => {
-    const { orderType, orderDirection, setOrderType, setOrderDirection } = useDataHandlerContext();
+    const { orderFilters, setOrderFilters } = useDataHandlerContext();
+
+    const updateOrderFilters = (key: keyof OrderFilters, value: OrderType | OrderDirection) => {
+        setOrderFilters({
+            ...orderFilters,
+            [key]: value,
+        });
+    }
 
     return (
         <StyledContainer>
@@ -27,7 +38,10 @@ const OrderingBox: React.FC = () => {
                 <AccordionDetails>
                     <FormControl fullWidth size="small">
                         <Typography variant="caption">Type</Typography>
-                        <Select value={orderType} onChange={(e) => setOrderType(e.target.value as OrderType)}>
+                        <Select 
+                            value={orderFilters.order_type} 
+                            onChange={(e) => updateOrderFilters("order_type", e.target.value as OrderType)}
+                        >
                             {Object.values(OrderType).map((type) => (
                                 <MenuItem key={type} value={type}>
                                     {OrderLabels[type]}
@@ -37,7 +51,10 @@ const OrderingBox: React.FC = () => {
                     </FormControl>
                     <FormControl fullWidth size="small">
                         <Typography variant="caption">Direction</Typography>
-                        <Select value={orderDirection} onChange={(e) => setOrderDirection(e.target.value as OrderDirection)}>
+                        <Select 
+                            value={orderFilters.order_direction} 
+                            onChange={(e) => updateOrderFilters("order_direction", e.target.value as OrderDirection)}
+                        >
                             {Object.values(OrderDirection).map((type) => (
                                 <MenuItem key={type} value={type}>
                                     {OrderDirectionLabels[type]}
