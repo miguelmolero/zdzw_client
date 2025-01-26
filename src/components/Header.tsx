@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Avatar } from '@mui/material';
+import { Avatar } from '@mui/material';
 import { Logo, LogoContainer, StyledHeader, Title } from './styles/HeaderStyles';
 import PersonIcon from '@mui/icons-material/Person';
 import logo from '../assets/Logo_ZDZW.png';

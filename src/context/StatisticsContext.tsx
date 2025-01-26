@@ -25,7 +25,7 @@ export const StatisticsProvider: React.FC<{children: React.ReactNode}> = ({child
     const [statisticsData, setStatisticsData] = useState<StatisticsData>({
         factory_stats: []
     });
-    const [current_record, setCurrentRecord] = useState<LimitedRecord>({
+    const [current_record] = useState<LimitedRecord>({
         factory_id: 0,
         device_id: 0,
         record_id: 0,
