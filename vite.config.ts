@@ -20,7 +20,7 @@ export default defineConfig({
   ],
   base: isProduction ? '/static/' : '/',
   server: {
-    port: parseInt(CONFIG.VITE_CLIENT_PORT || '3000'),
+    port: isProduction ? parseInt(CONFIG.VITE_PRODUCTION_CLIENT_PORT) : parseInt(CONFIG.VITE_DEVELOPMENT_CLIENT_PORT),
     hmr: {
       overlay: false,
     },
