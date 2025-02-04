@@ -33,7 +33,7 @@ const StatsView : React.FC<StatsViewProps> = ({data}) => {
                 </Typography>
                 <StatsContainer>
                     {
-                        data?.factory_stats[factory_number]?.device_stats?.map((stats: StatsData) => (
+                        data?.factory_stats[factory_number-1]?.device_stats?.map((stats: StatsData) => (
                             <StatsCard key={stats.id} data={stats}/>
                         ))
                     }
