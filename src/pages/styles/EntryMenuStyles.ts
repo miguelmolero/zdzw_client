@@ -50,7 +50,7 @@ export const CardButtonText = styled(Typography)(({ theme }) => ({
     fontFamily: '"Inter", sans-serif',
     fontSize: '1.5rem',
     fontWeight: '500',
-    color: '#fff',
+    //color: '#fff',
     textAlign: 'center',
     margin: 'auto',
     padding: '0 1.5rem',

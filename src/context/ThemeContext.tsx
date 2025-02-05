@@ -49,11 +49,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                     secondary: { main: '#c0e4a1' },
                     background: { default: 'rgba(255,255,255,1)' },
                     entryMenu: {
-                        primary: 'rgb(170,238,113,1)',
-                        secondary: 'rgba(45,97,69,1)',
+                        primary: 'rgb(247, 255, 238)',
+                        secondary: 'rgb(126, 187, 108)',
                         cards: {
-                            main: 'rgba(146, 204, 172, 0.3)',
-                            hover: 'rgba(192, 228, 161, 0.5)',
+                            main: 'rgba(255,255,255,0.3)',
+                            hover: 'rgba(102, 122, 85, 0.5)',
                         }
                     },
                   }
@@ -62,7 +62,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                     secondary: { main: '#00d084' },
                     background: { default: '#303030' },
                     entryMenu: {
-                        primary: 'rgb(170,238,113,1)',
+                        primary: 'rgba(170,238,113,1)',
                         secondary: 'rgba(45,97,69,1)',
                         cards: {
                             main: 'rgba(146, 204, 172, 0.3)',
