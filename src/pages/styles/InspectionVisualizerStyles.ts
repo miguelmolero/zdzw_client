@@ -10,6 +10,14 @@ export const InspectionContainer = styled(Box)({
   alignItems: 'center',
 });
 
+export const InspectionColumnContainer = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  height: '60%',
+  alignSelf: 'flex-start',
+});
+
 export const CanvasContainerSC = styled(Box)({
   flex: 1,
   display: 'flex',
@@ -17,4 +25,5 @@ export const CanvasContainerSC = styled(Box)({
   justifyContent: 'flex-start',
   alignSelf: 'flex-start',
   height: '100%',
+  width: '100%',
 });

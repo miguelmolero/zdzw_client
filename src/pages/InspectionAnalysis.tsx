@@ -6,6 +6,7 @@ import { ChartData } from "chart.js";
 import { StripData } from "../types/inspection_types";
 import {
     InspectionContainer,
+    InspectionColumnContainer,
     CanvasContainerSC
 } from "./styles/InspectionVisualizerStyles";
 import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
@@ -68,12 +69,14 @@ const InspectionAnalysis: React.FC = () => {
             <Toolbar />
             <InspectionContainer>
                 <SettingsColumn isInspectionView />
-                <CanvasContainerSC>
-                    <StripChartView
-                        data={chartData}
-                        header_meta_data={inspectionData?.meta_data}
-                    />
-                </CanvasContainerSC>
+                <InspectionColumnContainer>
+                    <CanvasContainerSC>
+                        <StripChartView
+                            data={chartData}
+                            header_meta_data={inspectionData?.meta_data}
+                        />
+                    </CanvasContainerSC>
+                </InspectionColumnContainer>
             </InspectionContainer>
         </DefaultLayout>
     );

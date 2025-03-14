@@ -67,12 +67,15 @@ export const StripChartProvider: React.FC<{ children: React.ReactNode }> = ({ ch
                 {}
             );
             const jsonData : ResponseData = response.data;
+            // console.log("RESPONSE DATA",jsonData);
             if (navigation === "first" || navigation === "last") {
                 setMinRecord(jsonData.min_record);
                 setMaxRecord(jsonData.max_record);
             }
             const payload: RecordDataRaw = jsonData.data;
+            // console.log("PAYLOAD",payload);
             const parsedData = parseRecordData(payload);
+            // console.log("PARSED DATA",parsedData);
             setInspectionData(parsedData);
             setCurrentRecord({
                 record_id: parsedData.meta_data.record_id,
