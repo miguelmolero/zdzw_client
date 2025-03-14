@@ -1,3 +1,15 @@
+export interface DefectsItem {
+  name: string;
+  start_index: number;
+  end_index: number;
+  start_feature_value: number;
+  end_feature_value: number;
+  risk_level: number;
+}
+export interface DefectsData {
+  defects_amp: DefectsItem[];
+  defects_tof: DefectsItem[];
+}
 export interface StripData {
   channel_id: number;
   gate_id: number;
@@ -7,6 +19,7 @@ export interface StripData {
   tof: number[];
   amp_damages?: number[];
   tof_damages?: number[];
+  defects_data?: DefectsData;
 }
 
 export interface RecordMetaData {
@@ -47,6 +60,7 @@ export interface StripDataRaw {
   tof: number[];
   amp_damages?: number[];
   tof_damages?: number[];
+  defects_data?: DefectsData;
 }
 
 export interface PayloadData {
@@ -62,12 +76,6 @@ export interface LocalizationData {
 }
 
 export interface RecordDataRaw {
-  success: boolean;
-  error: {
-    code: number;
-    msg: string;
-    errors: null | string;
-  };
   payload_data: PayloadData;
   localization_data: LocalizationData;
 }
