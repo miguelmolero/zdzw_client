@@ -3,9 +3,9 @@ import {
     DefectsTableContainer,
     DefectsDataTable,
     DefectsDataTableHead,
-    DefectsDataTableBody,
-    DefectsDataTableRow,
-    DefectsDataTableCell,
+    //DefectsDataTableBody,
+    //DefectsDataTableRow,
+    //DefectsDataTableCell,
 } from "./styles/DefectsTableStyles";
 
 const DefectsTable: React.FC = () => {
