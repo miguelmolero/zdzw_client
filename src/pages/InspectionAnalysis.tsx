@@ -7,9 +7,11 @@ import { StripData } from "../types/inspection_types";
 import {
     InspectionContainer,
     InspectionColumnContainer,
-    CanvasContainerSC
+    CanvasContainerSC,
+    // TablesContainerSC,
 } from "./styles/InspectionVisualizerStyles";
 import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
+import DamageTablesView from "../components/DamagesView/DamageTablesView";
 import { useStripChartContext} from "../context/StripChartContext";
 import { useDataHandlerContext } from "../context/DataHandlerContext";
 import { useApplicationTypeContext } from "../context/ApplicationTypeContext";
@@ -48,6 +50,8 @@ const InspectionAnalysis: React.FC = () => {
             })) as ChartData<"line">["datasets"];
             datasets.push(...damages);
 
+            // const defects = inspectionData.strip_data.map((strip) => ({
+
             setChartData({
                 labels,
                 datasets,
@@ -76,6 +80,9 @@ const InspectionAnalysis: React.FC = () => {
                             header_meta_data={inspectionData?.meta_data}
                         />
                     </CanvasContainerSC>
+                    <DamageTablesView
+                        strip_data={inspectionData?.strip_data || []}
+                    />
                 </InspectionColumnContainer>
             </InspectionContainer>
         </DefaultLayout>

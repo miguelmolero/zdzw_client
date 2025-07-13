@@ -14,7 +14,7 @@ export const InspectionColumnContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  height: '60%',
+  height: '100%',
   alignSelf: 'flex-start',
 });
 
@@ -26,4 +26,20 @@ export const CanvasContainerSC = styled(Box)({
   alignSelf: 'flex-start',
   height: '100%',
   width: '100%',
+});
+
+export const TablesContainerSC = styled(Box)({
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  width: '100%',
+  height: '100%',
+  overflow: 'auto',
+  padding: '10px',
+  boxSizing: 'border-box',
+  backgroundColor: '#f5f5f5',
+  borderRadius: '8px',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
 });
