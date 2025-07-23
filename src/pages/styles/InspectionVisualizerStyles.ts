@@ -8,14 +8,7 @@ export const InspectionContainer = styled(Box)({
   height: '100%',
   justifyContent: 'flex-start',
   alignItems: 'center',
-});
-
-export const InspectionColumnContainer = styled(Box)({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-  height: '100%',
-  alignSelf: 'flex-start',
+  overflow: 'auto',
 });
 
 export const CanvasContainerSC = styled(Box)({

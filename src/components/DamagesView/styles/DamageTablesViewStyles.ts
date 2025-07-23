@@ -4,7 +4,7 @@ export const DamageTablesContainer = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    height: '100%',
+    height: '40%',
 });
 
 export const TablesContainer = styled(Box)({
@@ -15,15 +15,32 @@ export const TablesContainer = styled(Box)({
     padding: '5px',
 });
 
+// export const DamagesTableItemContainer = styled(Box)({
+//     display: "flex",
+//     textAlign: "center",
+//     alignContent: "center",
+//     flexDirection: "row",
+//     justifyContent: "center",
+//     alignSelf: "center",
+//     height: "100%",
+//     width: "100%",
+// });
 export const DamagesTableItemContainer = styled(Box)({
-    display: "flex",
-    textAlign: "center",
-    alignContent: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignSelf: "center",
-    height: "100%",
-    width: "100%",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    overflow: 'auto',
+    width: '100%',
+    height: '100%',
+    maxHeight: '400px',
+    padding: '16px',
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    '&:hover': {
+        backgroundColor: 'rgba(0, 255, 0, 0.2)', // Change color on hover
+    },
 });
 
 export const DamagesDataTable = styled(Table)({

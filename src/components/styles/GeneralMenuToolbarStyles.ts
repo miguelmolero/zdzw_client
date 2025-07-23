@@ -8,4 +8,3 @@ export const StyledMenuToolbar = styled(Box)(({ theme }) => ({
     alignItems: 'center',
     borderRight: '1px solid #ccc',
 }));
-  

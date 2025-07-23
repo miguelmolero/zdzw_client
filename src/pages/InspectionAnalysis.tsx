@@ -9,7 +9,7 @@ import {
     InspectionColumnContainer,
     CanvasContainerSC,
     // TablesContainerSC,
-} from "./styles/InspectionVisualizerStyles";
+} from "./styles/InspectionAnalysisStyles";
 import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import DamageTablesView from "../components/DamagesView/DamageTablesView";
 import { useStripChartContext} from "../context/StripChartContext";
