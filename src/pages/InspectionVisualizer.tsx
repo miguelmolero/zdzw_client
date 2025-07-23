@@ -6,7 +6,7 @@ import { ChartData } from "chart.js";
 import { StripData } from "../types/inspection_types";
 import {
     InspectionContainer,
-    CanvasContainerSC
+    CanvasContainerSC,
 } from "./styles/InspectionVisualizerStyles";
 import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import { useDataHandlerContext } from "../context/DataHandlerContext";

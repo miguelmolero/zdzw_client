@@ -1,19 +1,13 @@
-export const settingsColumStyles = () => ({
-    container: {
-        flex: '0 0 250px',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        height: '100%',
-        backgroundColor: '#FFFFFF',
-        boxSizing: 'border-box'
-    },
+import { styled, Box } from "@mui/material";
 
-    accordion: {
-        width: '100%', // Ensure accordion doesn't exceed the width of its parent
-        boxSizing: 'border-box', // Include padding/borders in width calculation
-        margin: 0, // Remove any default margin
-        padding: 0, // Ensure padding doesn't cause overflow
-    }
+export const SettingsColumnContainer = styled(Box)({
+    flex: '1 0 250px',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    height: '100%',
+    backgroundColor: '#FFFFFF',
+    boxSizing: 'border-box',
+    overflow: 'auto',
 });

@@ -8,7 +8,7 @@ import {
     InspectionContainer,
     InspectionColumnContainer,
     CanvasContainerSC,
-    // TablesContainerSC,
+    DamageTablesContainer,
 } from "./styles/InspectionAnalysisStyles";
 import SettingsColumn from "../components/SettingsColumn/SettingsColumn";
 import DamageTablesView from "../components/DamagesView/DamageTablesView";
@@ -80,9 +80,11 @@ const InspectionAnalysis: React.FC = () => {
                             header_meta_data={inspectionData?.meta_data}
                         />
                     </CanvasContainerSC>
-                    <DamageTablesView
-                        strip_data={inspectionData?.strip_data || []}
-                    />
+                    <DamageTablesContainer>
+                        <DamageTablesView
+                            strip_data={inspectionData?.strip_data || []}
+                        />
+                    </DamageTablesContainer>
                 </InspectionColumnContainer>
             </InspectionContainer>
         </DefaultLayout>

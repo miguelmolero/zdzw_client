@@ -8,6 +8,7 @@ export const InspectionContainer = styled(Box)({
     height: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    overflow: 'auto',
 });
 
 export const InspectionColumnContainer = styled(Box)({
@@ -16,6 +17,7 @@ export const InspectionColumnContainer = styled(Box)({
     width: '100%',
     height: '100%',
     alignSelf: 'flex-start',
+    overflow: 'auto',
 });
 
 export const CanvasContainerSC = styled(Box)({
@@ -26,4 +28,11 @@ export const CanvasContainerSC = styled(Box)({
     alignSelf: 'flex-start',
     height: '60%',
     width: '100%',
+});
+
+export const DamageTablesContainer = styled(Box)({
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    height: '40%',
 });

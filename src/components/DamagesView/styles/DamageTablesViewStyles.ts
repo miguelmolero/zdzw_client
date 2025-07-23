@@ -1,12 +1,5 @@
 import {styled, Box, Table, TableHead, TableBody, TableRow, TableCell} from '@mui/material';
 
-export const DamageTablesContainer = styled(Box)({
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    height: '40%',
-});
-
 export const TablesContainer = styled(Box)({
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(500px, 1fr))',
@@ -15,16 +8,6 @@ export const TablesContainer = styled(Box)({
     padding: '5px',
 });
 
-// export const DamagesTableItemContainer = styled(Box)({
-//     display: "flex",
-//     textAlign: "center",
-//     alignContent: "center",
-//     flexDirection: "row",
-//     justifyContent: "center",
-//     alignSelf: "center",
-//     height: "100%",
-//     width: "100%",
-// });
 export const DamagesTableItemContainer = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
