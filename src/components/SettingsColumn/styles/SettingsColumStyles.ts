@@ -1,7 +1,7 @@
 import { styled, Box } from "@mui/material";
 
 export const SettingsColumnContainer = styled(Box)({
-    flex: '1 0 250px',
+    flex: '0 0 250px',
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',

@@ -8,33 +8,46 @@ export const TablesContainer = styled(Box)({
     padding: '5px',
 });
 
-export const DamagesTableItemContainer = styled(Box)({
+export const DamageViewColumnContainer = styled(Box)({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    overflow: 'auto',
     width: '100%',
     height: '100%',
-    maxHeight: '400px',
     padding: '16px',
     backgroundColor: 'white',
     borderRadius: '8px',
     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
     '&:hover': {
-        backgroundColor: 'rgba(0, 255, 0, 0.2)', // Change color on hover
+        backgroundColor: '#ccffcc'
     },
+    '&:hover thead': {
+        backgroundColor: '#ccffcc'
+    },
+});
+
+export const DamagesTableItemContainer = styled(Box)({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    overflow: 'auto',
+    width: '100%',
+    height: '100%',
+    maxHeight: '400px',
 });
 
 export const DamagesDataTable = styled(Table)({
     alignContent: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    height: '75%',
-    width: '90%'
+    width: '100%',
+    tableLayout: 'auto'
 });
 
 export const DamagesTableHead = styled(TableHead)({
+    position: 'sticky',
+    top: 0,
+    backgroundColor: 'white', // clave
+    zIndex: 2,
     alignContent: 'center',
     justifyContent: 'center',
 });
@@ -45,6 +58,7 @@ export const DamagesTableBody = styled(TableBody)({
 });
 
 export const DamagesTableRow = styled(TableRow)({
+    verticalAlign: 'top',
     alignContent: 'center',
     justifyContent: 'center',
 });
