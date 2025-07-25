@@ -25,6 +25,8 @@ const DamageTablesView: React.FC<DamageTablesViewProps> = ({ strip_data }) => {
                             ? strip.defects_data?.defects_amp || []
                             : strip.defects_data?.defects_tof || []
                     }
+                    channel_id={strip.channel_id}
+                    gate_id={strip.gate_id}
                 />
             ))}
         </TablesContainer>
