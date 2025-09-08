@@ -42,8 +42,8 @@ export const DamagesTableItem: React.FC<DamagesTableItemProps> = ({ table_data, 
                                 <DamagesTableCell align="center">{defect.name}</DamagesTableCell>
                                 <DamagesTableCell align="center">{defect.start_index}</DamagesTableCell>
                                 <DamagesTableCell align="center">{defect.end_index}</DamagesTableCell>
-                                <DamagesTableCell align="center">{defect.start_feature_value}</DamagesTableCell>
-                                <DamagesTableCell align="center">{defect.end_feature_value}</DamagesTableCell>
+                                <DamagesTableCell align="center">{Math.floor(defect.start_feature_value * 1000) / 1000}</DamagesTableCell>
+                                <DamagesTableCell align="center">{Math.floor(defect.end_feature_value * 1000) / 1000}</DamagesTableCell>
                                 <DamagesTableCell align="center">{defect.risk_level}</DamagesTableCell>
                             </DamagesTableRow>
                         ))}
